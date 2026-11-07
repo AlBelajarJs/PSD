@@ -1,0 +1,631 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>2.5 Identifikasi Outlier &#8212; Analisis Polutan Atmosfer Kecamatan Wonoayu</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '02_data_understanding/2.5_identifikasi_outlier';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.6 Kesimpulan Data Understanding" href="2.6_kesimpulan_data_understanding.html" />
+    <link rel="prev" title="2.4 Identifikasi Missing Value" href="2.4_identifikasi_missing_value.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pp.jpg" class="logo__image only-light" alt="Analisis Polutan Atmosfer Kecamatan Wonoayu - Home"/>
+    <script>document.write(`<img src="../_static/pp.jpg" class="logo__image only-dark" alt="Analisis Polutan Atmosfer Kecamatan Wonoayu - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 1 — BUSINESS UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding.html">Business Understanding</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 2 — DATA UNDERSTANDING</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2.1_data_collection.html">2.1 Data Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.2_deskripsi_dataset.html">2.2 Deskripsi Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.4_identifikasi_missing_value.html">2.4 Identifikasi Missing Value</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.5 Identifikasi Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.6_kesimpulan_data_understanding.html">2.6 Kesimpulan Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.7_analisis_no2_aiven_knime.html">2.7 Praktikum Analisis Aiven &amp; KNIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.8_konsep_dasar_statistik.html">2.8 Konsep Dasar Statistik + Contoh Hitung</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 3 — DATA PREPROCESSING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.1_pembersihan_data.html">3.1 Pembersihan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.2_penanganan_outlier.html">3.2 Penanganan Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.3_imputasi_missing_value.html">3.3 Imputasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.4_validasi_data_bersih.html">3.4 Validasi Data Bersih</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 4 — FEATURE EXTRACTION</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.1_persiapan_data.html">4.1 Persiapan Data untuk Ekstraksi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.2_ekstraksi_fitur_tsfel.html">4.2 Ekstraksi Fitur Menggunakan TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.3_fitur_domain_statistical.html">4.3 Fitur Domain Statistical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.4_fitur_domain_temporal.html">4.4 Fitur Domain Temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.5_fitur_domain_spectral.html">4.5 Fitur Domain Spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.6_hasil_ekstraksi_68_fitur.html">4.6 Hasil Ekstraksi 68 Fitur</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 5 — K-MEANS CLUSTERING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.1_konsep_kmeans_pca_manual.html">5.1 Konsep K-Means &amp; PCA (Hitung Manual)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.2_reduksi_dimensi_pca.html">5.2 Reduksi Dimensi PCA (1 - 37 Komponen)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.3_penentuan_jumlah_cluster.html">5.3 Penentuan Jumlah Cluster Terbaik</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.4_komparasi_pca_vs_68fitur.html">5.4 Komparasi PCA 37 vs 68 Fitur Asli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.5_implementasi_knime_workflow.html">5.5 Implementasi KNIME Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/05_kmeans_clustering.html">5.6 Notebook Interaktif K-Means &amp; PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.7_clustering_satu_kelas.html">5.7 Notebook Clustering Data 1 Kelas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.8_clustering_polynomial.html">5.8 Notebook Clustering Data Polynomial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 6 — SUPERVISED LEARNING (KLASIFIKASI)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../6.1_persiapan_klasifikasi.html">6.1 Klasifikasi Jawa Timur (Sentinel-2A, 6 Kelas)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.2_training_model.html">6.2 Training &amp; Perbandingan Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.3_peta_demo.html">6.3 Peta Klasifikasi + Folium</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.4_streamlit_deploy.html">6.4 Streamlit + Deploy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.5_klasifikasi_wonoayu.html">6.5 Klasifikasi Wonoayu (Sawah vs Non-Sawah)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.6_evaluasi_poligon.html">6.6 Evaluasi per Poligon (Prediksi vs Aktual)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/safamaster223/PSD" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/safamaster223/PSD/issues/new?title=Issue%20on%20page%20%2F02_data_understanding/2.5_identifikasi_outlier.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/02_data_understanding/2.5_identifikasi_outlier.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>2.5 Identifikasi Outlier</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologi-deteksi-pencilan">1. Metodologi Deteksi Pencilan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kalkulasi-batas-pencilan-pada-data-text-no-2-n-264">2. Kalkulasi Batas Pencilan pada Data <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> (<span class="math notranslate nohighlight">\(N = 264\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batas-pagar-fences">Batas Pagar (<em>Fences</em>):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verifikasi-dengan-nilai-z-score">Verifikasi dengan Nilai <span class="math notranslate nohighlight">\(Z\)</span>-Score:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-kausalitas-lingkungan-di-wilayah-wonoayu">3. Analisis Kausalitas Lingkungan di Wilayah Wonoayu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-untuk-tahap-preprocessing">4. Kesimpulan untuk Tahap Preprocessing</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="identifikasi-outlier">
+<h1>2.5 Identifikasi Outlier<a class="headerlink" href="#identifikasi-outlier" title="Permalink to this heading">#</a></h1>
+<p>Dokumen ini memuat analisis identifikasi nilai pencilan (<em>outliers</em>) pada data deret waktu polutan atmosfer di <strong>Kecamatan Wonoayu, Kabupaten Sidoarjo</strong> periode <strong>31 Agustus 2025 s.d. 31 Agustus 2026</strong>.</p>
+<hr class="docutils" />
+<section id="metodologi-deteksi-pencilan">
+<h2>1. Metodologi Deteksi Pencilan<a class="headerlink" href="#metodologi-deteksi-pencilan" title="Permalink to this heading">#</a></h2>
+<p>Deteksi outlier dilakukan dengan dua pendekatan statistik terstandar:</p>
+<ol class="arabic simple">
+<li><p><strong>Metode Jangkauan Antarkuartil (<em>Interquartile Range</em> / IQR)</strong>:<br />
+Menetapkan batas pagar atas (<em>Upper Fence</em>) dan pagar bawah (<em>Lower Fence</em>) berdasarkan distribusi persentil kuartil data.</p></li>
+<li><p><strong>Metode Skor Standar (<em>Z-Score</em>)</strong>:<br />
+Mengukur seberapa jauh deviasi suatu titik observasi dari nilai rata-rata sampel dalam satuan deviasi standar (<span class="math notranslate nohighlight">\(Z &gt; +3.0\)</span>).</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="kalkulasi-batas-pencilan-pada-data-text-no-2-n-264">
+<h2>2. Kalkulasi Batas Pencilan pada Data <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> (<span class="math notranslate nohighlight">\(N = 264\)</span>)<a class="headerlink" href="#kalkulasi-batas-pencilan-pada-data-text-no-2-n-264" title="Permalink to this heading">#</a></h2>
+<p>Berdasarkan hasil kalkulasi statistik presisi pada data valid:</p>
+<ul class="simple">
+<li><p><strong>Kuartil Bawah (<span class="math notranslate nohighlight">\(Q_1\)</span>)</strong>: <span class="math notranslate nohighlight">\(0.0000273069\text{ mol/m}^2\)</span></p></li>
+<li><p><strong>Median (<span class="math notranslate nohighlight">\(Q_2\)</span>)</strong>: <span class="math notranslate nohighlight">\(0.0000349860\text{ mol/m}^2\)</span></p></li>
+<li><p><strong>Kuartil Atas (<span class="math notranslate nohighlight">\(Q_3\)</span>)</strong>: <span class="math notranslate nohighlight">\(0.0000437760\text{ mol/m}^2\)</span></p></li>
+<li><p><strong>Rentang Antarkuartil (<span class="math notranslate nohighlight">\(\text{IQR}\)</span>)</strong>:
+$<span class="math notranslate nohighlight">\(\text{IQR} = Q_3 - Q_1 = 0.0000437760 - 0.0000273069 = 0.0000164691\text{ mol/m}^2\)</span>$</p></li>
+</ul>
+<section id="batas-pagar-fences">
+<h3>Batas Pagar (<em>Fences</em>):<a class="headerlink" href="#batas-pagar-fences" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Pagar Bawah (<em>Lower Fence</em>)</strong>:
+$<span class="math notranslate nohighlight">\(\text{LF} = Q_1 - 1.5 \times \text{IQR} = 0.0000273069 - 1.5(0.0000164691) = 0.0000026032\text{ mol/m}^2\)</span><span class="math notranslate nohighlight">\(
+*Observasi:* Nilai minimum data adalah \)</span>\text{Min} = 0.0000034155\text{ mol/m}^2 &gt; \text{LF}$, sehingga <strong>tidak ada pencilan bawah</strong>.</p></li>
+<li><p><strong>Pagar Atas (<em>Upper Fence</em>)</strong>:
+$<span class="math notranslate nohighlight">\(\text{UF} = Q_3 + 1.5 \times \text{IQR} = 0.0000437760 + 1.5(0.0000164691) = 0.0000684796\text{ mol/m}^2\)</span><span class="math notranslate nohighlight">\(
+*Observasi:* Nilai maksimum data adalah \)</span>\text{Max} = 0.0000957728\text{ mol/m}^2 &gt; \text{UF}$. Terdapat beberapa observasi yang menembus pagar atas dan tergolong sebagai <strong>pencilan atas (<em>Upper Outliers</em>)</strong>.</p></li>
+</ol>
+</section>
+<section id="verifikasi-dengan-nilai-z-score">
+<h3>Verifikasi dengan Nilai <span class="math notranslate nohighlight">\(Z\)</span>-Score:<a class="headerlink" href="#verifikasi-dengan-nilai-z-score" title="Permalink to this heading">#</a></h3>
+<p>Untuk nilai maksimum <span class="math notranslate nohighlight">\(x = 0.0000957728\text{ mol/m}^2\)</span>:
+$<span class="math notranslate nohighlight">\(Z = \frac{x - \bar{x}}{s} = \frac{0.0000957728 - 0.0000369605}{0.0000139089} = \mathbf{+4.228}\)</span><span class="math notranslate nohighlight">\(
+Karena \)</span>Z = 4.23 &gt; 3.0$, titik data ini terkonfirmasi secara matematis sebagai pencilan ekstrem.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="analisis-kausalitas-lingkungan-di-wilayah-wonoayu">
+<h2>3. Analisis Kausalitas Lingkungan di Wilayah Wonoayu<a class="headerlink" href="#analisis-kausalitas-lingkungan-di-wilayah-wonoayu" title="Permalink to this heading">#</a></h2>
+<p>Keberadaan pencilan atas konsentrasi polutan di Kecamatan Wonoayu memiliki penjelasan fisis dan lingkungan yang nyata:</p>
+<ol class="arabic simple">
+<li><p><strong>Inversi Suhu Atmosfer pada Musim Kemarau</strong>:<br />
+Pada periode bulan Agustus–Oktober, radiasi matahari intens dan kecepatan angin rendah sering kali memicu fenomena inversi suhu (<em>atmospheric temperature inversion</em>), di mana lapisan udara dingin terperangkap di bawah lapisan udara hangat sehingga polutan tidak dapat terdispersi secara vertikal.</p></li>
+<li><p><strong>Lonjakan Lalu Lintas Jalur Logistik Pantura/Arteri Selatan</strong>:<br />
+Kecamatan Wonoayu merupakan pintu gerbang perbatasan antara Sidoarjo dan Pasuruan. Kemacetan dan lonjakan volume truk ekspedisi muatan berat pada jam sibuk tertentu menyebabkan akumulasi emisi <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> lokal.</p></li>
+<li><p><strong>Aktivitas Pembakaran Terbuka (<em>Open Burning</em>) Pasca Panen</strong>:<br />
+Karakteristik agraris wilayah pesisir dan persawahan Wonoayu sering kali menyumbang lonjakan mendadak pada gas <span class="math notranslate nohighlight">\(\text{CO}\)</span> dan partikel aerosol akibat pembakaran jerami musiman.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan-untuk-tahap-preprocessing">
+<h2>4. Kesimpulan untuk Tahap Preprocessing<a class="headerlink" href="#kesimpulan-untuk-tahap-preprocessing" title="Permalink to this heading">#</a></h2>
+<p>Pencilan pada dataset ini mencerminkan fenomena fisis nyata, bukan kerusakan instrumen satelit. Pada <strong>BAB 3 (Data Preprocessing)</strong>, penanganan outlier akan mempertimbangkan pendekatan <em>capping</em> atau mempertahankan puncak asli agar kekayaan dinamika temporal tetap tertangkap pada saat ekstraksi fitur TSFEL.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./02_data_understanding"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2.4_identifikasi_missing_value.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">2.4 Identifikasi Missing Value</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2.6_kesimpulan_data_understanding.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">2.6 Kesimpulan Data Understanding</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologi-deteksi-pencilan">1. Metodologi Deteksi Pencilan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kalkulasi-batas-pencilan-pada-data-text-no-2-n-264">2. Kalkulasi Batas Pencilan pada Data <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> (<span class="math notranslate nohighlight">\(N = 264\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batas-pagar-fences">Batas Pagar (<em>Fences</em>):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verifikasi-dengan-nilai-z-score">Verifikasi dengan Nilai <span class="math notranslate nohighlight">\(Z\)</span>-Score:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-kausalitas-lingkungan-di-wilayah-wonoayu">3. Analisis Kausalitas Lingkungan di Wilayah Wonoayu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-untuk-tahap-preprocessing">4. Kesimpulan untuk Tahap Preprocessing</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alghifari Amar Mukhasyafah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

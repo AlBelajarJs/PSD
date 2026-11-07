@@ -1,0 +1,686 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>2.2 Deskripsi Dataset &#8212; Analisis Polutan Atmosfer Kecamatan Wonoayu</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '02_data_understanding/2.2_deskripsi_dataset';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.3 Exploratory Data Analysis (EDA)" href="2.3_exploratory_data_analysis.html" />
+    <link rel="prev" title="2.1 Data Collection" href="2.1_data_collection.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pp.jpg" class="logo__image only-light" alt="Analisis Polutan Atmosfer Kecamatan Wonoayu - Home"/>
+    <script>document.write(`<img src="../_static/pp.jpg" class="logo__image only-dark" alt="Analisis Polutan Atmosfer Kecamatan Wonoayu - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 1 — BUSINESS UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding.html">Business Understanding</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 2 — DATA UNDERSTANDING</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2.1_data_collection.html">2.1 Data Collection</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.2 Deskripsi Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.4_identifikasi_missing_value.html">2.4 Identifikasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.5_identifikasi_outlier.html">2.5 Identifikasi Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.6_kesimpulan_data_understanding.html">2.6 Kesimpulan Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.7_analisis_no2_aiven_knime.html">2.7 Praktikum Analisis Aiven &amp; KNIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.8_konsep_dasar_statistik.html">2.8 Konsep Dasar Statistik + Contoh Hitung</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 3 — DATA PREPROCESSING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.1_pembersihan_data.html">3.1 Pembersihan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.2_penanganan_outlier.html">3.2 Penanganan Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.3_imputasi_missing_value.html">3.3 Imputasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.4_validasi_data_bersih.html">3.4 Validasi Data Bersih</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 4 — FEATURE EXTRACTION</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.1_persiapan_data.html">4.1 Persiapan Data untuk Ekstraksi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.2_ekstraksi_fitur_tsfel.html">4.2 Ekstraksi Fitur Menggunakan TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.3_fitur_domain_statistical.html">4.3 Fitur Domain Statistical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.4_fitur_domain_temporal.html">4.4 Fitur Domain Temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.5_fitur_domain_spectral.html">4.5 Fitur Domain Spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.6_hasil_ekstraksi_68_fitur.html">4.6 Hasil Ekstraksi 68 Fitur</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 5 — K-MEANS CLUSTERING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.1_konsep_kmeans_pca_manual.html">5.1 Konsep K-Means &amp; PCA (Hitung Manual)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.2_reduksi_dimensi_pca.html">5.2 Reduksi Dimensi PCA (1 - 37 Komponen)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.3_penentuan_jumlah_cluster.html">5.3 Penentuan Jumlah Cluster Terbaik</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.4_komparasi_pca_vs_68fitur.html">5.4 Komparasi PCA 37 vs 68 Fitur Asli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.5_implementasi_knime_workflow.html">5.5 Implementasi KNIME Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/05_kmeans_clustering.html">5.6 Notebook Interaktif K-Means &amp; PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.7_clustering_satu_kelas.html">5.7 Notebook Clustering Data 1 Kelas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.8_clustering_polynomial.html">5.8 Notebook Clustering Data Polynomial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 6 — SUPERVISED LEARNING (KLASIFIKASI)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../6.1_persiapan_klasifikasi.html">6.1 Klasifikasi Jawa Timur (Sentinel-2A, 6 Kelas)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.2_training_model.html">6.2 Training &amp; Perbandingan Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.3_peta_demo.html">6.3 Peta Klasifikasi + Folium</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.4_streamlit_deploy.html">6.4 Streamlit + Deploy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.5_klasifikasi_wonoayu.html">6.5 Klasifikasi Wonoayu (Sawah vs Non-Sawah)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.6_evaluasi_poligon.html">6.6 Evaluasi per Poligon (Prediksi vs Aktual)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/safamaster223/PSD" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/safamaster223/PSD/issues/new?title=Issue%20on%20page%20%2F02_data_understanding/2.2_deskripsi_dataset.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/02_data_understanding/2.2_deskripsi_dataset.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>2.2 Deskripsi Dataset</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-metadata-dataset">1. Ringkasan Metadata Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-parameter-polutan">2. Deskripsi Parameter Polutan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-tabel-skema-data">3. Struktur Tabel &amp; Skema Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unduh-berkas-data-analisis">4. Unduh Berkas Data Analisis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-batas-wilayah-geojson-area-of-interest">A. Batas Wilayah GeoJSON (Area of Interest)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-hasil-pengukuran-satelit-per-polutan-csv">B. Hasil Pengukuran Satelit per Polutan (CSV)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-data-gabungan-versi-kurva-tren">C. Data Gabungan &amp; Versi Kurva Tren</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="deskripsi-dataset">
+<h1>2.2 Deskripsi Dataset<a class="headerlink" href="#deskripsi-dataset" title="Permalink to this heading">#</a></h1>
+<p>Dokumen ini menyajikan deskripsi lengkap mengenai karakteristik, struktur metadata, atribut parameter, dan berkas dataset deret waktu kualitas udara hasil penginderaan jauh satelit <strong>Sentinel-5P TROPOMI</strong> di atas wilayah <strong>Kecamatan Wonoayu, Kabupaten Sidoarjo</strong>.</p>
+<hr class="docutils" />
+<section id="ringkasan-metadata-dataset">
+<h2>1. Ringkasan Metadata Dataset<a class="headerlink" href="#ringkasan-metadata-dataset" title="Permalink to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Parameter</p></th>
+<th class="head text-left"><p>Deskripsi Metadata</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Wilayah Studi</strong></p></td>
+<td class="text-left"><p>Kecamatan Wonoayu, Kabupaten Sidoarjo, Jawa Timur, Indonesia</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Area of Interest (AOI)</strong></p></td>
+<td class="text-left"><p>Poligon batas wilayah <code class="docutils literal notranslate"><span class="pre">wonoayu.geojson</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Sumber Data Primer</strong></p></td>
+<td class="text-left"><p>Satelit Sentinel-5P / Instrumen TROPOMI (<em>Copernicus Data Space Ecosystem</em>)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Tingkat Produk</strong></p></td>
+<td class="text-left"><p>Level-2 (L2) diolah via openEO menjadi agregasi spasial rata-rata wilayah</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Rentang Waktu Observasi</strong></p></td>
+<td class="text-left"><p><strong>31 Agustus 2025 s.d. 31 Agustus 2026</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Resolusi Temporal</strong></p></td>
+<td class="text-left"><p>Harian (1 observasi per hari <span class="math notranslate nohighlight">\(\rightarrow\)</span> Total <strong>366 baris observasi</strong>)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Satuan Pengukuran</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\text{mol/m}^2\)</span> (Densitas kolom vertikal troposferik)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Jumlah Parameter Gas</strong></p></td>
+<td class="text-left"><p>6 Polutan Utama (<span class="math notranslate nohighlight">\(\text{NO}_2, \text{CO}, \text{HCHO}, \text{SO}_2, \text{O}_3, \text{CH}_4\)</span>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="deskripsi-parameter-polutan">
+<h2>2. Deskripsi Parameter Polutan<a class="headerlink" href="#deskripsi-parameter-polutan" title="Permalink to this heading">#</a></h2>
+<p>Berikut adalah keenam gas atmosfer yang dianalisis beserta peran lingkungan dan dampaknya:</p>
+<ol class="arabic simple">
+<li><p><strong>Nitrogen Dioksida (<span class="math notranslate nohighlight">\(\text{NO}_2\)</span>)</strong><br />
+Gas berwarna cokelat kemerahan yang terutama dihasilkan dari proses pembakaran suhu tinggi pada kendaraan bermotor dan cerobong industri di sepanjang koridor arteri Wonoayu. Merupakan prekursor utama pembentukan ozon troposferik dan aerosol nitrat.</p></li>
+<li><p><strong>Karbon Monoksida (<span class="math notranslate nohighlight">\(\text{CO}\)</span>)</strong><br />
+Gas tidak berbau dan tidak berwarna yang dihasilkan dari pembakaran tidak sempurna bahan bakar fosil dan pembakaran biomassa/limbah pertanian. Memiliki waktu tinggal di atmosfer yang cukup panjang sehingga menjadi pelacak transpor polusi regional.</p></li>
+<li><p><strong>Formaldehida (<span class="math notranslate nohighlight">\(\text{HCHO}\)</span>)</strong><br />
+Senyawa organik volatil perantara (<em>intermediate VOC</em>) hasil oksidasi metana dan hidrokarbon non-metana. Konsentrasinya mencerminkan tingkat reaktivitas fotokimia atmosfer dan emisi industri organik.</p></li>
+<li><p><strong>Sulfur Dioksida (<span class="math notranslate nohighlight">\(\text{SO}_2\)</span>)</strong><br />
+Gas reaktif berbau menyengat yang berasal dari pembakaran bahan bakar yang mengandung sulfur (seperti batubara atau minyak residu industri) serta aktivitas geotermal/vulkanik.</p></li>
+<li><p><strong>Ozon Permukaan Troposferik (<span class="math notranslate nohighlight">\(\text{O}_3\)</span>)</strong><br />
+Polutan sekunder berbahaya yang tidak diemisikan langsung, melainkan terbentuk melalui reaksi fotokimia antara <span class="math notranslate nohighlight">\(\text{NO}_x\)</span> dan VOC dengan bantuan sinar ultraviolet matahari.</p></li>
+<li><p><strong>Metana (<span class="math notranslate nohighlight">\(\text{CH}_4\)</span>)</strong><br />
+Gas rumah kaca berkekuatan tinggi yang bersumber dari aktivitas dekomposisi anaerobik pada lahan persawahan, tambak payau pesisir Wonoayu, serta pengelolaan limbah organik.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="struktur-tabel-skema-data">
+<h2>3. Struktur Tabel &amp; Skema Data<a class="headerlink" href="#struktur-tabel-skema-data" title="Permalink to this heading">#</a></h2>
+<p>Setiap berkas CSV polutan individu memiliki skema 2 kolom yang terstandar:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>┌──────────────────────────────┬──────────────────┐
+│             date             │   &lt;POLLUTANT&gt;    │
+│  (ISO 8601 UTC Timestamptz)  │  (Float 53-bit)  │
+├──────────────────────────────┼──────────────────┤
+│   2025-08-31T00:00:00.000Z   │  0.0000341552    │
+│   2025-09-01T00:00:00.000Z   │  0.0000412890    │
+│             ...              │       ...        │
+└──────────────────────────────┴──────────────────┘
+</pre></div>
+</div>
+<p>Sedangkan pada berkas gabungan multi-parameter (<code class="docutils literal notranslate"><span class="pre">wonoayu_pollutants.csv</span></code>), keenam parameter dihubungkan berdasarkan indeks tanggal yang sama (<code class="docutils literal notranslate"><span class="pre">date</span></code>, <code class="docutils literal notranslate"><span class="pre">NO2</span></code>, <code class="docutils literal notranslate"><span class="pre">CO</span></code>, <code class="docutils literal notranslate"><span class="pre">HCHO</span></code>, <code class="docutils literal notranslate"><span class="pre">SO2</span></code>, <code class="docutils literal notranslate"><span class="pre">O3</span></code>, <code class="docutils literal notranslate"><span class="pre">CH4</span></code>).</p>
+</section>
+<hr class="docutils" />
+<section id="unduh-berkas-data-analisis">
+<h2>4. Unduh Berkas Data Analisis<a class="headerlink" href="#unduh-berkas-data-analisis" title="Permalink to this heading">#</a></h2>
+<p>Seluruh berkas data tersimpan secara lokal dan dapat diunduh langsung melalui tautan di bawah ini:</p>
+<section id="a-batas-wilayah-geojson-area-of-interest">
+<h3>A. Batas Wilayah GeoJSON (Area of Interest)<a class="headerlink" href="#a-batas-wilayah-geojson-area-of-interest" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>wonoayu.geojson</strong> — Batas koordinat poligon Kecamatan Wonoayu untuk ekstraksi citra satelit:<br />
+<a href="../data/downloads/wonoayu.geojson" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh wonoayu.geojson</a></p></li>
+</ul>
+</section>
+<section id="b-hasil-pengukuran-satelit-per-polutan-csv">
+<h3>B. Hasil Pengukuran Satelit per Polutan (CSV)<a class="headerlink" href="#b-hasil-pengukuran-satelit-per-polutan-csv" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>wonoayu_NO2.csv</strong> — Deret waktu harian Nitrogen Dioksida:<br />
+<a href="../data/downloads/wonoayu_pollutants_data/wonoayu_NO2.csv" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh wonoayu_NO2.csv</a></p></li>
+<li><p><strong>wonoayu_CO.csv</strong> — Deret waktu harian Karbon Monoksida:<br />
+<a href="../data/downloads/wonoayu_pollutants_data/wonoayu_CO.csv" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh wonoayu_CO.csv</a></p></li>
+<li><p><strong>wonoayu_HCHO.csv</strong> — Deret waktu harian Formaldehida:<br />
+<a href="../data/downloads/wonoayu_pollutants_data/wonoayu_HCHO.csv" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh wonoayu_HCHO.csv</a></p></li>
+<li><p><strong>wonoayu_SO2.csv</strong> — Deret waktu harian Sulfur Dioksida:<br />
+<a href="../data/downloads/wonoayu_pollutants_data/wonoayu_SO2.csv" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh wonoayu_SO2.csv</a></p></li>
+<li><p><strong>wonoayu_O3.csv</strong> — Deret waktu harian Ozon Permukaan:<br />
+<a href="../data/downloads/wonoayu_pollutants_data/wonoayu_O3.csv" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh wonoayu_O3.csv</a></p></li>
+<li><p><strong>wonoayu_CH4.csv</strong> — Deret waktu harian Metana:<br />
+<a href="../data/downloads/wonoayu_pollutants_data/wonoayu_CH4.csv" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh wonoayu_CH4.csv</a></p></li>
+</ul>
+</section>
+<section id="c-data-gabungan-versi-kurva-tren">
+<h3>C. Data Gabungan &amp; Versi Kurva Tren<a class="headerlink" href="#c-data-gabungan-versi-kurva-tren" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>wonoayu_pollutants.csv</strong> — Tabel gabungan keenam polutan mentah (366 hari):<br />
+<a href="../data/downloads/wonoayu_pollutants_data/wonoayu_pollutants.csv" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh wonoayu_pollutants.csv</a></p></li>
+<li><p><strong>wonoayu_pollutants_rolling30.csv</strong> — Versi <em>rolling average</em> 30 hari untuk analisis tren jangka panjang:<br />
+<a href="../data/downloads/wonoayu_pollutants_data/wonoayu_pollutants_rolling30.csv" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh wonoayu_pollutants_rolling30.csv</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./02_data_understanding"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2.1_data_collection.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">2.1 Data Collection</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2.3_exploratory_data_analysis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">2.3 Exploratory Data Analysis (EDA)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-metadata-dataset">1. Ringkasan Metadata Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-parameter-polutan">2. Deskripsi Parameter Polutan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-tabel-skema-data">3. Struktur Tabel &amp; Skema Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unduh-berkas-data-analisis">4. Unduh Berkas Data Analisis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-batas-wilayah-geojson-area-of-interest">A. Batas Wilayah GeoJSON (Area of Interest)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-hasil-pengukuran-satelit-per-polutan-csv">B. Hasil Pengukuran Satelit per Polutan (CSV)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-data-gabungan-versi-kurva-tren">C. Data Gabungan &amp; Versi Kurva Tren</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alghifari Amar Mukhasyafah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

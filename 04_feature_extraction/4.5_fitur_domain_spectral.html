@@ -1,0 +1,850 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>4.5 Fitur Domain Spectral &#8212; Analisis Polutan Atmosfer Kecamatan Wonoayu</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '04_feature_extraction/4.5_fitur_domain_spectral';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.6 Hasil Ekstraksi 68 Fitur" href="4.6_hasil_ekstraksi_68_fitur.html" />
+    <link rel="prev" title="4.4 Fitur Domain Temporal" href="4.4_fitur_domain_temporal.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pp.jpg" class="logo__image only-light" alt="Analisis Polutan Atmosfer Kecamatan Wonoayu - Home"/>
+    <script>document.write(`<img src="../_static/pp.jpg" class="logo__image only-dark" alt="Analisis Polutan Atmosfer Kecamatan Wonoayu - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 1 — BUSINESS UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding.html">Business Understanding</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 2 — DATA UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.1_data_collection.html">2.1 Data Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.2_deskripsi_dataset.html">2.2 Deskripsi Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.4_identifikasi_missing_value.html">2.4 Identifikasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.5_identifikasi_outlier.html">2.5 Identifikasi Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.6_kesimpulan_data_understanding.html">2.6 Kesimpulan Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.7_analisis_no2_aiven_knime.html">2.7 Praktikum Analisis Aiven &amp; KNIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.8_konsep_dasar_statistik.html">2.8 Konsep Dasar Statistik + Contoh Hitung</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 3 — DATA PREPROCESSING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.1_pembersihan_data.html">3.1 Pembersihan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.2_penanganan_outlier.html">3.2 Penanganan Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.3_imputasi_missing_value.html">3.3 Imputasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.4_validasi_data_bersih.html">3.4 Validasi Data Bersih</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 4 — FEATURE EXTRACTION</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="4.1_persiapan_data.html">4.1 Persiapan Data untuk Ekstraksi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.2_ekstraksi_fitur_tsfel.html">4.2 Ekstraksi Fitur Menggunakan TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.3_fitur_domain_statistical.html">4.3 Fitur Domain Statistical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.4_fitur_domain_temporal.html">4.4 Fitur Domain Temporal</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4.5 Fitur Domain Spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.6_hasil_ekstraksi_68_fitur.html">4.6 Hasil Ekstraksi 68 Fitur</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 5 — K-MEANS CLUSTERING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.1_konsep_kmeans_pca_manual.html">5.1 Konsep K-Means &amp; PCA (Hitung Manual)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.2_reduksi_dimensi_pca.html">5.2 Reduksi Dimensi PCA (1 - 37 Komponen)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.3_penentuan_jumlah_cluster.html">5.3 Penentuan Jumlah Cluster Terbaik</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.4_komparasi_pca_vs_68fitur.html">5.4 Komparasi PCA 37 vs 68 Fitur Asli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.5_implementasi_knime_workflow.html">5.5 Implementasi KNIME Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/05_kmeans_clustering.html">5.6 Notebook Interaktif K-Means &amp; PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.7_clustering_satu_kelas.html">5.7 Notebook Clustering Data 1 Kelas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.8_clustering_polynomial.html">5.8 Notebook Clustering Data Polynomial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 6 — SUPERVISED LEARNING (KLASIFIKASI)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../6.1_persiapan_klasifikasi.html">6.1 Klasifikasi Jawa Timur (Sentinel-2A, 6 Kelas)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.2_training_model.html">6.2 Training &amp; Perbandingan Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.3_peta_demo.html">6.3 Peta Klasifikasi + Folium</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.4_streamlit_deploy.html">6.4 Streamlit + Deploy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.5_klasifikasi_wonoayu.html">6.5 Klasifikasi Wonoayu (Sawah vs Non-Sawah)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.6_evaluasi_poligon.html">6.6 Evaluasi per Poligon (Prediksi vs Aktual)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/safamaster223/PSD" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/safamaster223/PSD/issues/new?title=Issue%20on%20page%20%2F04_feature_extraction/4.5_fitur_domain_spectral.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/04_feature_extraction/4.5_fitur_domain_spectral.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>4.5 Fitur Domain Spectral</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-domain-spectral">1. Konsep Domain Spectral</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rincian-26-fitur-domain-spectral">2. Rincian 26 Fitur Domain Spectral</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-konseptual-pembuktian-kode-tsfel">3. Perhitungan Konseptual &amp; Pembuktian Kode TSFEL</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-konsep-perhitungan-spektral">A. Konsep Perhitungan Spektral</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual-per-fitur-26-26-terverifikasi">4. Contoh Perhitungan Manual per Fitur (26/26, Terverifikasi)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#berbasis-fft-langsung-17-fitur">4.1 Berbasis FFT langsung (17 fitur)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#koefisien-cepstral-2-fitur">4.2 Koefisien cepstral (2 fitur)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-mexican-hat-cwt-9-skala-5-fitur">4.3 Wavelet — Mexican Hat / CWT, 9 skala (5 fitur)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-pembuktian-python-menggunakan-tsfel-7-fitur-inti">5. Kode Pembuktian Python Menggunakan TSFEL (7 Fitur Inti)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="fitur-domain-spectral">
+<h1>4.5 Fitur Domain Spectral<a class="headerlink" href="#fitur-domain-spectral" title="Permalink to this heading">#</a></h1>
+<p>Dokumen ini memuat perincian 26 fitur dalam <strong>Domain Spectral &amp; Wavelet</strong> dari daftar 68 fitur TSFEL yang diekstraksi untuk sinyal polutan <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> <strong>Kecamatan Wonoayu, Kabupaten Sidoarjo</strong>, lengkap dengan <strong>deskripsi</strong>, <strong>konsep frekuensi</strong>, dan <strong>pembuktian kode Python menggunakan pustaka TSFEL</strong>.</p>
+<hr class="docutils" />
+<section id="konsep-domain-spectral">
+<h2>1. Konsep Domain Spectral<a class="headerlink" href="#konsep-domain-spectral" title="Permalink to this heading">#</a></h2>
+<p>Domain spektral mentransformasikan sinyal deret waktu dari domain waktu ke domain frekuensi menggunakan Transformasi Fourier Cepat (<em>Fast Fourier Transform</em> / FFT) dan Transformasi Wavelet (<em>Wavelet Transform</em>). Fitur ini mengevaluasi sebaran energi, periodisitas tersembunyi (misal siklus mingguan atau bulanan), serta spektrum daya sinyal.</p>
+</section>
+<hr class="docutils" />
+<section id="rincian-26-fitur-domain-spectral">
+<h2>2. Rincian 26 Fitur Domain Spectral<a class="headerlink" href="#rincian-26-fitur-domain-spectral" title="Permalink to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>No</p></th>
+<th class="head text-left"><p>Nama Fitur TSFEL</p></th>
+<th class="head text-left"><p>Definisi / Fungsi Matematis</p></th>
+<th class="head text-left"><p>Makna Fisis pada Kualitas Udara Wonoayu</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>1</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fundamental_frequency</span></code></p></td>
+<td class="text-left"><p>Frekuensi fundamental <span class="math notranslate nohighlight">\(f_0\)</span></p></td>
+<td class="text-left"><p>Periode perulangan utama sinyal emisi di Wonoayu.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>2</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">max_frequency</span></code></p></td>
+<td class="text-left"><p>Frekuensi maksimum dengan daya signifikan</p></td>
+<td class="text-left"><p>Batas osilasi tertinggi fluktuasi kualitas udara.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>3</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">median_frequency</span></code></p></td>
+<td class="text-left"><p>Frekuensi median spektrum daya</p></td>
+<td class="text-left"><p>Frekuensi yang membagi spektrum daya menjadi dua bagian sama besar.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>4</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">max_power_spectrum</span></code></p></td>
+<td class="text-left"><p>Puncak spektrum daya tertinggi</p></td>
+<td class="text-left"><p>Magnitudo kekuatan ritme periodik paling dominan.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>5</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">power_bandwidth</span></code></p></td>
+<td class="text-left"><p>Lebar pita daya (<em>Power Bandwidth</em>)</p></td>
+<td class="text-left"><p>Rentang frekuensi yang memuat sebagian besar energi sinyal.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>6</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_centroid</span></code></p></td>
+<td class="text-left"><p>Titik pusat massa spektrum frekuensi</p></td>
+<td class="text-left"><p>Frekuensi rata-rata di mana energi polutan terkonsentrasi.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>7</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_spread</span></code></p></td>
+<td class="text-left"><p>Deviasi standar spektral</p></td>
+<td class="text-left"><p>Lebar dispersi distribusi frekuensi sinyal di sekitar centroid.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>8</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_skewness</span></code></p></td>
+<td class="text-left"><p>Kemencengan spektrum frekuensi</p></td>
+<td class="text-left"><p>Asimetri distribusi energi terhadap titik frekuensi tengah.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>9</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_kurtosis</span></code></p></td>
+<td class="text-left"><p>Keruncingan puncak spektrum</p></td>
+<td class="text-left"><p>Keruncingan bentuk spektrum daya (fokus pada frekuensi tertentu vs merata).</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>10</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_entropy</span></code></p></td>
+<td class="text-left"><p>Entropi spektral Shannon</p></td>
+<td class="text-left"><p>Kompleksitas atau keacakan spektrum frekuensi polutan.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>11</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_decrease</span></code></p></td>
+<td class="text-left"><p>Laju penurunan spektrum</p></td>
+<td class="text-left"><p>Kecepatan penurunan energi pada frekuensi tinggi.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>12</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_distance</span></code></p></td>
+<td class="text-left"><p>Jarak spektral</p></td>
+<td class="text-left"><p>Deviasi bentuk spektrum terhadap pola referensi.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>13</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_roll_off</span></code></p></td>
+<td class="text-left"><p>Frekuensi roll-off (<span class="math notranslate nohighlight">\(95\%\)</span> energi)</p></td>
+<td class="text-left"><p>Batas frekuensi yang menampung <span class="math notranslate nohighlight">\(95\%\)</span> energi sinyal.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>14</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_roll_on</span></code></p></td>
+<td class="text-left"><p>Frekuensi roll-on</p></td>
+<td class="text-left"><p>Batas bawah frekuensi di mana energi mulai terakumulasi.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>15</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_slope</span></code></p></td>
+<td class="text-left"><p>Kemiringan spektrum daya</p></td>
+<td class="text-left"><p>Penurunan daya sinyal seiring naiknya frekuensi.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>16</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_variation</span></code></p></td>
+<td class="text-left"><p>Variasi koefisien spektrum</p></td>
+<td class="text-left"><p>Fluktuasi normalisasi energi antarpita frekuensi.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>17</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_positive_turning</span></code></p></td>
+<td class="text-left"><p>Titik belok positif spektrum</p></td>
+<td class="text-left"><p>Frekuensi pembalikan naik pada spektrum frekuensi.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>18</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectrogram_mean_coeff</span></code></p></td>
+<td class="text-left"><p>Rata-rata koefisien spektrogram</p></td>
+<td class="text-left"><p>Nilai representasi intensitas energi waktu-frekuensi.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>19</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">human_range_energy</span></code></p></td>
+<td class="text-left"><p>Energi pada rentang frekuensi rendah</p></td>
+<td class="text-left"><p>Kepadatan energi pada osilasi ritme manusia (harian/mingguan).</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>20</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">lpcc</span></code></p></td>
+<td class="text-left"><p><em>Linear Prediction Cepstral Coefficients</em></p></td>
+<td class="text-left"><p>Koefisien prediksi linier dalam representasi cepstrum.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>21</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">mfcc</span></code></p></td>
+<td class="text-left"><p><em>Mel-Frequency Cepstral Coefficients</em></p></td>
+<td class="text-left"><p>Koefisien cepstrum skala mel untuk menangkap dinamika spektral.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>22</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">wavelet_energy</span></code></p></td>
+<td class="text-left"><p>Energi dekomposisi wavelet</p></td>
+<td class="text-left"><p>Total energi pada pita frekuensi lokal skala wavelet.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>23</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">wavelet_abs_mean</span></code></p></td>
+<td class="text-left"><p>Rata-rata mutlak koefisien wavelet</p></td>
+<td class="text-left"><p>Magnitudo rata-rata sinyal pada domain skala wavelet.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>24</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">wavelet_std</span></code></p></td>
+<td class="text-left"><p>Deviasi standar koefisien wavelet</p></td>
+<td class="text-left"><p>Variabilitas energi sinyal lokal pada skala wavelet.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>25</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">wavelet_var</span></code></p></td>
+<td class="text-left"><p>Varians koefisien wavelet</p></td>
+<td class="text-left"><p>Dispersi kuadratik koefisien wavelet.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>26</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">wavelet_entropy</span></code></p></td>
+<td class="text-left"><p>Entropi wavelet</p></td>
+<td class="text-left"><p>Derajat ketidakteraturan informasi pada domain wavelet.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="perhitungan-konseptual-pembuktian-kode-tsfel">
+<h2>3. Perhitungan Konseptual &amp; Pembuktian Kode TSFEL<a class="headerlink" href="#perhitungan-konseptual-pembuktian-kode-tsfel" title="Permalink to this heading">#</a></h2>
+<p>Untuk domain spektral, sinyal waktu dikonversi ke spektrum frekuensi menggunakan <strong>Fast Fourier Transform (FFT)</strong>. Untuk sampel sinyal acuan sederhana <span class="math notranslate nohighlight">\(N=5\)</span> dengan frekuensi sampling <span class="math notranslate nohighlight">\(fs = 1\text{ Hz}\)</span>:
+$<span class="math notranslate nohighlight">\(X = [1.0, 3.0, 2.0, 5.0, 4.0]\)</span>$</p>
+<section id="a-konsep-perhitungan-spektral">
+<h3>A. Konsep Perhitungan Spektral<a class="headerlink" href="#a-konsep-perhitungan-spektral" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Komponen Frekuensi Nyquist</strong>:</p>
+<ul class="simple">
+<li><p>Dengan <span class="math notranslate nohighlight">\(fs = 1\text{ Hz}\)</span> dan <span class="math notranslate nohighlight">\(N = 5\)</span>, sumbu frekuensi bernilai <span class="math notranslate nohighlight">\(f = [0.0, 0.2, 0.4]\text{ Hz}\)</span> (sampai batas <span class="math notranslate nohighlight">\(fs/2 = 0.5\text{ Hz}\)</span>).</p></li>
+</ul>
+</li>
+<li><p><strong>Frekuensi Fundamental (<code class="docutils literal notranslate"><span class="pre">fundamental_frequency</span></code>)</strong>:</p>
+<ul class="simple">
+<li><p>Resolusi frekuensi dasar <span class="math notranslate nohighlight">\(\Delta f = \frac{fs}{N} = \frac{1}{5} = \mathbf{0.2\text{ Hz}}\)</span>.</p></li>
+</ul>
+</li>
+<li><p><strong>Frekuensi Maksimum (<code class="docutils literal notranslate"><span class="pre">max_frequency</span></code>)</strong>:</p>
+<ul class="simple">
+<li><p>Batas tertinggi komponen frekuensi signifikan <span class="math notranslate nohighlight">\(\mathbf{0.4\text{ Hz}}\)</span>.</p></li>
+</ul>
+</li>
+<li><p><strong>Sentroid Spektral (<code class="docutils literal notranslate"><span class="pre">spectral_centroid</span></code>)</strong>:</p>
+<ul class="simple">
+<li><p>Rata-rata frekuensi terbobot energi <span class="math notranslate nohighlight">\(\bar{f}_{\text{spec}} = \frac{\sum f_i \cdot P(f_i)}{\sum P(f_i)} \approx \mathbf{0.0946\text{ Hz}}\)</span>.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="contoh-perhitungan-manual-per-fitur-26-26-terverifikasi">
+<h2>4. Contoh Perhitungan Manual per Fitur (26/26, Terverifikasi)<a class="headerlink" href="#contoh-perhitungan-manual-per-fitur-26-26-terverifikasi" title="Permalink to this heading">#</a></h2>
+<p>Seluruh hitungan memakai sinyal acuan <span class="math notranslate nohighlight">\(X = [1.0, 3.0, 2.0, 5.0, 4.0]\)</span>, <span class="math notranslate nohighlight">\(fs = 1\)</span>. Basis bersama (fungsi <code class="docutils literal notranslate"><span class="pre">calc_fft</span></code> TSFEL = magnitudo <span class="math notranslate nohighlight">\(|\mathrm{rfft}|\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[f = [0.0,\ 0.2,\ 0.4], \qquad |F| = [15.0,\ 3.6903,\ 3.3737], \qquad \sum|F| = 22.0640\]</div>
+<p>Kumulatif: <span class="math notranslate nohighlight">\(\mathrm{cumsum}(|F|) = [15.0,\ 18.6903,\ 22.0640]\)</span>. Setiap angka di bawah <strong>dihitung manual lalu dicocokkan</strong> dengan output TSFEL (cocok semua).</p>
+<section id="berbasis-fft-langsung-17-fitur">
+<h3>4.1 Berbasis FFT langsung (17 fitur)<a class="headerlink" href="#berbasis-fft-langsung-17-fitur" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">fundamental_frequency</span></code> = 0.2</strong> — Kurangi mean dulu (<span class="math notranslate nohighlight">\(X - \bar{X}\)</span>, <span class="math notranslate nohighlight">\(\bar{X} = 3\)</span>), magnitudo jadi <span class="math notranslate nohighlight">\([0.0,\ 3.6903,\ 3.3737]\)</span>. Puncak besar = yang <span class="math notranslate nohighlight">\(&gt; 0.3 \times \max = 1.1071\)</span>, di luar indeks 0 → puncak di indeks 1 → <span class="math notranslate nohighlight">\(f_0 = f[1] = \mathbf{0.2\text{ Hz}}\)</span>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">max_frequency</span></code> = 0.4</strong> — Ambang <span class="math notranslate nohighlight">\(0.95 \times 22.0640 = 20.9608\)</span>. Kumulatif pertama yang melewati ambang: indeks 2 (<span class="math notranslate nohighlight">\(22.0640\)</span>) → <span class="math notranslate nohighlight">\(f = \mathbf{0.4\text{ Hz}}\)</span>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">median_frequency</span></code> = 0.0</strong> — Ambang <span class="math notranslate nohighlight">\(0.50 \times 22.0640 = 11.0320\)</span>. Kumulatif pertama yang <strong>melebihi</strong> ambang: indeks 0 (<span class="math notranslate nohighlight">\(15.0 &gt; 11.032\)</span>) → <span class="math notranslate nohighlight">\(f = \mathbf{0.0\text{ Hz}}\)</span> (energi menumpuk di DC karena mean sinyal besar).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">max_power_spectrum</span></code> = 3.015028</strong> — Khusus fitur ini TSFEL memakai <strong>Welch</strong> (bukan FFT langsung): sinyal dibagi std (<span class="math notranslate nohighlight">\(\sigma = 1.4142\)</span>), <code class="docutils literal notranslate"><span class="pre">scipy.signal.welch(x/\sigma,</span> <span class="pre">fs=1,</span> <span class="pre">nperseg=5)</span></code> → daya <span class="math notranslate nohighlight">\([0.416667,\ 2.181695,\ 3.015028]\)</span> → maksimum <span class="math notranslate nohighlight">\(= \mathbf{3.015028}\)</span>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">power_bandwidth</span></code> = 0.4</strong> — Dari daya Welch di atas (total <span class="math notranslate nohighlight">\(5.61339\)</span>): batas bawah = frekuensi pertama yang kumulatifnya <span class="math notranslate nohighlight">\(\geq 95\%\)</span> → <span class="math notranslate nohighlight">\(0.4\)</span>; batas atas = dari sisi kanan → <span class="math notranslate nohighlight">\(0.0\)</span>. Lebar <span class="math notranslate nohighlight">\(= |0.0 - 0.4| = \mathbf{0.4\text{ Hz}}\)</span>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_centroid</span></code> = 0.094613</strong> — <span class="math notranslate nohighlight">\(\frac{0.0 \times 15.0 + 0.2 \times 3.6903 + 0.4 \times 3.3737}{22.0640} = \frac{0.7381 + 1.3495}{22.0640} = \frac{2.0875}{22.0640} = \mathbf{0.094613\text{ Hz}}\)</span>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_spread</span></code> = 0.149008</strong> — <span class="math notranslate nohighlight">\(\sqrt{\frac{(0-0.094613)^2 \cdot 15.0 + (0.2-0.094613)^2 \cdot 3.6903 + (0.4-0.094613)^2 \cdot 3.3737}{22.0640}} = \sqrt{0.022204} = \mathbf{0.149008\text{ Hz}}\)</span>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_skewness</span></code> = 1.201409</strong> — <span class="math notranslate nohighlight">\(\frac{\sum (f_i - 0.094613)^3 \cdot (|F_i|/22.0640)}{0.149008^3} = \frac{0.003975}{0.003309} = \mathbf{1.201409}\)</span> (menceng kanan: energi menumpuk di frekuensi rendah).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_kurtosis</span></code> = 2.850000</strong> — <span class="math notranslate nohighlight">\(\frac{\sum (f_i - 0.094613)^4 \cdot (|F_i|/22.0640)}{0.149008^4} = \frac{0.001404}{0.000493} = \mathbf{2.850}\)</span> (leptokurtik: energi terfokus).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_entropy</span></code> = 0.994222</strong> — Buang komponen DC dulu (<span class="math notranslate nohighlight">\(X - \bar{X}\)</span>), daya <span class="math notranslate nohighlight">\(= |F|^2 = [0.0,\ 13.6182,\ 11.3818]\)</span>, peluang <span class="math notranslate nohighlight">\(p = [0,\ 0.5447,\ 0.4553]\)</span>. Entropi ternormalisasi <span class="math notranslate nohighlight">\(= \frac{-(0.5447\log_2 0.5447 + 0.4553\log_2 0.4553)}{\log_2 2} = \frac{0.994222}{1} = \mathbf{0.994222}\)</span> (hampir maksimal: energi terbagi rata di dua pita).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_decrease</span></code> = −2.423971</strong> — Pita <span class="math notranslate nohighlight">\(= |F|[1{:}] = [3.6903,\ 3.3737]\)</span>, <span class="math notranslate nohighlight">\(k = [2,\ 3]\)</span>. Pembilang <span class="math notranslate nohighlight">\(= \frac{3.6903-15.0}{2-1} + \frac{3.3737-15.0}{3-1} = -11.3097 - 5.8131 = -17.1228\)</span>. Penyebut <span class="math notranslate nohighlight">\(= 3.6903 + 3.3737 = 7.0640\)</span>. Hasil <span class="math notranslate nohighlight">\(= -17.1228 / 7.0640 = \mathbf{-2.423971}\)</span> (energi turun tajam dari DC).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_distance</span></code> = −22.658273</strong> — Garis lurus acuan <span class="math notranslate nohighlight">\(= \mathrm{linspace}(0,\ 22.0640,\ 3) = [0.0,\ 11.0320,\ 22.0640]\)</span>. Jumlah selisih <span class="math notranslate nohighlight">\(= (0.0-15.0) + (11.0320-18.6903) + (22.0640-22.0640) = -15.0 - 7.6583 + 0 = \mathbf{-22.658273}\)</span>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_roll_off</span></code> = 0.4</strong> — Frekuensi pertama yang kumulatifnya <span class="math notranslate nohighlight">\(\geq 95\%\)</span> total (<span class="math notranslate nohighlight">\(20.9608\)</span>) → indeks 2 → <span class="math notranslate nohighlight">\(\mathbf{0.4\text{ Hz}}\)</span>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_roll_on</span></code> = 0.0</strong> — Frekuensi pertama yang kumulatifnya <span class="math notranslate nohighlight">\(\geq 5\%\)</span> total (<span class="math notranslate nohighlight">\(1.1032\)</span>) → indeks 0 (<span class="math notranslate nohighlight">\(15.0\)</span>) → <span class="math notranslate nohighlight">\(\mathbf{0.0\text{ Hz}}\)</span>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_slope</span></code> = −1.317338</strong> — Regresi linier <span class="math notranslate nohighlight">\(|F| = m f + b\)</span> (<span class="math notranslate nohighlight">\(n=3\)</span>): pembilang <span class="math notranslate nohighlight">\(= \frac{1}{22.0640}(3(0{\cdot}15 + 0.2{\cdot}3.6903 + 0.4{\cdot}3.3737) - 0.6 \times 22.0640) = \frac{1}{22.0640}(6.2626 - 13.2384) = -0.316161\)</span>; penyebut <span class="math notranslate nohighlight">\(= 3(0 + 0.04 + 0.16) - 0.36 = 0.24\)</span>. <span class="math notranslate nohighlight">\(m = -0.316161/0.24 = \mathbf{-1.317338}\)</span>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_variation</span></code> = 0.122125</strong> — Korelasi silang ternormalisasi dua spektrum berurutan: <span class="math notranslate nohighlight">\(\sum_{i} m_i m_{i+1} = 15.0{\cdot}3.6903 + 3.6903{\cdot}3.3737 = 67.8037\)</span>; <span class="math notranslate nohighlight">\(\sqrt{\sum m_{i+1}^2} = 5.0\)</span>; <span class="math notranslate nohighlight">\(\sqrt{\sum m_i^2} = 15.4493\)</span>. Hasil <span class="math notranslate nohighlight">\(= 1 - 67.8037/(5.0 \times 15.4493) = 1 - 0.877875 = \mathbf{0.122125}\)</span>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_positive_turning</span></code> = 0</strong> — Selisih magnitudo <span class="math notranslate nohighlight">\(= [3.6903-15.0,\ 3.3737-3.6903] = [-11.3097,\ -0.3165]\)</span>. Titik belok positif = pola naik-lalu-turun (<span class="math notranslate nohighlight">\(&gt;0\)</span> lalu <span class="math notranslate nohighlight">\(&lt;0\)</span>): tidak ada → <span class="math notranslate nohighlight">\(\mathbf{0}\)</span>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectrogram_mean_coeff</span></code> = [1.020833, 3.041667, 3.520833]</strong> — <code class="docutils literal notranslate"><span class="pre">scipy.signal.spectrogram(X,</span> <span class="pre">fs=1,</span> <span class="pre">nperseg=4)</span></code> (3 bin karena <span class="math notranslate nohighlight">\(N=5\)</span>), daya tiap bin waktu dirata-ratakan sepanjang waktu → tiga koefisien di atas (label <code class="docutils literal notranslate"><span class="pre">0.0Hz</span></code>, <code class="docutils literal notranslate"><span class="pre">0.25Hz</span></code>, <code class="docutils literal notranslate"><span class="pre">0.5Hz</span></code>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">human_range_energy</span></code> = 0.0</strong> — Rasio energi pita <span class="math notranslate nohighlight">\(0.6\)</span>–<span class="math notranslate nohighlight">\(2.5\text{ Hz}\)</span> terhadap total. Bin tertinggi sinyal ini <span class="math notranslate nohighlight">\(0.4\text{ Hz}\)</span> &lt; <span class="math notranslate nohighlight">\(0.6\text{ Hz}\)</span> → tidak ada energi di pita manusia → <span class="math notranslate nohighlight">\(\mathbf{0.0}\)</span>.</p></li>
+</ol>
+</section>
+<section id="koefisien-cepstral-2-fitur">
+<h3>4.2 Koefisien cepstral (2 fitur)<a class="headerlink" href="#koefisien-cepstral-2-fitur" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple" start="20">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">lpcc</span></code></strong> — Koefisien prediksi linier orde-12 (LPC) → spektrum daya koefisien → <span class="math notranslate nohighlight">\(\log\)</span> → IFFT → 12 koefisien cepstral. <strong>Catatan jujur:</strong> butuh sinyal <span class="math notranslate nohighlight">\(\geq 12\)</span> titik, sehingga <strong>tidak dapat dijalankan pada sinyal acuan <span class="math notranslate nohighlight">\(N=5\)</span></strong> (TSFEL melempar error <code class="docutils literal notranslate"><span class="pre">Input</span> <span class="pre">signal</span> <span class="pre">must</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">length</span> <span class="pre">&gt;=</span> <span class="pre">n_coeff</span></code>). Pada deret NO₂ riil (366 hari) fitur ini terekstraksi normal.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">mfcc</span></code></strong> — Alur: pre-emphasis (<span class="math notranslate nohighlight">\(0.97\)</span>) → FFT <span class="math notranslate nohighlight">\(512\)</span> titik → 40 filter mel → <span class="math notranslate nohighlight">\(\log\)</span> → DCT → 12 koefisien + lifter <span class="math notranslate nohighlight">\(22\)</span>. Pada sinyal acuan menghasilkan <span class="math notranslate nohighlight">\([-31.498,\ 136.480,\ 110.209,\ \dots]\)</span> (12 angka, terverifikasi kode). Perhitungan tangan penuh tidak praktis (ratusan operasi); yang ditunjukkan adalah alur + verifikasi kode TSFEL.</p></li>
+</ol>
+</section>
+<section id="wavelet-mexican-hat-cwt-9-skala-5-fitur">
+<h3>4.3 Wavelet — Mexican Hat / CWT, 9 skala (5 fitur)<a class="headerlink" href="#wavelet-mexican-hat-cwt-9-skala-5-fitur" title="Permalink to this heading">#</a></h3>
+<p>Dekomposisi <code class="docutils literal notranslate"><span class="pre">continuous_wavelet_transform(X,</span> <span class="pre">wavelet=&quot;mexh&quot;,</span> <span class="pre">widths=1..9)</span></code> menghasilkan matriks koefisien <span class="math notranslate nohighlight">\(9 \times 5\)</span> (skala × waktu). Perhitungan tangan penuh tidak praktis; definisi + verifikasi kode:</p>
+<ol class="arabic simple" start="22">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">wavelet_energy</span></code></strong> — Rata-rata energi per skala: <span class="math notranslate nohighlight">\([1.7507,\ 3.4590,\ 4.2396,\ 4.5035,\ 4.5216,\ 4.4327,\ 4.2961,\ 4.1384,\ 3.9793]\)</span> (puncak di skala 5: osilasi dominan sinyal acuan).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">wavelet_abs_mean</span></code></strong> — Rata-rata <span class="math notranslate nohighlight">\(|koefisien|\)</span> per skala: <span class="math notranslate nohighlight">\([0.8961,\ 2.4964,\ 3.7679,\ 4.3088,\ 4.4359,\ \dots]\)</span>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">wavelet_std</span></code></strong> — Std koefisien per skala: <span class="math notranslate nohighlight">\([1.5039,\ 2.3942,\ 1.9435,\ 1.3098,\ 0.8763,\ \dots]\)</span>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">wavelet_var</span></code></strong> — Varians <span class="math notranslate nohighlight">\(=\)</span> std<span class="math notranslate nohighlight">\(^2\)</span> per skala: <span class="math notranslate nohighlight">\([2.2619,\ 5.7321,\ 3.7772,\ \dots]\)</span> (cek: <span class="math notranslate nohighlight">\(1.5039^2 = 2.2619\)</span> ✓).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">wavelet_entropy</span></code> = 2.155207</strong> — Energi per skala dinormalisasi jadi peluang <span class="math notranslate nohighlight">\(p_s\)</span>, lalu <span class="math notranslate nohighlight">\(-\sum p_s \ln p_s = \mathbf{2.155207}\)</span> (entropi natural, bukan basis-2 seperti spektral).</p></li>
+</ol>
+<blockquote>
+<div><p><strong>Simpulan:</strong> 19 fitur berbasis FFT/Welch dihitung manual langkah-demi-langkah dan <strong>cocok 6 desimal</strong> dengan TSFEL; 2 fitur cepstral + 5 wavelet dibuktikan via kode (dengan catatan keterbatasan yang jujur). Dengan ini seluruh 68 fitur (21 statistical + 21 temporal + 26 spectral) kini memiliki deskripsi, contoh manual, dan bukti TSFEL.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="kode-pembuktian-python-menggunakan-tsfel-7-fitur-inti">
+<h2>5. Kode Pembuktian Python Menggunakan TSFEL (7 Fitur Inti)<a class="headerlink" href="#kode-pembuktian-python-menggunakan-tsfel-7-fitur-inti" title="Permalink to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tsfel</span>
+
+<span class="c1"># 1. Definisi Sinyal Acuan Sederhana</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">])</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># 2. Ekstraksi Fitur Domain Spektral via TSFEL</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"=== PEMBUKTIAN FITUR DOMAIN SPECTRAL ==="</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"fundamental_frequency:"</span><span class="p">,</span> <span class="n">tsfel</span><span class="o">.</span><span class="n">fundamental_frequency</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fs</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"max_frequency        :"</span><span class="p">,</span> <span class="n">tsfel</span><span class="o">.</span><span class="n">max_frequency</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fs</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"max_power_spectrum   :"</span><span class="p">,</span> <span class="n">tsfel</span><span class="o">.</span><span class="n">max_power_spectrum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fs</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"spectral_centroid    :"</span><span class="p">,</span> <span class="n">tsfel</span><span class="o">.</span><span class="n">spectral_centroid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fs</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"spectral_spread      :"</span><span class="p">,</span> <span class="n">tsfel</span><span class="o">.</span><span class="n">spectral_spread</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fs</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"spectral_entropy     :"</span><span class="p">,</span> <span class="n">tsfel</span><span class="o">.</span><span class="n">spectral_entropy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fs</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"spectral_slope       :"</span><span class="p">,</span> <span class="n">tsfel</span><span class="o">.</span><span class="n">spectral_slope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fs</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Output Eksekusi Python:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>=== PEMBUKTIAN FITUR DOMAIN SPECTRAL ===
+fundamental_frequency: 0.2
+max_frequency        : 0.4
+max_power_spectrum   : 3.0150283239582443
+spectral_centroid    : 0.09461299739835113
+spectral_spread      : 0.14900828190250298
+spectral_entropy     : 0.9942215007348465
+spectral_slope       : -1.3173375325206116
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./04_feature_extraction"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="4.4_fitur_domain_temporal.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">4.4 Fitur Domain Temporal</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="4.6_hasil_ekstraksi_68_fitur.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">4.6 Hasil Ekstraksi 68 Fitur</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-domain-spectral">1. Konsep Domain Spectral</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rincian-26-fitur-domain-spectral">2. Rincian 26 Fitur Domain Spectral</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-konseptual-pembuktian-kode-tsfel">3. Perhitungan Konseptual &amp; Pembuktian Kode TSFEL</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-konsep-perhitungan-spektral">A. Konsep Perhitungan Spektral</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual-per-fitur-26-26-terverifikasi">4. Contoh Perhitungan Manual per Fitur (26/26, Terverifikasi)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#berbasis-fft-langsung-17-fitur">4.1 Berbasis FFT langsung (17 fitur)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#koefisien-cepstral-2-fitur">4.2 Koefisien cepstral (2 fitur)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-mexican-hat-cwt-9-skala-5-fitur">4.3 Wavelet — Mexican Hat / CWT, 9 skala (5 fitur)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-pembuktian-python-menggunakan-tsfel-7-fitur-inti">5. Kode Pembuktian Python Menggunakan TSFEL (7 Fitur Inti)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alghifari Amar Mukhasyafah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1155 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>2.7 Praktikum Analisis NO2: Ingest PostgreSQL Aiven, Workflow KNIME, dan Kalkulasi Statistik (\(N = 240\)) &#8212; Analisis Polutan Atmosfer Kecamatan Wonoayu</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '02_data_understanding/2.7_analisis_no2_aiven_knime';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.8 Konsep Dasar Statistik Deskriptif + Contoh Perhitungan" href="2.8_konsep_dasar_statistik.html" />
+    <link rel="prev" title="2.6 Kesimpulan Data Understanding" href="2.6_kesimpulan_data_understanding.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pp.jpg" class="logo__image only-light" alt="Analisis Polutan Atmosfer Kecamatan Wonoayu - Home"/>
+    <script>document.write(`<img src="../_static/pp.jpg" class="logo__image only-dark" alt="Analisis Polutan Atmosfer Kecamatan Wonoayu - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 1 — BUSINESS UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding.html">Business Understanding</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 2 — DATA UNDERSTANDING</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2.1_data_collection.html">2.1 Data Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.2_deskripsi_dataset.html">2.2 Deskripsi Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.4_identifikasi_missing_value.html">2.4 Identifikasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.5_identifikasi_outlier.html">2.5 Identifikasi Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.6_kesimpulan_data_understanding.html">2.6 Kesimpulan Data Understanding</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.7 Praktikum Analisis Aiven &amp; KNIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.8_konsep_dasar_statistik.html">2.8 Konsep Dasar Statistik + Contoh Hitung</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 3 — DATA PREPROCESSING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.1_pembersihan_data.html">3.1 Pembersihan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.2_penanganan_outlier.html">3.2 Penanganan Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.3_imputasi_missing_value.html">3.3 Imputasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.4_validasi_data_bersih.html">3.4 Validasi Data Bersih</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 4 — FEATURE EXTRACTION</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.1_persiapan_data.html">4.1 Persiapan Data untuk Ekstraksi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.2_ekstraksi_fitur_tsfel.html">4.2 Ekstraksi Fitur Menggunakan TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.3_fitur_domain_statistical.html">4.3 Fitur Domain Statistical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.4_fitur_domain_temporal.html">4.4 Fitur Domain Temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.5_fitur_domain_spectral.html">4.5 Fitur Domain Spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.6_hasil_ekstraksi_68_fitur.html">4.6 Hasil Ekstraksi 68 Fitur</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 5 — K-MEANS CLUSTERING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.1_konsep_kmeans_pca_manual.html">5.1 Konsep K-Means &amp; PCA (Hitung Manual)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.2_reduksi_dimensi_pca.html">5.2 Reduksi Dimensi PCA (1 - 37 Komponen)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.3_penentuan_jumlah_cluster.html">5.3 Penentuan Jumlah Cluster Terbaik</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.4_komparasi_pca_vs_68fitur.html">5.4 Komparasi PCA 37 vs 68 Fitur Asli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.5_implementasi_knime_workflow.html">5.5 Implementasi KNIME Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/05_kmeans_clustering.html">5.6 Notebook Interaktif K-Means &amp; PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.7_clustering_satu_kelas.html">5.7 Notebook Clustering Data 1 Kelas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.8_clustering_polynomial.html">5.8 Notebook Clustering Data Polynomial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 6 — SUPERVISED LEARNING (KLASIFIKASI)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../6.1_persiapan_klasifikasi.html">6.1 Klasifikasi Jawa Timur (Sentinel-2A, 6 Kelas)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.2_training_model.html">6.2 Training &amp; Perbandingan Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.3_peta_demo.html">6.3 Peta Klasifikasi + Folium</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.4_streamlit_deploy.html">6.4 Streamlit + Deploy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.5_klasifikasi_wonoayu.html">6.5 Klasifikasi Wonoayu (Sawah vs Non-Sawah)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.6_evaluasi_poligon.html">6.6 Evaluasi per Poligon (Prediksi vs Aktual)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/safamaster223/PSD" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/safamaster223/PSD/issues/new?title=Issue%20on%20page%20%2F02_data_understanding/2.7_analisis_no2_aiven_knime.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/02_data_understanding/2.7_analisis_no2_aiven_knime.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>2.7 Praktikum Analisis NO2: Ingest PostgreSQL Aiven, Workflow KNIME, dan Kalkulasi Statistik (N = 240)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perancangan-struktur-basis-data-ingest-ke-postgresql-aiven">1. Perancangan Struktur Basis Data &amp; Ingest ke PostgreSQL Aiven</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-desain-skema-relasional-database-schema-architecture">A. Desain Skema Relasional (<em>Database Schema Architecture</em>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-skrip-ddl-pembuatan-tabel-sql">B. Skrip DDL Pembuatan Tabel (SQL)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-fleksibilitas-pengambilan-data-tertentu-selective-querying">C. Fleksibilitas Pengambilan Data Tertentu (<em>Selective Querying</em>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-parameter-tertentu-saja-contoh-hanya-text-no-2-valid-untuk-eda">1. Mengambil Parameter Tertentu Saja (Contoh: Hanya <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> Valid untuk EDA)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-parameter-tertentu-pada-data-bersih">2. Mengambil Parameter Tertentu pada Data Bersih</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-data-tertentu-berdasarkan-rentang-waktu-contoh-musim-hujan">3. Mengambil Data Tertentu Berdasarkan Rentang Waktu (Contoh: Musim Hujan)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kueri-audit-komparasi-berdampingan-nilai-mentah-vs-bersih-audit-query">4. Kueri Audit: Komparasi Berdampingan Nilai Mentah vs Bersih (<em>Audit Query</em>)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-skrip-otomasi-ingestion-python-ingest-aiven-wonoayu-py">D. Skrip Otomasi Ingestion Python (<code class="docutils literal notranslate"><span class="pre">ingest_aiven_wonoayu.py</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-menjalankan-script-python">Cara Menjalankan Script Python:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-workflow-dan-detail-konfigurasi-node-knime">2. Setup Workflow dan Detail Konfigurasi Node KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-detail-setup-setiap-node-knime">Penjelasan Detail Setup Setiap Node KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-node-postgresql-connector">A. Node <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span> <span class="pre">Connector</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-node-db-table-selector">B. Node <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Table</span> <span class="pre">Selector</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-node-db-reader">C. Node <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Reader</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-node-db-query-reader-opsional-alternatif">D. Node <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Query</span> <span class="pre">Reader</span></code> (Opsional / Alternatif)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#e-node-statistics">E. Node <code class="docutils literal notranslate"><span class="pre">Statistics</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-ringkasan-konfigurasi-node-knime">Tabel Ringkasan Konfigurasi Node KNIME</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-fitur-rumus-dan-perhitungan-statistik-riil-wonoayu-n-240">3. Penjelasan Fitur, Rumus, dan Perhitungan Statistik Riil Wonoayu (<span class="math notranslate nohighlight">\(N = 240\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-total-data-n-missing-value-count">A. Total Data (<span class="math notranslate nohighlight">\(N\)</span>) &amp; Missing Value Count</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-minimum-text-min-dan-maximum-text-max">B. Minimum (<span class="math notranslate nohighlight">\(\text{Min}\)</span>) dan Maximum (<span class="math notranslate nohighlight">\(\text{Max}\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-overall-sum-dan-mean-bar-x">C. Overall Sum dan Mean (<span class="math notranslate nohighlight">\(\bar{x}\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-variance-s-2-dan-standard-deviation-s">D. Variance (<span class="math notranslate nohighlight">\(s^2\)</span>) dan Standard Deviation (<span class="math notranslate nohighlight">\(s\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-median-q-2-kuartil-1-q-1-kuartil-3-q-3-dan-iqr">E. Median (<span class="math notranslate nohighlight">\(Q_2\)</span>), Kuartil 1 (<span class="math notranslate nohighlight">\(Q_1\)</span>), Kuartil 3 (<span class="math notranslate nohighlight">\(Q_3\)</span>), dan IQR</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-skewness-kemencengan-distribusi">F. Skewness (Kemencengan Distribusi)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#g-kurtosis-keruncingan-puncak-excess-kurtosis">G. Kurtosis (Keruncingan Puncak / Excess Kurtosis)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-ringkasan-komparasi-statistik-riil-wonoayu-n-240">4. Tabel Ringkasan Komparasi Statistik Riil Wonoayu (<span class="math notranslate nohighlight">\(N = 240\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-praktikum">5. Kesimpulan Praktikum</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="praktikum-analisis-no2-ingest-postgresql-aiven-workflow-knime-dan-kalkulasi-statistik-n-240">
+<h1>2.7 Praktikum Analisis NO2: Ingest PostgreSQL Aiven, Workflow KNIME, dan Kalkulasi Statistik (<span class="math notranslate nohighlight">\(N = 240\)</span>)<a class="headerlink" href="#praktikum-analisis-no2-ingest-postgresql-aiven-workflow-knime-dan-kalkulasi-statistik-n-240" title="Permalink to this heading">#</a></h1>
+<p>Dokumen ini merupakan laporan teknis lengkap proses pengolahan data <em>time series</em> konsentrasi Nitrogen Dioksida (<span class="math notranslate nohighlight">\(\text{NO}_2\)</span>) dari berkas CSV <code class="docutils literal notranslate"><span class="pre">wonoayu_NO2.csv</span></code> untuk wilayah <strong>Kecamatan Wonoayu, Kabupaten Sidoarjo</strong> (periode <strong>31 Agustus 2025 s.d. 31 Agustus 2026</strong>).</p>
+<p>Pengolahan dimulai dari migrasi dan ingest data ke cloud database PostgreSQL Aiven, perancangan workflow analitik pada KNIME Analytics Platform, hingga pembuktian rumus dan kalkulasi statistik deskriptif secara manual matematis berdasarkan <strong>240 data valid</strong> (setelah menyaring 126 nilai <code class="docutils literal notranslate"><span class="pre">null</span></code>).</p>
+<hr class="docutils" />
+<section id="perancangan-struktur-basis-data-ingest-ke-postgresql-aiven">
+<h2>1. Perancangan Struktur Basis Data &amp; Ingest ke PostgreSQL Aiven<a class="headerlink" href="#perancangan-struktur-basis-data-ingest-ke-postgresql-aiven" title="Permalink to this heading">#</a></h2>
+<p>Untuk mengelola seluruh data kualitas udara di <strong>Kecamatan Wonoayu, Kabupaten Sidoarjo</strong>, dirancang arsitektur basis data relasional berjenjang (<em>multi-tier schema</em>) di cloud database <strong>PostgreSQL Aiven</strong>. Struktur ini dirancang secara modular agar mampu menampung:</p>
+<ol class="arabic simple">
+<li><p><strong>Data Mentah (<em>Raw Data</em>)</strong>: Menyimpan observasi asli 6 polutan satelit (<span class="math notranslate nohighlight">\(\text{NO}_2, \text{CO}, \text{HCHO}, \text{SO}_2, \text{O}_3, \text{CH}_4\)</span>) lengkap dengan nilai kosong (<em>missing values</em>) dan nilai pencilan (<em>outliers</em>) untuk kebutuhan audit data dan <em>Data Understanding</em>.</p></li>
+<li><p><strong>Data Bersih (<em>Clean Data</em>)</strong>: Menyimpan hasil prapemrosesan deret waktu lengkap 366 hari (<span class="math notranslate nohighlight">\(100\%\)</span> terimputasi tanpa celah waktu, outlier dikelola) untuk masukan algoritma analitik lanjutan dan <em>Feature Extraction</em>.</p></li>
+<li><p><strong>Tabel Spesifik Parameter (<code class="docutils literal notranslate"><span class="pre">wonoayu_no2</span></code>)</strong>: Disediakan khusus untuk kemudahan koneksi langsung ke node KNIME Analytics Platform dalam menganalisis parameter target utama.</p></li>
+</ol>
+<hr class="docutils" />
+<section id="a-desain-skema-relasional-database-schema-architecture">
+<h3>A. Desain Skema Relasional (<em>Database Schema Architecture</em>)<a class="headerlink" href="#a-desain-skema-relasional-database-schema-architecture" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                                POSTGRESQL AIVEN (CLOUD)                                │
+├───────────────────────────────────┬────────────────────────────────────────────────────┤
+│   1. Tabel Mentah (Raw Tier)      │   2. Tabel Bersih (Clean Tier)                     │
+│   Tabel: wonoayu_pollutants_raw     │   Tabel: wonoayu_pollutants_clean                    │
+│   • id: BIGSERIAL PRIMARY KEY     │   • id: BIGSERIAL PRIMARY KEY                      │
+│   • date: DATE NOT NULL UNIQUE    │   • date: DATE NOT NULL UNIQUE                     │
+│   • no2: DOUBLE PRECISION (NULL)  │   • no2: DOUBLE PRECISION NOT NULL (Imputed)       │
+│   • co: DOUBLE PRECISION (NULL)   │   • co: DOUBLE PRECISION NOT NULL (Imputed)        │
+│   • hcho: DOUBLE PRECISION (NULL) │   • hcho: DOUBLE PRECISION NOT NULL (Imputed)      │
+│   • so2: DOUBLE PRECISION (NULL)  │   • so2: DOUBLE PRECISION NOT NULL (Imputed)       │
+│   • o3: DOUBLE PRECISION (NULL)   │   • o3: DOUBLE PRECISION NOT NULL (Imputed)        │
+│   • ch4: DOUBLE PRECISION (NULL)  │   • ch4: DOUBLE PRECISION NOT NULL (Imputed)       │
+│   • created_at: TIMESTAMPTZ       │   • created_at: TIMESTAMPTZ                        │
+├───────────────────────────────────┴────────────────────────────────────────────────────┤
+│   3. Tabel Target Analisis KNIME: wonoayu_no2                                            │
+│   • id: BIGSERIAL PRIMARY KEY, date: TIMESTAMPTZ NOT NULL, no2: DOUBLE PRECISION       │
+└────────────────────────────────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+<blockquote>
+<div><p>[!TIP]
+<strong>Presisi Data Satelit:</strong> Seluruh kolom polutan atmosfer wajib menggunakan tipe data <code class="docutils literal notranslate"><span class="pre">DOUBLE</span> <span class="pre">PRECISION</span></code> (<code class="docutils literal notranslate"><span class="pre">Float</span> <span class="pre">53-bit</span></code>) pada PostgreSQL. Hal ini sangat krusial karena konsentrasi gas seperti <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> dan <span class="math notranslate nohighlight">\(\text{SO}_2\)</span> berada pada skala desimal mikro (<span class="math notranslate nohighlight">\(10^{-5}\text{ mol/m}^2\)</span>), sehingga penggunaan tipe <code class="docutils literal notranslate"><span class="pre">REAL</span></code> (32-bit) atau <code class="docutils literal notranslate"><span class="pre">NUMERIC</span></code> berpresisi rendah berisiko memotong angka desimal penting.</p>
+</div></blockquote>
+</section>
+<hr class="docutils" />
+<section id="b-skrip-ddl-pembuatan-tabel-sql">
+<h3>B. Skrip DDL Pembuatan Tabel (SQL)<a class="headerlink" href="#b-skrip-ddl-pembuatan-tabel-sql" title="Permalink to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- ====================================================================</span>
+<span class="c1">-- 1. TABEL DATA MENTAH MULTI-POLUTAN (RAW TIER)</span>
+<span class="c1">-- ====================================================================</span>
+<span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">wonoayu_pollutants_raw</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">;</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">wonoayu_pollutants_raw</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="n">BIGSERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="nb">date</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">no2</span><span class="w"> </span><span class="n">DOUBLE</span><span class="w"> </span><span class="k">PRECISION</span><span class="p">,</span>
+<span class="w">    </span><span class="n">co</span><span class="w"> </span><span class="n">DOUBLE</span><span class="w"> </span><span class="k">PRECISION</span><span class="p">,</span>
+<span class="w">    </span><span class="n">hcho</span><span class="w"> </span><span class="n">DOUBLE</span><span class="w"> </span><span class="k">PRECISION</span><span class="p">,</span>
+<span class="w">    </span><span class="n">so2</span><span class="w"> </span><span class="n">DOUBLE</span><span class="w"> </span><span class="k">PRECISION</span><span class="p">,</span>
+<span class="w">    </span><span class="n">o3</span><span class="w"> </span><span class="n">DOUBLE</span><span class="w"> </span><span class="k">PRECISION</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ch4</span><span class="w"> </span><span class="n">DOUBLE</span><span class="w"> </span><span class="k">PRECISION</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+
+<span class="c1">-- ====================================================================</span>
+<span class="c1">-- 2. TABEL DATA BERSIH MULTI-POLUTAN (CLEAN TIER)</span>
+<span class="c1">-- ====================================================================</span>
+<span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">wonoayu_pollutants_clean</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">;</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">wonoayu_pollutants_clean</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="n">BIGSERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="nb">date</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">no2</span><span class="w"> </span><span class="n">DOUBLE</span><span class="w"> </span><span class="k">PRECISION</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">co</span><span class="w"> </span><span class="n">DOUBLE</span><span class="w"> </span><span class="k">PRECISION</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">hcho</span><span class="w"> </span><span class="n">DOUBLE</span><span class="w"> </span><span class="k">PRECISION</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">so2</span><span class="w"> </span><span class="n">DOUBLE</span><span class="w"> </span><span class="k">PRECISION</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">o3</span><span class="w"> </span><span class="n">DOUBLE</span><span class="w"> </span><span class="k">PRECISION</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ch4</span><span class="w"> </span><span class="n">DOUBLE</span><span class="w"> </span><span class="k">PRECISION</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+
+<span class="c1">-- ====================================================================</span>
+<span class="c1">-- 3. TABEL SPESIFIK PRAKTIKUM NO2 KNIME</span>
+<span class="c1">-- ====================================================================</span>
+<span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">wonoayu_no2</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">;</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">wonoayu_no2</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="n">BIGSERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="nb">date</span><span class="w"> </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">feature_index</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="n">no2</span><span class="w"> </span><span class="n">DOUBLE</span><span class="w"> </span><span class="k">PRECISION</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="c-fleksibilitas-pengambilan-data-tertentu-selective-querying">
+<h3>C. Fleksibilitas Pengambilan Data Tertentu (<em>Selective Querying</em>)<a class="headerlink" href="#c-fleksibilitas-pengambilan-data-tertentu-selective-querying" title="Permalink to this heading">#</a></h3>
+<p>Meskipun seluruh data (baik mentah maupun bersih) diunggah ke satu basis data terpusat di Aiven, kita tetap memiliki kendali penuh untuk mengambil potongan data tertentu sesuai kebutuhan analisis:</p>
+<section id="mengambil-parameter-tertentu-saja-contoh-hanya-text-no-2-valid-untuk-eda">
+<h4>1. Mengambil Parameter Tertentu Saja (Contoh: Hanya <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> Valid untuk EDA)<a class="headerlink" href="#mengambil-parameter-tertentu-saja-contoh-hanya-text-no-2-valid-untuk-eda" title="Permalink to this heading">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Mengambil deret waktu NO2 mentah yang valid (mengabaikan NULL)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="nb">date</span><span class="p">,</span><span class="w"> </span><span class="n">no2</span><span class="w"> </span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">wonoayu_pollutants_raw</span><span class="w"> </span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">no2</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="k">ASC</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="mengambil-parameter-tertentu-pada-data-bersih">
+<h4>2. Mengambil Parameter Tertentu pada Data Bersih<a class="headerlink" href="#mengambil-parameter-tertentu-pada-data-bersih" title="Permalink to this heading">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Mengambil data bersih NO2 hasil imputasi untuk masukan ekstraksi fitur</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="nb">date</span><span class="p">,</span><span class="w"> </span><span class="n">no2</span><span class="w"> </span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">wonoayu_pollutants_clean</span><span class="w"> </span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="k">ASC</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="mengambil-data-tertentu-berdasarkan-rentang-waktu-contoh-musim-hujan">
+<h4>3. Mengambil Data Tertentu Berdasarkan Rentang Waktu (Contoh: Musim Hujan)<a class="headerlink" href="#mengambil-data-tertentu-berdasarkan-rentang-waktu-contoh-musim-hujan" title="Permalink to this heading">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Mengambil konsentrasi seluruh polutan selama puncak musim hujan (Desember 2025 - Februari 2026)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="nb">date</span><span class="p">,</span><span class="w"> </span><span class="n">no2</span><span class="p">,</span><span class="w"> </span><span class="n">co</span><span class="p">,</span><span class="w"> </span><span class="n">so2</span><span class="p">,</span><span class="w"> </span><span class="n">o3</span><span class="w"> </span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">wonoayu_pollutants_clean</span><span class="w"> </span>
+<span class="k">WHERE</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="s1">'2025-12-01'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="s1">'2026-02-28'</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="k">ASC</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="kueri-audit-komparasi-berdampingan-nilai-mentah-vs-bersih-audit-query">
+<h4>4. Kueri Audit: Komparasi Berdampingan Nilai Mentah vs Bersih (<em>Audit Query</em>)<a class="headerlink" href="#kueri-audit-komparasi-berdampingan-nilai-mentah-vs-bersih-audit-query" title="Permalink to this heading">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Membandingkan nilai asli vs nilai setelah imputasi pada tanggal tertentu</span>
+<span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">r</span><span class="p">.</span><span class="nb">date</span><span class="p">,</span>
+<span class="w">    </span><span class="n">r</span><span class="p">.</span><span class="n">no2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">no2_mentah</span><span class="p">,</span>
+<span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">no2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">no2_bersih</span><span class="p">,</span>
+<span class="w">    </span><span class="k">CASE</span><span class="w"> </span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">no2</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">'Imputasi Missing Value'</span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">no2</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">no2</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">'Outlier Adjusted'</span>
+<span class="w">        </span><span class="k">ELSE</span><span class="w"> </span><span class="s1">'Asli Terjaga'</span>
+<span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">status_perlakuan</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">wonoayu_pollutants_raw</span><span class="w"> </span><span class="n">r</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">wonoayu_pollutants_clean</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="nb">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="nb">date</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="nb">date</span><span class="w"> </span><span class="k">ASC</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="d-skrip-otomasi-ingestion-python-ingest-aiven-wonoayu-py">
+<h3>D. Skrip Otomasi Ingestion Python (<code class="docutils literal notranslate"><span class="pre">ingest_aiven_wonoayu.py</span></code>)<a class="headerlink" href="#d-skrip-otomasi-ingestion-python-ingest-aiven-wonoayu-py" title="Permalink to this heading">#</a></h3>
+<p>Skrip berikut secara otomatis mengunggah tabel multi-polutan mentah, tabel multi-polutan bersih, serta tabel spesifik <code class="docutils literal notranslate"><span class="pre">wonoayu_no2</span></code> ke instance database PostgreSQL Aiven. Anda dapat menyalin kode di bawah atau mengunduh berkas skrip langsung melalui tombol berikut:</p>
+<p><a href="ingest_aiven_wonoayu.py" download="ingest_aiven_wonoayu.py" style="display:inline-block;padding:10px 22px;margin:8px 0 16px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;box-shadow:0 2px 6px rgba(26,115,232,0.4);">📥 Unduh Script ingest_aiven_wonoayu.py</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">text</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Date</span><span class="p">,</span> <span class="n">DateTime</span>
+
+<span class="c1"># 1. Konfigurasi Koneksi PostgreSQL Aiven</span>
+<span class="c1"># Gunakan kredensial Aiven Anda (atau set environment variable AIVEN_DB_URI):</span>
+<span class="n">DB_URI</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"AIVEN_DB_URI"</span><span class="p">,</span> <span class="s2">"postgresql://avnadmin:&lt;PASSWORD_AIVEN_ANDA&gt;@&lt;HOST_AIVEN&gt;:&lt;PORT&gt;/defaultdb?sslmode=require"</span><span class="p">)</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">DB_URI</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"🚀 Memulai proses ingest database Aiven untuk Kecamatan Wonoayu..."</span><span class="p">)</span>
+
+<span class="c1"># 2. Ingest Tabel Spesifik wonoayu_no2 (Untuk Alur KNIME)</span>
+<span class="n">no2_path</span> <span class="o">=</span> <span class="s2">"02_data_understanding/wonoayu_NO2.csv"</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">no2_path</span><span class="p">):</span>
+    <span class="n">no2_path</span> <span class="o">=</span> <span class="s2">"data/downloads/wonoayu_pollutants_data/wonoayu_NO2.csv"</span>
+
+<span class="n">df_no2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">no2_path</span><span class="p">)</span>
+<span class="n">df_no2</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_no2</span><span class="p">[</span><span class="s1">'date'</span><span class="p">])</span>
+<span class="n">df_no2</span> <span class="o">=</span> <span class="n">df_no2</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">'NO2'</span><span class="p">:</span> <span class="s1">'no2'</span><span class="p">})</span>
+
+<span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">text</span><span class="p">(</span><span class="s2">"DROP TABLE IF EXISTS wonoayu_no2;"</span><span class="p">))</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">text</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">        CREATE TABLE wonoayu_no2 (</span>
+<span class="s2">            id BIGSERIAL PRIMARY KEY,</span>
+<span class="s2">            date TIMESTAMPTZ NOT NULL,</span>
+<span class="s2">            feature_index INT DEFAULT 0,</span>
+<span class="s2">            no2 DOUBLE PRECISION</span>
+<span class="s2">        );</span>
+<span class="s2">    """</span><span class="p">))</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+<span class="n">df_no2</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'wonoayu_no2'</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">'append'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">'no2'</span><span class="p">:</span> <span class="n">Float</span><span class="p">(</span><span class="mi">53</span><span class="p">)})</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"✅ Tabel wonoayu_no2 berhasil diunggah!"</span><span class="p">)</span>
+
+<span class="c1"># 3. Ingest Tabel Gabungan Multi-Polutan Mentah (wonoayu_pollutants_raw)</span>
+<span class="n">raw_path</span> <span class="o">=</span> <span class="s2">"02_data_understanding/wonoayu_pollutants.csv"</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">raw_path</span><span class="p">):</span>
+    <span class="n">raw_path</span> <span class="o">=</span> <span class="s2">"data/downloads/wonoayu_pollutants_data/wonoayu_pollutants.csv"</span>
+
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">raw_path</span><span class="p">):</span>
+    <span class="n">df_raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">raw_path</span><span class="p">)</span>
+    <span class="n">df_raw</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_raw</span><span class="p">[</span><span class="s1">'date'</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span>
+    <span class="n">df_raw</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df_raw</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="n">raw_dtypes</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">Float</span><span class="p">(</span><span class="mi">53</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'no2'</span><span class="p">,</span> <span class="s1">'co'</span><span class="p">,</span> <span class="s1">'hcho'</span><span class="p">,</span> <span class="s1">'so2'</span><span class="p">,</span> <span class="s1">'o3'</span><span class="p">,</span> <span class="s1">'ch4'</span><span class="p">]}</span>
+    <span class="n">raw_dtypes</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">Date</span><span class="p">()</span>
+    <span class="n">df_raw</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'wonoayu_pollutants_raw'</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">'replace'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">raw_dtypes</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"✅ Tabel wonoayu_pollutants_raw (Mentah) berhasil diunggah!"</span><span class="p">)</span>
+
+<span class="c1"># 4. Ingest Tabel Gabungan Multi-Polutan Bersih (wonoayu_pollutants_clean)</span>
+<span class="n">clean_path</span> <span class="o">=</span> <span class="s2">"data/downloads/wonoayu_clean_data/wonoayu_pollutants_clean.csv"</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">clean_path</span><span class="p">):</span>
+    <span class="n">df_clean</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">clean_path</span><span class="p">)</span>
+    <span class="n">df_clean</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_clean</span><span class="p">[</span><span class="s1">'date'</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span>
+    <span class="n">df_clean</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df_clean</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="n">raw_dtypes</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">Float</span><span class="p">(</span><span class="mi">53</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'no2'</span><span class="p">,</span> <span class="s1">'co'</span><span class="p">,</span> <span class="s1">'hcho'</span><span class="p">,</span> <span class="s1">'so2'</span><span class="p">,</span> <span class="s1">'o3'</span><span class="p">,</span> <span class="s1">'ch4'</span><span class="p">]}</span>
+    <span class="n">raw_dtypes</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">Date</span><span class="p">()</span>
+    <span class="n">df_clean</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'wonoayu_pollutants_clean'</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">'replace'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">raw_dtypes</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"✅ Tabel wonoayu_pollutants_clean (Bersih) berhasil diunggah!"</span><span class="p">)</span>
+
+<span class="n">engine</span><span class="o">.</span><span class="n">dispose</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"🔒 Seluruh data berhasil diunggah dan koneksi database ditutup dengan aman."</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="cara-menjalankan-script-python">
+<h3>Cara Menjalankan Script Python:<a class="headerlink" href="#cara-menjalankan-script-python" title="Permalink to this heading">#</a></h3>
+<ul>
+<li><p>Jalankan skrip ingestion melalui terminal sistem operasi:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>ingest_aiven_wonoayu.py
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="setup-workflow-dan-detail-konfigurasi-node-knime">
+<h2>2. Setup Workflow dan Detail Konfigurasi Node KNIME<a class="headerlink" href="#setup-workflow-dan-detail-konfigurasi-node-knime" title="Permalink to this heading">#</a></h2>
+<p>Arsitektur aliran data di KNIME Analytics Platform menyusun alur pengolahan dari cloud database Aiven menuju pemrosesan statistik:</p>
+<p><img alt="KNIME Workflow Pipeline Overview" src="../_images/setting_knime.png" /></p>
+<blockquote>
+<div><p><strong>Panduan Gambar 03 (<code class="docutils literal notranslate"><span class="pre">assets/setting_knime.png</span></code>):</strong> Tangkapan layar dari kanvas workflow dan setting KNIME yang menampilkan alur node: <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span> <span class="pre">Connector</span></code> terhubung ke <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Table</span> <span class="pre">Selector</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Reader</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">Statistics</span></code>.</p>
+</div></blockquote>
+<hr class="docutils" />
+<section id="penjelasan-detail-setup-setiap-node-knime">
+<h3>Penjelasan Detail Setup Setiap Node KNIME<a class="headerlink" href="#penjelasan-detail-setup-setiap-node-knime" title="Permalink to this heading">#</a></h3>
+<section id="a-node-postgresql-connector">
+<h4>A. Node <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span> <span class="pre">Connector</span></code><a class="headerlink" href="#a-node-postgresql-connector" title="Permalink to this heading">#</a></h4>
+<p>Node ini bertugas membuka jalur komunikasi JDBC yang terenkripsi aman ke instance PostgreSQL Aiven.</p>
+<ul class="simple">
+<li><p><strong>Langkah Konfigurasi</strong>:</p>
+<ol class="arabic simple">
+<li><p>Masukkan alamat Host/URI database server Aiven.</p></li>
+<li><p>Masukkan nomor port koneksi yang disediakan oleh Aiven.</p></li>
+<li><p>Masukkan nama database target (<code class="docutils literal notranslate"><span class="pre">defaultdb</span></code>).</p></li>
+<li><p>Pada bagian <em>Authentication</em>, pilih <em>User &amp; Password</em> kemudian isikan kredensial akun database Aiven.</p></li>
+<li><p>Buka tab <strong>SSL</strong>, centang opsi <strong>Require SSL</strong> / <strong>Prefer SSL</strong> untuk mengaktifkan enkripsi TLS/SSL (wajib untuk layanan cloud Aiven).</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="b-node-db-table-selector">
+<h4>B. Node <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Table</span> <span class="pre">Selector</span></code><a class="headerlink" href="#b-node-db-table-selector" title="Permalink to this heading">#</a></h4>
+<p>Node ini menerima koneksi DB (port berwarna merah) dari <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span> <span class="pre">Connector</span></code> untuk mengidentifikasi dan memilih tabel data Kecamatan Wonoayu.</p>
+<ul class="simple">
+<li><p><strong>Langkah Konfigurasi</strong>:</p>
+<ol class="arabic simple">
+<li><p>Hubungkan port DB input dari node <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span> <span class="pre">Connector</span></code>.</p></li>
+<li><p>Klik tombol <strong>Select Table…</strong>.</p></li>
+<li><p>Pilih skema <code class="docutils literal notranslate"><span class="pre">public</span></code> dan tentukan nama tabel <code class="docutils literal notranslate"><span class="pre">wonoayu_no2</span></code>.</p></li>
+<li><p>Tekan <strong>OK</strong> dan jalankan node (<strong>Execute</strong> / <span class="math notranslate nohighlight">\(F7\)</span>).</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="c-node-db-reader">
+<h4>C. Node <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Reader</span></code><a class="headerlink" href="#c-node-db-reader" title="Permalink to this heading">#</a></h4>
+<p>Node ini mengeksekusi perintah pembacaan SQL dari <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Table</span> <span class="pre">Selector</span></code> dan mengonversi data dari database menjadi tabel memori internal KNIME (port data berwarna hitam).</p>
+<ul class="simple">
+<li><p><strong>Langkah Konfigurasi</strong>:</p>
+<ol class="arabic simple">
+<li><p>Hubungkan port DB input dari node <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Table</span> <span class="pre">Selector</span></code>.</p></li>
+<li><p>Pengaturan <code class="docutils literal notranslate"><span class="pre">Fetch</span> <span class="pre">Size</span></code> diset pada angka default (<code class="docutils literal notranslate"><span class="pre">10000</span></code>) untuk efisiensi pembacaan data deret waktu.</p></li>
+<li><p>Jalankan node (<strong>Execute</strong>) hingga indikator lampu berubah menjadi hijau.</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="d-node-db-query-reader-opsional-alternatif">
+<h4>D. Node <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Query</span> <span class="pre">Reader</span></code> (Opsional / Alternatif)<a class="headerlink" href="#d-node-db-query-reader-opsional-alternatif" title="Permalink to this heading">#</a></h4>
+<p>Node ini dapat digunakan sebagai alternatif apabila ingin menjalankan kueri SQL khusus secara langsung (misalnya memfilter baris non-null langsung di tingkat database engine).</p>
+<ul>
+<li><p><strong>Langkah Konfigurasi</strong>:</p>
+<ol class="arabic">
+<li><p>Hubungkan port DB input langsung dari <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span> <span class="pre">Connector</span></code>.</p></li>
+<li><p>Tulis kueri SQL pada editor, misalnya:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">wonoayu_no2</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">no2</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Eksekusi node untuk memuat hasil kueri ke dalam tabel data KNIME.</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="e-node-statistics">
+<h4>E. Node <code class="docutils literal notranslate"><span class="pre">Statistics</span></code><a class="headerlink" href="#e-node-statistics" title="Permalink to this heading">#</a></h4>
+<p>Node ini menghitung seluruh metrik statistik deskriptif dari tabel data yang diterima dari <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Reader</span></code> atau <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Query</span> <span class="pre">Reader</span></code>.</p>
+<ul class="simple">
+<li><p><strong>Langkah Konfigurasi</strong>:</p>
+<ol class="arabic simple">
+<li><p>Hubungkan port data tabel (hitam) dari <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Reader</span></code> ke port input node <code class="docutils literal notranslate"><span class="pre">Statistics</span></code>.</p></li>
+<li><p>Pada daftar <strong>Include Columns</strong>, masukkan kolom numerik <code class="docutils literal notranslate"><span class="pre">no2</span></code>.</p></li>
+<li><p>Centang opsi <strong>Calculate Median &amp; Quartiles</strong> untuk mengaktifkan kalkulasi persentil (<span class="math notranslate nohighlight">\(Q_1, Q_2, Q_3\)</span>).</p></li>
+<li><p>Eksekusi node dan buka tampilan <strong>Statistics View</strong> atau <strong>Statistics Table</strong>.</p></li>
+</ol>
+</li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="tabel-ringkasan-konfigurasi-node-knime">
+<h3>Tabel Ringkasan Konfigurasi Node KNIME<a class="headerlink" href="#tabel-ringkasan-konfigurasi-node-knime" title="Permalink to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Node Name</p></th>
+<th class="head text-left"><p>Fungsi &amp; Jalur Koneksi</p></th>
+<th class="head text-left"><p>Parameter Konfigurasi yang Dibutuhkan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>PostgreSQL Connector</strong></p></td>
+<td class="text-left"><p>Node sumber utama koneksi JDBC SSL ke Aiven.</p></td>
+<td class="text-left"><p>• Database Hostname / Cloud URI<br>• Database Port Number<br>• Database Name<br>• Username &amp; Password Authentication<br>• SSL Requirement Mode (<code class="docutils literal notranslate"><span class="pre">Require</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>DB Table Selector</strong></p></td>
+<td class="text-left"><p>Menerima koneksi DB (merah) dari Connector untuk memilih tabel.</p></td>
+<td class="text-left"><p>• Database Schema (<code class="docutils literal notranslate"><span class="pre">public</span></code>)<br>• Target Table Name (<code class="docutils literal notranslate"><span class="pre">wonoayu_no2</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>DB Reader</strong></p></td>
+<td class="text-left"><p>Membaca seluruh data dari tabel SQL ke format internal KNIME.</p></td>
+<td class="text-left"><p>• Input DB Connection<br>• Data Fetch Size</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>DB Query Reader</strong></p></td>
+<td class="text-left"><p>Node alternatif untuk mengeksekusi <em>custom query</em> SQL langsung.</p></td>
+<td class="text-left"><p>• Direct SQL Statement Query</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Statistics</strong></p></td>
+<td class="text-left"><p>Menghitung statistik deskriptif numerik dari data terfilter.</p></td>
+<td class="text-left"><p>• Selected Numerical Column (<code class="docutils literal notranslate"><span class="pre">no2</span></code>)<br>• Median &amp; Quantile Calculation Toggle</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="penjelasan-fitur-rumus-dan-perhitungan-statistik-riil-wonoayu-n-240">
+<h2>3. Penjelasan Fitur, Rumus, dan Perhitungan Statistik Riil Wonoayu (<span class="math notranslate nohighlight">\(N = 240\)</span>)<a class="headerlink" href="#penjelasan-fitur-rumus-dan-perhitungan-statistik-riil-wonoayu-n-240" title="Permalink to this heading">#</a></h2>
+<p>Mengapa nilai <strong>Min</strong>, <strong>Max</strong>, <strong>Mean</strong>, <strong>Std Dev</strong>, dan <strong>Variance</strong> pada tabel keluaran KNIME terlihat bernilai <code class="docutils literal notranslate"><span class="pre">0</span></code>?<br />
+Hal ini terjadi karena format tampilan standar KNIME (<em>Display Format</em>) membulatkan desimal hingga 2–3 angka di belakang koma. Karena konsentrasi <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> berada pada skala mikro atmosfer <span class="math notranslate nohighlight">\(10^{-5}\)</span> (<span class="math notranslate nohighlight">\(\approx 0.000031\text{ mol/m}^2\)</span>), pembulatan otomatis menampilkannya sebagai <code class="docutils literal notranslate"><span class="pre">0</span></code>. Namun, nilai <strong>Skewness</strong> (<span class="math notranslate nohighlight">\(0.732\)</span>), <strong>Kurtosis</strong> (<span class="math notranslate nohighlight">\(2.848\)</span>), <strong>Overall Sum</strong> (<span class="math notranslate nohighlight">\(0.01\)</span>), dan <strong>Missing Values</strong> (<span class="math notranslate nohighlight">\(126\)</span>) membuktikan bahwa kalkulasi presisi tinggi tetap bekerja secara akurat di latar belakang.</p>
+<p><img alt="Statistics Table Output di KNIME" src="../_images/data-statistic-knime.png" /></p>
+<blockquote>
+<div><p><strong>Panduan Gambar 09 (<code class="docutils literal notranslate"><span class="pre">assets/data-statistic-knime.png</span></code>):</strong> Tangkapan layar tampilan tabel hasil eksekusi node <code class="docutils literal notranslate"><span class="pre">Statistics</span></code> KNIME untuk kolom <code class="docutils literal notranslate"><span class="pre">no2</span></code> data riil Kecamatan Wonoayu (Missing: 126, Overall Sum: 0.01, Skewness: 0.732, Kurtosis: 2.848).</p>
+</div></blockquote>
+<hr class="docutils" />
+<section id="a-total-data-n-missing-value-count">
+<h3>A. Total Data (<span class="math notranslate nohighlight">\(N\)</span>) &amp; Missing Value Count<a class="headerlink" href="#a-total-data-n-missing-value-count" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Penjelasan</strong>: Dari 366 hari kalender observasi satelit di Kecamatan Wonoayu, terdapat 126 baris bernilai kosong (<code class="docutils literal notranslate"><span class="pre">null</span></code>). Perhitungan statistik deskriptif secara otomatis mengabaikan nilai <code class="docutils literal notranslate"><span class="pre">null</span></code> sehingga total sampel data valid yang diproses adalah <span class="math notranslate nohighlight">\(N = 240\)</span>.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(N_{\text{valid}} = N_{\text{total}} - N_{\text{missing}} = 366 - 126 = 240\)</span>$</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="b-minimum-text-min-dan-maximum-text-max">
+<h3>B. Minimum (<span class="math notranslate nohighlight">\(\text{Min}\)</span>) dan Maximum (<span class="math notranslate nohighlight">\(\text{Max}\)</span>)<a class="headerlink" href="#b-minimum-text-min-dan-maximum-text-max" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Penjelasan</strong>: Nilai konsentrasi <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> terkecil dan terbesar di antara 240 data valid Kecamatan Wonoayu.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\text{Min} = \min(x_1, x_2, \dots, x_{240}), \quad \text{Max} = \max(x_1, x_2, \dots, x_{240})\)</span>$</p></li>
+<li><p><strong>Hasil Perhitungan Presisi</strong>:
+$<span class="math notranslate nohighlight">\(\text{Min} = -0.0000012541 \text{ mol/m}^2 \quad (\text{Tampilan KNIME}: 0)\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\text{Max} = 0.0000997323 \text{ mol/m}^2 \quad (\text{Tampilan KNIME}: 0)\)</span>$</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="c-overall-sum-dan-mean-bar-x">
+<h3>C. Overall Sum dan Mean (<span class="math notranslate nohighlight">\(\bar{x}\)</span>)<a class="headerlink" href="#c-overall-sum-dan-mean-bar-x" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Penjelasan</strong>: <strong>Overall Sum</strong> adalah jumlah akumulasi dari 240 sampel data valid, sedangkan <strong>Mean</strong> adalah nilai rata-rata konsentrasi <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> di Kecamatan Wonoayu.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\text{Overall Sum} = \sum_{i=1}^{240} x_i, \quad \bar{x} = \frac{1}{N} \sum_{i=1}^{240} x_i\)</span>$</p></li>
+<li><p><strong>Hasil Perhitungan Presisi</strong>:
+$<span class="math notranslate nohighlight">\(\text{Overall Sum} = 0.0074757837 \text{ mol/m}^2 \quad (\text{Tampilan KNIME}: 0.01)\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\bar{x} = \frac{0.0074757837}{240} = 0.0000311491 \text{ mol/m}^2 \quad (\text{Tampilan KNIME}: 0)\)</span>$</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="d-variance-s-2-dan-standard-deviation-s">
+<h3>D. Variance (<span class="math notranslate nohighlight">\(s^2\)</span>) dan Standard Deviation (<span class="math notranslate nohighlight">\(s\)</span>)<a class="headerlink" href="#d-variance-s-2-dan-standard-deviation-s" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Penjelasan</strong>: Mengukur dispersi dan simpangan baku data terhadap nilai rata-ratanya berdasarkan derajat kebebasan sampel (<span class="math notranslate nohighlight">\(N - 1 = 239\)</span>).</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(s^2 = \frac{1}{N-1} \sum_{i=1}^{240} (x_i - \bar{x})^2, \quad s = \sqrt{s^2}\)</span>$</p></li>
+<li><p><strong>Hasil Perhitungan Presisi</strong>:
+$<span class="math notranslate nohighlight">\(\sum_{i=1}^{240} (x_i - \bar{x})^2 = 3.972718 \times 10^{-8}\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(s^2 = \frac{3.972718 \times 10^{-8}}{239} = 1.662225 \times 10^{-10} \quad (\text{Tampilan KNIME}: 0)\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(s = \sqrt{1.662225 \times 10^{-10}} = 0.0000128927 \text{ mol/m}^2 \quad (\text{Tampilan KNIME}: 0)\)</span>$</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="e-median-q-2-kuartil-1-q-1-kuartil-3-q-3-dan-iqr">
+<h3>E. Median (<span class="math notranslate nohighlight">\(Q_2\)</span>), Kuartil 1 (<span class="math notranslate nohighlight">\(Q_1\)</span>), Kuartil 3 (<span class="math notranslate nohighlight">\(Q_3\)</span>), dan IQR<a class="headerlink" href="#e-median-q-2-kuartil-1-q-1-kuartil-3-q-3-dan-iqr" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Penjelasan</strong>: Nilai batas kuartil dari 240 data valid yang telah diurutkan dari terkecil hingga terbesar (<em>monotonic ascending</em>).</p></li>
+<li><p><strong>Hasil Perhitungan Presisi</strong>:</p>
+<ul>
+<li><p><strong><span class="math notranslate nohighlight">\(Q_1\)</span> (Kuartil Bawah / Persentil 25%)</strong>: <span class="math notranslate nohighlight">\(0.0000221002 \text{ mol/m}^2\)</span> (<span class="math notranslate nohighlight">\(2.2100 \times 10^{-5}\)</span>)</p></li>
+<li><p><strong>Median / <span class="math notranslate nohighlight">\(Q_2\)</span> (Kuartil Tengah / Persentil 50%)</strong>: <span class="math notranslate nohighlight">\(0.0000298219 \text{ mol/m}^2\)</span> (<span class="math notranslate nohighlight">\(2.9822 \times 10^{-5}\)</span>)</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(Q_3\)</span> (Kuartil Atas / Persentil 75%)</strong>: <span class="math notranslate nohighlight">\(0.0000386499 \text{ mol/m}^2\)</span> (<span class="math notranslate nohighlight">\(3.8650 \times 10^{-5}\)</span>)</p></li>
+<li><p><strong>Rentang Antarkuartil (<span class="math notranslate nohighlight">\(\text{IQR}\)</span>)</strong>:
+$<span class="math notranslate nohighlight">\(\text{IQR} = Q_3 - Q_1 = 0.0000386499 - 0.0000221002 = 0.0000165496 \text{ mol/m}^2\)</span>$</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="f-skewness-kemencengan-distribusi">
+<h3>F. Skewness (Kemencengan Distribusi)<a class="headerlink" href="#f-skewness-kemencengan-distribusi" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Penjelasan</strong>: Mengukur ketidaksimetrisan sebaran data. Nilai positif <span class="math notranslate nohighlight">\(+0.732\)</span> menunjukkan kurva distribusi condong ke kanan (<em>right-skewed</em>), di mana mayoritas konsentrasi berada pada level rendah namun terdapat ekor panjang dari konsentrasi tinggi.</p></li>
+<li><p><strong>Rumus (Sample Unbiased Skewness)</strong>:
+$<span class="math notranslate nohighlight">\(\text{Skewness} = \frac{N}{(N-1)(N-2)} \sum_{i=1}^{240} \left( \frac{x_i - \bar{x}}{s} \right)^3\)</span>$</p></li>
+<li><p><strong>Kalkulasi</strong>:
+$<span class="math notranslate nohighlight">\(\frac{N}{(N-1)(N-2)} = \frac{240}{239 \times 238} = \frac{240}{56882} \approx 0.0042193\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\sum_{i=1}^{240} \left( \frac{x_i - \bar{x}}{s} \right)^3 = 173.4513\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\text{Skewness} = 0.0042193 \times 173.4513 = \mathbf{0.7318} \quad (\text{Ditampilkan KNIME}: \mathbf{0.732})\)</span>$</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="g-kurtosis-keruncingan-puncak-excess-kurtosis">
+<h3>G. Kurtosis (Keruncingan Puncak / Excess Kurtosis)<a class="headerlink" href="#g-kurtosis-keruncingan-puncak-excess-kurtosis" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Penjelasan</strong>: Mengukur ketajaman puncak kurva distribusi relatif terhadap distribusi normal. Nilai positif <span class="math notranslate nohighlight">\(+2.848\)</span> membuktikan distribusi bersifat <strong>Leptokurtik</strong> (memiliki puncak runcing dan peluang kemunculan nilai ekstrem/pencilan yang lebih tinggi).</p></li>
+<li><p><strong>Rumus (Sample Unbiased Excess Kurtosis)</strong>:
+$<span class="math notranslate nohighlight">\(\text{Kurtosis} = \frac{N(N+1)}{(N-1)(N-2)(N-3)} \sum_{i=1}^{240} \left( \frac{x_i - \bar{x}}{s} \right)^4 - \frac{3(N-1)^2}{(N-2)(N-3)}\)</span>$</p></li>
+<li><p><strong>Kalkulasi</strong>:
+$<span class="math notranslate nohighlight">\(\text{Suku Pertama} = \frac{240 \times 241}{239 \times 238 \times 237} \sum z_i^4 = \frac{57840}{13481034} \times 1371.7855 = 5.8856\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\text{Suku Kedua} = \frac{3 \times (239)^2}{238 \times 237} = \frac{171363}{56406} \approx 3.0380\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\text{Kurtosis} = 5.8856 - 3.0380 = \mathbf{2.8476} \quad (\text{Ditampilkan KNIME}: \mathbf{2.848})\)</span>$</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="tabel-ringkasan-komparasi-statistik-riil-wonoayu-n-240">
+<h2>4. Tabel Ringkasan Komparasi Statistik Riil Wonoayu (<span class="math notranslate nohighlight">\(N = 240\)</span>)<a class="headerlink" href="#tabel-ringkasan-komparasi-statistik-riil-wonoayu-n-240" title="Permalink to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Indikator Statistik</p></th>
+<th class="head text-left"><p>Nilai Presisi Sebenarnya</p></th>
+<th class="head text-left"><p>Tampilan Teks Node Statistics KNIME</p></th>
+<th class="head text-left"><p>Keterangan Tampilan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Valid Rows (<span class="math notranslate nohighlight">\(N\)</span>)</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(240\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(240\)</span></p></td>
+<td class="text-left"><p>Data tanpa <code class="docutils literal notranslate"><span class="pre">null</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Missing Values</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(126\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(126\)</span></p></td>
+<td class="text-left"><p>Baris bernilai <code class="docutils literal notranslate"><span class="pre">NaN</span></code> (<span class="math notranslate nohighlight">\(34.43\%\)</span>)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Minimum</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(-0.0000012541\)</span></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td class="text-left"><p>Terpotong rounding desimal KNIME</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Maximum</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000997323\)</span></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td class="text-left"><p>Terpotong rounding desimal KNIME</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Mean (<span class="math notranslate nohighlight">\(\bar{x}\)</span>)</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000311491\)</span></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td class="text-left"><p>Terpotong rounding desimal KNIME</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Overall Sum</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0074757837\)</span></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0.01</span></code></p></td>
+<td class="text-left"><p>Pembulatan 2 desimal</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Variance (<span class="math notranslate nohighlight">\(s^2\)</span>)</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.662225 \times 10^{-10}\)</span></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td class="text-left"><p>Terpotong rounding desimal KNIME</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Std Deviation (<span class="math notranslate nohighlight">\(s\)</span>)</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000128927\)</span></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td class="text-left"><p>Terpotong rounding desimal KNIME</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Skewness</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.731836\)</span></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0.732</span></code></p></td>
+<td class="text-left"><p>Sesuai persis</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Kurtosis</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(2.847580\)</span></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">2.848</span></code></p></td>
+<td class="text-left"><p>Sesuai persis</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan-praktikum">
+<h2>5. Kesimpulan Praktikum<a class="headerlink" href="#kesimpulan-praktikum" title="Permalink to this heading">#</a></h2>
+<p>Praktikum integrasi PostgreSQL Aiven dan KNIME Analytics Platform untuk data <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> Kecamatan Wonoayu membuktikan bahwa:</p>
+<ol class="arabic simple">
+<li><p>Skema basis data relasional dengan presisi <code class="docutils literal notranslate"><span class="pre">DOUBLE</span> <span class="pre">PRECISION</span></code> berhasil menyimpan data deret waktu polutan atmosfer tanpa kehilangan angka desimal mikro.</p></li>
+<li><p>Alur pipeline ETL pada KNIME dapat membaca data terenkripsi SSL secara <em>seamless</em> dan menghasilkan ringkasan statistik yang terbukti valid secara matematis.</p></li>
+<li><p>Nilai <em>Skewness</em> (<span class="math notranslate nohighlight">\(+0.732\)</span>) dan <em>Kurtosis</em> (<span class="math notranslate nohighlight">\(+2.848\)</span>) mengonfirmasi sifat distribusi asimetris leptokurtik dengan keberadaan nilai ekstrem, yang memperkuat urgensi tahapan penanganan outlier dan imputasi missing value pada <strong>BAB 3 — DATA PREPROCESSING</strong>.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./02_data_understanding"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2.6_kesimpulan_data_understanding.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">2.6 Kesimpulan Data Understanding</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2.8_konsep_dasar_statistik.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">2.8 Konsep Dasar Statistik Deskriptif + Contoh Perhitungan</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perancangan-struktur-basis-data-ingest-ke-postgresql-aiven">1. Perancangan Struktur Basis Data &amp; Ingest ke PostgreSQL Aiven</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-desain-skema-relasional-database-schema-architecture">A. Desain Skema Relasional (<em>Database Schema Architecture</em>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-skrip-ddl-pembuatan-tabel-sql">B. Skrip DDL Pembuatan Tabel (SQL)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-fleksibilitas-pengambilan-data-tertentu-selective-querying">C. Fleksibilitas Pengambilan Data Tertentu (<em>Selective Querying</em>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-parameter-tertentu-saja-contoh-hanya-text-no-2-valid-untuk-eda">1. Mengambil Parameter Tertentu Saja (Contoh: Hanya <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> Valid untuk EDA)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-parameter-tertentu-pada-data-bersih">2. Mengambil Parameter Tertentu pada Data Bersih</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-data-tertentu-berdasarkan-rentang-waktu-contoh-musim-hujan">3. Mengambil Data Tertentu Berdasarkan Rentang Waktu (Contoh: Musim Hujan)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kueri-audit-komparasi-berdampingan-nilai-mentah-vs-bersih-audit-query">4. Kueri Audit: Komparasi Berdampingan Nilai Mentah vs Bersih (<em>Audit Query</em>)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-skrip-otomasi-ingestion-python-ingest-aiven-wonoayu-py">D. Skrip Otomasi Ingestion Python (<code class="docutils literal notranslate"><span class="pre">ingest_aiven_wonoayu.py</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-menjalankan-script-python">Cara Menjalankan Script Python:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-workflow-dan-detail-konfigurasi-node-knime">2. Setup Workflow dan Detail Konfigurasi Node KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-detail-setup-setiap-node-knime">Penjelasan Detail Setup Setiap Node KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-node-postgresql-connector">A. Node <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span> <span class="pre">Connector</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-node-db-table-selector">B. Node <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Table</span> <span class="pre">Selector</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-node-db-reader">C. Node <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Reader</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-node-db-query-reader-opsional-alternatif">D. Node <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Query</span> <span class="pre">Reader</span></code> (Opsional / Alternatif)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#e-node-statistics">E. Node <code class="docutils literal notranslate"><span class="pre">Statistics</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-ringkasan-konfigurasi-node-knime">Tabel Ringkasan Konfigurasi Node KNIME</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-fitur-rumus-dan-perhitungan-statistik-riil-wonoayu-n-240">3. Penjelasan Fitur, Rumus, dan Perhitungan Statistik Riil Wonoayu (<span class="math notranslate nohighlight">\(N = 240\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-total-data-n-missing-value-count">A. Total Data (<span class="math notranslate nohighlight">\(N\)</span>) &amp; Missing Value Count</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-minimum-text-min-dan-maximum-text-max">B. Minimum (<span class="math notranslate nohighlight">\(\text{Min}\)</span>) dan Maximum (<span class="math notranslate nohighlight">\(\text{Max}\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-overall-sum-dan-mean-bar-x">C. Overall Sum dan Mean (<span class="math notranslate nohighlight">\(\bar{x}\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-variance-s-2-dan-standard-deviation-s">D. Variance (<span class="math notranslate nohighlight">\(s^2\)</span>) dan Standard Deviation (<span class="math notranslate nohighlight">\(s\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-median-q-2-kuartil-1-q-1-kuartil-3-q-3-dan-iqr">E. Median (<span class="math notranslate nohighlight">\(Q_2\)</span>), Kuartil 1 (<span class="math notranslate nohighlight">\(Q_1\)</span>), Kuartil 3 (<span class="math notranslate nohighlight">\(Q_3\)</span>), dan IQR</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-skewness-kemencengan-distribusi">F. Skewness (Kemencengan Distribusi)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#g-kurtosis-keruncingan-puncak-excess-kurtosis">G. Kurtosis (Keruncingan Puncak / Excess Kurtosis)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-ringkasan-komparasi-statistik-riil-wonoayu-n-240">4. Tabel Ringkasan Komparasi Statistik Riil Wonoayu (<span class="math notranslate nohighlight">\(N = 240\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-praktikum">5. Kesimpulan Praktikum</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alghifari Amar Mukhasyafah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

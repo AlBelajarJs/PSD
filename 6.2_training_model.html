@@ -1,0 +1,1004 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>6.2 — Training &amp; Perbandingan Model (Pixel-Level) &#8212; Analisis Polutan Atmosfer Kecamatan Wonoayu</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '6.2_training_model';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6.3 Peta Hasil Klasifikasi — Jendela Demo Sidoarjo–Surabaya (Folium)" href="6.3_peta_demo.html" />
+    <link rel="prev" title="6.1 Klasifikasi Penutup Lahan Jawa Timur (Sentinel-2A, 6 Kelas)" href="6.1_persiapan_klasifikasi.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/pp.jpg" class="logo__image only-light" alt="Analisis Polutan Atmosfer Kecamatan Wonoayu - Home"/>
+    <script>document.write(`<img src="_static/pp.jpg" class="logo__image only-dark" alt="Analisis Polutan Atmosfer Kecamatan Wonoayu - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 1 — BUSINESS UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_business_understanding.html">Business Understanding</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 2 — DATA UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.1_data_collection.html">2.1 Data Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.2_deskripsi_dataset.html">2.2 Deskripsi Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.4_identifikasi_missing_value.html">2.4 Identifikasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.5_identifikasi_outlier.html">2.5 Identifikasi Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.6_kesimpulan_data_understanding.html">2.6 Kesimpulan Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.7_analisis_no2_aiven_knime.html">2.7 Praktikum Analisis Aiven &amp; KNIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.8_konsep_dasar_statistik.html">2.8 Konsep Dasar Statistik + Contoh Hitung</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 3 — DATA PREPROCESSING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="03_data_preprocessing/3.1_pembersihan_data.html">3.1 Pembersihan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_data_preprocessing/3.2_penanganan_outlier.html">3.2 Penanganan Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_data_preprocessing/3.3_imputasi_missing_value.html">3.3 Imputasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_data_preprocessing/3.4_validasi_data_bersih.html">3.4 Validasi Data Bersih</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 4 — FEATURE EXTRACTION</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.1_persiapan_data.html">4.1 Persiapan Data untuk Ekstraksi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.2_ekstraksi_fitur_tsfel.html">4.2 Ekstraksi Fitur Menggunakan TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.3_fitur_domain_statistical.html">4.3 Fitur Domain Statistical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.4_fitur_domain_temporal.html">4.4 Fitur Domain Temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.5_fitur_domain_spectral.html">4.5 Fitur Domain Spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.6_hasil_ekstraksi_68_fitur.html">4.6 Hasil Ekstraksi 68 Fitur</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 5 — K-MEANS CLUSTERING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05_kmeans_clustering/5.1_konsep_kmeans_pca_manual.html">5.1 Konsep K-Means &amp; PCA (Hitung Manual)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_kmeans_clustering/5.2_reduksi_dimensi_pca.html">5.2 Reduksi Dimensi PCA (1 - 37 Komponen)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_kmeans_clustering/5.3_penentuan_jumlah_cluster.html">5.3 Penentuan Jumlah Cluster Terbaik</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_kmeans_clustering/5.4_komparasi_pca_vs_68fitur.html">5.4 Komparasi PCA 37 vs 68 Fitur Asli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_kmeans_clustering/5.5_implementasi_knime_workflow.html">5.5 Implementasi KNIME Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_kmeans_clustering/05_kmeans_clustering.html">5.6 Notebook Interaktif K-Means &amp; PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_kmeans_clustering/5.7_clustering_satu_kelas.html">5.7 Notebook Clustering Data 1 Kelas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_kmeans_clustering/5.8_clustering_polynomial.html">5.8 Notebook Clustering Data Polynomial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 6 — SUPERVISED LEARNING (KLASIFIKASI)</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="6.1_persiapan_klasifikasi.html">6.1 Klasifikasi Jawa Timur (Sentinel-2A, 6 Kelas)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6.2 Training &amp; Perbandingan Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6.3_peta_demo.html">6.3 Peta Klasifikasi + Folium</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6.4_streamlit_deploy.html">6.4 Streamlit + Deploy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6.5_klasifikasi_wonoayu.html">6.5 Klasifikasi Wonoayu (Sawah vs Non-Sawah)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6.6_evaluasi_poligon.html">6.6 Evaluasi per Poligon (Prediksi vs Aktual)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/safamaster223/PSD" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/safamaster223/PSD/issues/new?title=Issue%20on%20page%20%2F6.2_training_model.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/6.2_training_model.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>6.2 — Training & Perbandingan Model (Pixel-Level)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-traintest-per-poligon-validasi-silang-group-aware">Split train–test per poligon + validasi silang group-aware</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="training-perbandingan-model-pixel-level">
+<h1>6.2 — Training &amp; Perbandingan Model (Pixel-Level)<a class="headerlink" href="#training-perbandingan-model-pixel-level" title="Permalink to this heading">#</a></h1>
+<p>Pada versi sebelumnya model dilatih dari <strong>rata-rata 6 band per poligon</strong> (hanya ~2.658 baris),
+padahal saat produksi peta (6.3/6.5/6.6) prediksi dilakukan <strong>per piksel</strong>. Selain itu 165 poligon
+hilang karena nodata/awan dan validasi memakai split biasa sehingga risiko overfitting tidak terukur.</p>
+<p>Perbaikan pada versi ini:</p>
+<ol class="arabic simple">
+<li><p><strong>Data latih pixel-level</strong> — 30 titik sampel per poligon (±84 ribu titik) dibaca lewat openEO
+<code class="docutils literal notranslate"><span class="pre">aggregate_spatial</span></code>, dengan <strong>masking awan SCL</strong> (kelas 3, 8–11 dijadikan nodata sebelum
+komposit median). Poligon yang tadinya hilang ikut terwakili.</p></li>
+<li><p><strong>Inkonsistensi latih–inferensi hilang</strong> — fitur yang dilatih persis sama dengan fitur saat
+klasifikasi raster (6 band + NDVI, NDWI, NDBI, NDMI, EVI, SAVI).</p></li>
+<li><p><strong>Validasi group-aware</strong> — pembagian train/test <em>per poligon</em> (<code class="docutils literal notranslate"><span class="pre">StratifiedGroupKFold</span></code>,
+grup = id poligon), sehingga piksel dari poligon yang sama tidak bocor ke data uji.
+Metrik yang dilaporkan adalah akurasi + macro-F1 rata-rata silang 5-lipatan.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">SEED</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">PIX_CSV</span> <span class="o">=</span> <span class="s2">"jatim/features/pixels_all.csv"</span>
+<span class="n">FEAT_DIR</span> <span class="o">=</span> <span class="s2">"jatim/features"</span>
+<span class="n">MODEL_DIR</span> <span class="o">=</span> <span class="s2">"jatim/model"</span>
+<span class="n">IMG_DIR</span> <span class="o">=</span> <span class="s2">"jatim/gambar"</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">MODEL_DIR</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">IMG_DIR</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">BANDS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"B02"</span><span class="p">,</span> <span class="s2">"B03"</span><span class="p">,</span> <span class="s2">"B04"</span><span class="p">,</span> <span class="s2">"B08"</span><span class="p">,</span> <span class="s2">"B11"</span><span class="p">,</span> <span class="s2">"B12"</span><span class="p">]</span>
+<span class="n">NAMES</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">"Sawah"</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">"Bangunan"</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">"Mangrove"</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s2">"Lahan hijau"</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="s2">"Laut"</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span> <span class="s2">"Danau"</span><span class="p">}</span>
+
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">PIX_CSV</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">PIX_CSV</span><span class="p">)</span>
+    <span class="n">SUMBER</span> <span class="o">=</span> <span class="s2">"pixel"</span>
+<span class="k">else</span><span class="p">:</span>  <span class="c1"># fallback: komposit mean lama bila fase pixels belum dijalankan</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">FEAT_DIR</span><span class="p">,</span> <span class="s2">"features_class[1-6].csv"</span><span class="p">)))</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">SUMBER</span> <span class="o">=</span> <span class="s2">"mean-lama"</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"sumber data:"</span><span class="p">,</span> <span class="n">SUMBER</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"baris:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="s2">"| kolom:"</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"NaN per band:"</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="n">BANDS</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"poligon unik:"</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">"poligon"</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="k">if</span> <span class="s2">"poligon"</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">else</span> <span class="s2">"-"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"class_id"</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sumber data: pixel
+baris: 84016 | kolom: ['pid', 'B02', 'B03', 'B04', 'B08', 'B11', 'B12', 'poligon', 'class_id']
+NaN per band: {'B02': 5, 'B03': 5, 'B04': 5, 'B08': 5, 'B11': 5, 'B12': 5}
+poligon unik: 2821
+{1: 15000, 2: 15000, 3: 14701, 4: 14870, 5: 15000, 6: 9445}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Fitur = 6 band + 6 indeks (SAMA dengan yang dipakai saat inferensi raster)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">"coerce"</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">BANDS</span><span class="p">}</span>
+<span class="n">B02</span><span class="p">,</span> <span class="n">B03</span><span class="p">,</span> <span class="n">B04</span><span class="p">,</span> <span class="n">B08</span><span class="p">,</span> <span class="n">B11</span><span class="p">,</span> <span class="n">B12</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">BANDS</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"NDVI"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">B08</span> <span class="o">-</span> <span class="n">B04</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">B08</span> <span class="o">+</span> <span class="n">B04</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"NDWI"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">B03</span> <span class="o">-</span> <span class="n">B08</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">B03</span> <span class="o">+</span> <span class="n">B08</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"NDBI"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">B11</span> <span class="o">-</span> <span class="n">B08</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">B11</span> <span class="o">+</span> <span class="n">B08</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"NDMI"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">B08</span> <span class="o">-</span> <span class="n">B11</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">B08</span> <span class="o">+</span> <span class="n">B11</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"EVI"</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">B08</span> <span class="o">-</span> <span class="n">B04</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">B08</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">B04</span> <span class="o">-</span> <span class="mf">7.5</span> <span class="o">*</span> <span class="n">B02</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"SAVI"</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">B08</span> <span class="o">-</span> <span class="n">B04</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">B08</span> <span class="o">+</span> <span class="n">B04</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">))</span> <span class="o">*</span> <span class="mf">1.5</span>
+<span class="n">FEATS</span> <span class="o">=</span> <span class="n">BANDS</span> <span class="o">+</span> <span class="p">[</span><span class="s2">"NDVI"</span><span class="p">,</span> <span class="s2">"NDWI"</span><span class="p">,</span> <span class="s2">"NDBI"</span><span class="p">,</span> <span class="s2">"NDMI"</span><span class="p">,</span> <span class="s2">"EVI"</span><span class="p">,</span> <span class="s2">"SAVI"</span><span class="p">]</span>
+
+<span class="c1"># Pembulatan nol (piksel nodata) membuat penyebut 0 -&gt; hasil bagi bisa +-inf.</span>
+<span class="c1"># Ganti inf jadi NaN dulu supaya ikut terbuang saat dropna (model tolak inf).</span>
+<span class="n">df</span><span class="p">[</span><span class="n">FEATS</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">FEATS</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+<span class="n">n_awal</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">FEATS</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"fitur:"</span><span class="p">,</span> <span class="n">FEATS</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"sampel bersih: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> (dibuang </span><span class="si">{</span><span class="n">n_awal</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> baris NaN/0-denom)"</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">MODEL_DIR</span><span class="p">,</span> <span class="s2">"jatim_dataset_pixel.csv"</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"class_id"</span><span class="p">)[</span><span class="n">FEATS</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fitur: ['B02', 'B03', 'B04', 'B08', 'B11', 'B12', 'NDVI', 'NDWI', 'NDBI', 'NDMI', 'EVI', 'SAVI']
+sampel bersih: 84010 (dibuang 6 baris NaN/0-denom)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'              B02       B03       B04       B08       B11       B12   NDVI   NDWI   NDBI   NDMI    EVI   SAVI\nclass_id                                                                                                     \n1         560.281   825.726   733.945  2939.908  2238.289  1356.982  0.594 -0.552 -0.138  0.138  1.849  0.891\n2         803.118  1006.808  1041.597  2570.415  2432.779  1844.183  0.425 -0.433 -0.022  0.022  1.452  0.638\n3         413.740   645.705   473.955  2279.355   931.688   489.240  0.608 -0.509 -0.416  0.416  2.410  0.912\n4         584.017   811.367   713.463  2798.185  2115.576  1315.030  0.583 -0.537 -0.142  0.142  1.901  0.875\n5         564.723   471.269   387.203   352.925   357.910   317.321 -0.063  0.167  0.004 -0.004  0.101 -0.094\n6         487.801   706.773   561.859  2195.108  1544.803   914.276  0.522 -0.435 -0.147  0.147  2.305  0.783'
+</pre></div>
+</div>
+</div>
+</div>
+<section id="split-traintest-per-poligon-validasi-silang-group-aware">
+<h2>Split train–test per poligon + validasi silang group-aware<a class="headerlink" href="#split-traintest-per-poligon-validasi-silang-group-aware" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">StratifiedGroupKFold(grup=id_poligon)</span></code> memastikan seluruh piksel satu poligon selalu berada di
+sisi yang sama (train ATAU test) — syarat utama agar angka akurasi tidak bengkak karena kebocoran
+spasial antar piksel tetangga.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExtraTreesClassifier</span><span class="p">,</span> <span class="n">HistGradientBoostingClassifier</span><span class="p">,</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span>
+                             <span class="n">f1_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">StratifiedGroupKFold</span><span class="p">,</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.svm</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">xgbmod</span><span class="w"> </span><span class="kn">import</span> <span class="n">XGBShift</span>   <span class="c1"># kelas portabel (bukan __main__)</span>
+
+
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">FEATS</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"class_id"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">groups</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"poligon"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="k">if</span> <span class="s2">"poligon"</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+
+<span class="c1"># Split 80/20 BERBASIS GRUP: id poligon di-stratify lalu seluruh pikselnya ikut</span>
+<span class="c1"># ke sisi yang sama, sehingga tidak ada piksel poligon yang bocor train&lt;-&gt;test.</span>
+<span class="n">uniq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span>
+<span class="n">first_y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">uniq</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">u_tr</span><span class="p">,</span> <span class="n">u_te</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">uniq</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">first_y</span><span class="p">)</span>
+<span class="n">idx_tr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="n">u_tr</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">idx_te</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="n">u_te</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"train: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_tr</span><span class="p">)</span><span class="si">}</span><span class="s2"> piksel dari </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">u_tr</span><span class="p">)</span><span class="si">}</span><span class="s2"> poligon"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"test : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_te</span><span class="p">)</span><span class="si">}</span><span class="s2"> piksel dari </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">u_te</span><span class="p">)</span><span class="si">}</span><span class="s2"> poligon"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"irisan poligon train-test:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">u_tr</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">u_te</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train: 67106 piksel dari 2256 poligon
+test : 16904 piksel dari 565 poligon
+irisan poligon train-test: 0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Kandidat model + hyperparameter kecil.</span>
+<span class="c1"># CATATAN: paralel DIBATASI 2 thread/estimator -- n_jobs=-1 di mesin 4-core/8 GB</span>
+<span class="c1"># pernah membuat proses mati OOM di tengah training. Hasil tiap varian disimpan</span>
+<span class="c1"># inkremental, jadi bila terputus, run berikutnya resume (CV tidak diulang).</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gc</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
+<span class="n">svm_cap</span> <span class="o">=</span> <span class="mi">8000</span>  <span class="c1"># SVC RBF O(n^2) -&gt; subsample stratified agar muat</span>
+<span class="n">svm_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span>
+    <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">idx_tr</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+               <span class="n">size</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">svm_cap</span> <span class="o">//</span> <span class="mi">6</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">y</span><span class="p">[</span><span class="n">idx_tr</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">NAMES</span><span class="p">)</span>
+<span class="p">])</span>
+<span class="n">rng</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">svm_idx</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">svm_xy</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">X</span><span class="p">[</span><span class="n">idx_tr</span><span class="p">][</span><span class="n">svm_idx</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">idx_tr</span><span class="p">][</span><span class="n">svm_idx</span><span class="p">]</span>
+
+
+<span class="n">NJ</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">MODELS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"RandomForest"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                         <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="n">NJ</span><span class="p">),</span>
+        <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="n">NJ</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="s2">"ExtraTrees"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">ExtraTreesClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                       <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="n">NJ</span><span class="p">),</span>
+        <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">ExtraTreesClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="n">NJ</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="s2">"HistGradBoost"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">HistGradientBoostingClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">),</span>
+        <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">HistGradientBoostingClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">),</span>
+        <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">HistGradientBoostingClassifier</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                                                 <span class="n">max_leaf_nodes</span><span class="o">=</span><span class="mi">63</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+                                                 <span class="n">l2_regularization</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="s2">"XGBoost"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">XGBShift</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                           <span class="n">subsample</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">colsample_bytree</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+                           <span class="n">tree_method</span><span class="o">=</span><span class="s2">"hist"</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="s2">"mlogloss"</span><span class="p">,</span>
+                           <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="n">NJ</span><span class="p">),</span>
+        <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">XGBShift</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                           <span class="n">subsample</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">colsample_bytree</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">min_child_weight</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                           <span class="n">tree_method</span><span class="o">=</span><span class="s2">"hist"</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="s2">"mlogloss"</span><span class="p">,</span>
+                           <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="n">NJ</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="s2">"SVM-RBF"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">)),</span>
+        <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">)),</span>
+    <span class="p">],</span>
+    <span class="s2">"LogReg"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
+                                                                     <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">)),</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_xy</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">svm_xy</span><span class="p">()</span> <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">"SVM-RBF"</span> <span class="k">else</span> <span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">idx_tr</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">idx_tr</span><span class="p">])</span>
+
+
+<span class="n">cv</span> <span class="o">=</span> <span class="n">StratifiedGroupKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
+
+<span class="c1"># ---- hasil INKREMENTAL: disimpan tiap varian, dipakai ulang kalau terputus ----</span>
+<span class="n">PART_CSV</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">MODEL_DIR</span><span class="p">,</span> <span class="s2">"jatim_model_compare_part.csv"</span><span class="p">)</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">PART_CSV</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">_d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">PART_CSV</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">"cv5_f1_macro"</span><span class="p">])</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">_d</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s2">"records"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[resume] </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span><span class="si">}</span><span class="s2"> varian hasil lama dipakai ulang (CV tidak diulang)"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">_e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"[resume] gagal membaca, mulai dari nol:"</span><span class="p">,</span> <span class="n">_e</span><span class="p">)</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">EVAL_FITTED</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_simpan</span><span class="p">():</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">PART_CSV</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">grid</span> <span class="ow">in</span> <span class="n">MODELS</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">Xa</span><span class="p">,</span> <span class="n">ya</span> <span class="o">=</span> <span class="n">get_xy</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">ga</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="n">idx_tr</span><span class="p">]</span> <span class="k">if</span> <span class="n">name</span> <span class="o">!=</span> <span class="s2">"SVM-RBF"</span> <span class="k">else</span> <span class="n">groups</span><span class="p">[</span><span class="n">idx_tr</span><span class="p">][</span><span class="n">svm_idx</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">factory</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">"model"</span><span class="p">]</span> <span class="o">==</span> <span class="n">name</span> <span class="ow">and</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">"varian"</span><span class="p">])</span> <span class="o">==</span> <span class="n">k</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">):</span>
+            <span class="k">continue</span>                      <span class="c1"># sudah dinilai pada run sebelumnya</span>
+        <span class="n">accs</span><span class="p">,</span> <span class="n">f1s</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">tri</span><span class="p">,</span> <span class="n">vai</span> <span class="ow">in</span> <span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">Xa</span><span class="p">,</span> <span class="n">ya</span><span class="p">,</span> <span class="n">ga</span><span class="p">):</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+            <span class="n">m</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xa</span><span class="p">[</span><span class="n">tri</span><span class="p">],</span> <span class="n">ya</span><span class="p">[</span><span class="n">tri</span><span class="p">])</span>
+            <span class="n">pv</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xa</span><span class="p">[</span><span class="n">vai</span><span class="p">])</span>
+            <span class="n">accs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">ya</span><span class="p">[</span><span class="n">vai</span><span class="p">],</span> <span class="n">pv</span><span class="p">))</span>
+            <span class="n">f1s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">ya</span><span class="p">[</span><span class="n">vai</span><span class="p">],</span> <span class="n">pv</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">"macro"</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+            <span class="k">del</span> <span class="n">m</span><span class="p">,</span> <span class="n">pv</span>
+        <span class="n">rec</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"model"</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s2">"varian"</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span> <span class="s2">"cv5_accuracy"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">accs</span><span class="p">)),</span>
+               <span class="s2">"cv5_accuracy_std"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">accs</span><span class="p">)),</span> <span class="s2">"cv5_f1_macro"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f1s</span><span class="p">)),</span>
+               <span class="s2">"cv5_f1_std"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">f1s</span><span class="p">))}</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rec</span><span class="p">)</span>
+        <span class="n">_simpan</span><span class="p">()</span>                         <span class="c1"># &lt;-- tersimpan sebelum lanjut</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> var</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: cv5_acc=</span><span class="si">{</span><span class="n">rec</span><span class="p">[</span><span class="s1">'cv5_accuracy'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span>
+              <span class="sa">f</span><span class="s2">"+-</span><span class="si">{</span><span class="n">rec</span><span class="p">[</span><span class="s1">'cv5_accuracy_std'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> f1=</span><span class="si">{</span><span class="n">rec</span><span class="p">[</span><span class="s1">'cv5_f1_macro'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+
+    <span class="c1"># varian terbaik utk model ini -&gt; refit HANYA ke train, evaluasi sekali di test</span>
+    <span class="n">mine</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">"model"</span><span class="p">]</span> <span class="o">==</span> <span class="n">name</span><span class="p">]</span>
+    <span class="n">bi</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">mine</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">"cv5_f1_macro"</span><span class="p">])</span>
+    <span class="n">need_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">rows</span><span class="p">[</span><span class="n">bi</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"test_accuracy"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">))</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">rows</span><span class="p">[</span><span class="n">bi</span><span class="p">][</span><span class="s2">"varian"</span><span class="p">])](</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">m</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="o">*</span><span class="n">get_xy</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>                  <span class="c1"># train saja -&gt; evaluasi test tetap jujur</span>
+    <span class="n">EVAL_FITTED</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span>
+    <span class="n">pv</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">idx_te</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">need_test</span><span class="p">:</span>
+        <span class="n">rows</span><span class="p">[</span><span class="n">bi</span><span class="p">][</span><span class="s2">"test_accuracy"</span><span class="p">]</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">idx_te</span><span class="p">],</span> <span class="n">pv</span><span class="p">)</span>
+        <span class="n">rows</span><span class="p">[</span><span class="n">bi</span><span class="p">][</span><span class="s2">"test_f1_macro"</span><span class="p">]</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">idx_te</span><span class="p">],</span> <span class="n">pv</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">"macro"</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">rows</span><span class="p">[</span><span class="n">bi</span><span class="p">][</span><span class="s2">"best_varian"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rows</span><span class="p">[</span><span class="n">bi</span><span class="p">][</span><span class="s2">"varian"</span><span class="p">])</span>
+        <span class="n">_simpan</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  -&gt; varian #</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">rows</span><span class="p">[</span><span class="n">bi</span><span class="p">][</span><span class="s1">'varian'</span><span class="p">])</span><span class="si">}</span><span class="s2"> | test acc="</span>
+          <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">rows</span><span class="p">[</span><span class="n">bi</span><span class="p">][</span><span class="s1">'test_accuracy'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> f1=</span><span class="si">{</span><span class="n">rows</span><span class="p">[</span><span class="n">bi</span><span class="p">][</span><span class="s1">'test_f1_macro'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">del</span> <span class="n">m</span><span class="p">,</span> <span class="n">pv</span><span class="p">,</span> <span class="n">Xa</span><span class="p">,</span> <span class="n">ya</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">selesai CV: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span><span class="si">}</span><span class="s2"> baris dari </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">MODELS</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="si">}</span><span class="s2"> varian"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RandomForest var0: cv5_acc=0.6448+-0.0106 f1=0.6326
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RandomForest var1: cv5_acc=0.6435+-0.0099 f1=0.6307
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  -&gt; varian #0 | test acc=0.6302 f1=0.6191
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ExtraTrees var0: cv5_acc=0.6430+-0.0101 f1=0.6292
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ExtraTrees var1: cv5_acc=0.6392+-0.0096 f1=0.6254
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  -&gt; varian #0 | test acc=0.6294 f1=0.6178
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HistGradBoost var0: cv5_acc=0.6546+-0.0128 f1=0.6428
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HistGradBoost var1: cv5_acc=0.6548+-0.0128 f1=0.6428
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HistGradBoost var2: cv5_acc=0.6534+-0.0110 f1=0.6420
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  -&gt; varian #1 | test acc=0.6447 f1=0.6337
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>XGBoost var0: cv5_acc=0.6512+-0.0109 f1=0.6409
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>XGBoost var1: cv5_acc=0.6545+-0.0122 f1=0.6436
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  -&gt; varian #1 | test acc=0.6384 f1=0.6265
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SVM-RBF var0: cv5_acc=0.6343+-0.0169 f1=0.6309
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SVM-RBF var1: cv5_acc=0.6429+-0.0172 f1=0.6390
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  -&gt; varian #1 | test acc=0.6416 f1=0.6307
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LogReg var0: cv5_acc=0.6238+-0.0122 f1=0.6006
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  -&gt; varian #0 | test acc=0.6182 f1=0.5992
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>selesai CV: 12 baris dari 12 varian
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"cv5_f1_macro"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">res</span><span class="p">[</span><span class="s2">"accuracy_gap"</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s2">"cv5_accuracy"</span><span class="p">]</span> <span class="o">-</span> <span class="n">res</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"test_accuracy"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">res</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">MODEL_DIR</span><span class="p">,</span> <span class="s2">"jatim_model_compare.csv"</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># model final = kombinasi (model, varian) dengan CV-F1 tertinggi, refit ke SELURUH data</span>
+<span class="n">top</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">name</span><span class="p">,</span> <span class="n">var</span> <span class="o">=</span> <span class="n">top</span><span class="p">[</span><span class="s2">"model"</span><span class="p">],</span> <span class="nb">int</span><span class="p">(</span><span class="n">top</span><span class="p">[</span><span class="s2">"best_varian"</span><span class="p">])</span>
+<span class="n">final</span> <span class="o">=</span> <span class="n">MODELS</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">var</span><span class="p">](</span><span class="kc">None</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">"SVM-RBF"</span><span class="p">:</span>
+    <span class="n">Xf</span><span class="p">,</span> <span class="n">yf</span> <span class="o">=</span> <span class="n">svm_xy</span><span class="p">()</span>          <span class="c1"># SVC RBF tetap pakai subsample agar waktu inferensi wajar</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">Xf</span><span class="p">,</span> <span class="n">yf</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>              <span class="c1"># model berbasis pohon dilatih ke seluruh piksel train+test</span>
+<span class="n">final</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xf</span><span class="p">,</span> <span class="n">yf</span><span class="p">)</span>
+<span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">final</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">MODEL_DIR</span><span class="p">,</span> <span class="s2">"jatim_best.joblib"</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">MODEL TERBAIK:"</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s2">"varian"</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span>
+      <span class="s2">"| cv5_f1 ="</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">top</span><span class="p">[</span><span class="s2">"cv5_f1_macro"</span><span class="p">],</span> <span class="mi">4</span><span class="p">),</span>
+      <span class="s2">"| test acc ="</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">top</span><span class="p">[</span><span class="s2">"test_accuracy"</span><span class="p">],</span> <span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Gap CV vs test (bila kecil -&gt; tidak overfitting):"</span><span class="p">,</span>
+      <span class="nb">round</span><span class="p">(</span><span class="n">top</span><span class="p">[</span><span class="s2">"cv5_accuracy"</span><span class="p">]</span> <span class="o">-</span> <span class="n">top</span><span class="p">[</span><span class="s2">"test_accuracy"</span><span class="p">],</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        model  varian  cv5_accuracy  cv5_accuracy_std  cv5_f1_macro  cv5_f1_std  test_accuracy  test_f1_macro  best_varian  accuracy_gap
+      XGBoost       1        0.6545            0.0122        0.6436      0.0138         0.6384         0.6265          1.0        0.0161
+HistGradBoost       1        0.6548            0.0128        0.6428      0.0134         0.6447         0.6337          1.0        0.0101
+HistGradBoost       0        0.6546            0.0128        0.6428      0.0137            NaN            NaN          NaN           NaN
+HistGradBoost       2        0.6534            0.0110        0.6420      0.0121            NaN            NaN          NaN           NaN
+      XGBoost       0        0.6512            0.0109        0.6409      0.0124            NaN            NaN          NaN           NaN
+      SVM-RBF       1        0.6429            0.0172        0.6390      0.0181         0.6416         0.6307          1.0        0.0013
+ RandomForest       0        0.6448            0.0106        0.6326      0.0114         0.6302         0.6191          0.0        0.0146
+      SVM-RBF       0        0.6343            0.0169        0.6309      0.0175            NaN            NaN          NaN           NaN
+ RandomForest       1        0.6435            0.0099        0.6307      0.0107            NaN            NaN          NaN           NaN
+   ExtraTrees       0        0.6430            0.0101        0.6292      0.0110         0.6294         0.6178          0.0        0.0135
+   ExtraTrees       1        0.6392            0.0096        0.6254      0.0107            NaN            NaN          NaN           NaN
+       LogReg       0        0.6238            0.0122        0.6006      0.0121         0.6182         0.5992          0.0        0.0056
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MODEL TERBAIK: XGBoost varian 1 | cv5_f1 = 0.6436 | test acc = 0.6384
+Gap CV vs test (bila kecil -&gt; tidak overfitting): 0.0161
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">"Agg"</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Evaluasi memakai model kandidat pemenang yang HANYA dilatih di train (EVAL_FITTED),</span>
+<span class="c1"># bukan jatim_best.joblib (yang sudah di-refit ke seluruh data untuk deployment).</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">EVAL_FITTED</span><span class="p">[</span><span class="n">res</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"model"</span><span class="p">]]</span>
+<span class="n">pv</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">idx_te</span><span class="p">])</span>
+<span class="n">labs</span> <span class="o">=</span> <span class="p">[</span><span class="n">NAMES</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">NAMES</span><span class="p">)]</span>
+
+<span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">idx_te</span><span class="p">],</span> <span class="n">pv</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="n">NAMES</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]),</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span> <span class="n">labs</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span> <span class="n">labs</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Confusion matrix (piksel uji, poligon terpisah)"</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">IMG_DIR</span><span class="p">,</span> <span class="s2">"fig_cm_62.png"</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s2">"feature_importances_"</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">FEATS</span><span class="p">,</span> <span class="n">clf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Feature importance"</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">IMG_DIR</span><span class="p">,</span> <span class="s2">"fig_importance_62.png"</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">cid</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">NAMES</span><span class="p">):</span>
+    <span class="n">m_</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">class_id</span> <span class="o">==</span> <span class="n">cid</span><span class="p">][</span><span class="n">BANDS</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">BANDS</span><span class="p">,</span> <span class="n">m_</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">cid</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">NAMES</span><span class="p">[</span><span class="n">cid</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Tanda tangan spektral rata-rata per kelas (pixel, masked)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">IMG_DIR</span><span class="p">,</span> <span class="s2">"fig_spektral_62.png"</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"tersimpan: fig_cm_62, fig_importance_62, fig_spektral_62"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">idx_te</span><span class="p">],</span> <span class="n">pv</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">labs</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tersimpan: fig_cm_62, fig_importance_62, fig_spektral_62
+              precision    recall  f1-score   support
+
+       Sawah       0.42      0.58      0.49      3000
+    Bangunan       0.59      0.67      0.63      3000
+    Mangrove       0.85      0.79      0.82      2963
+ Lahan hijau       0.42      0.31      0.35      2991
+        Laut       0.99      0.99      0.99      3000
+       Danau       0.55      0.43      0.48      1950
+
+    accuracy                           0.64     16904
+   macro avg       0.64      0.63      0.63     16904
+weighted avg       0.64      0.64      0.64     16904
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="6.1_persiapan_klasifikasi.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">6.1 Klasifikasi Penutup Lahan Jawa Timur (Sentinel-2A, 6 Kelas)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="6.3_peta_demo.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">6.3 Peta Hasil Klasifikasi — Jendela Demo Sidoarjo–Surabaya (Folium)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-traintest-per-poligon-validasi-silang-group-aware">Split train–test per poligon + validasi silang group-aware</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alghifari Amar Mukhasyafah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,838 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>5.1 Konsep K-Means Clustering &amp; PCA (Analisis Individu NO2, SO2, CO &amp; Combined) &#8212; Analisis Polutan Atmosfer Kecamatan Wonoayu</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '05_kmeans_clustering/5.1_konsep_kmeans_pca_manual';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.2 Analisis Reduksi Dimensi PCA (Masing-Masing NO2, SO2, CO &amp; Combined 37 Komponen)" href="5.2_reduksi_dimensi_pca.html" />
+    <link rel="prev" title="4.6 Hasil Ekstraksi 68 Fitur" href="../04_feature_extraction/4.6_hasil_ekstraksi_68_fitur.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pp.jpg" class="logo__image only-light" alt="Analisis Polutan Atmosfer Kecamatan Wonoayu - Home"/>
+    <script>document.write(`<img src="../_static/pp.jpg" class="logo__image only-dark" alt="Analisis Polutan Atmosfer Kecamatan Wonoayu - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 1 — BUSINESS UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding.html">Business Understanding</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 2 — DATA UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.1_data_collection.html">2.1 Data Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.2_deskripsi_dataset.html">2.2 Deskripsi Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.4_identifikasi_missing_value.html">2.4 Identifikasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.5_identifikasi_outlier.html">2.5 Identifikasi Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.6_kesimpulan_data_understanding.html">2.6 Kesimpulan Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.7_analisis_no2_aiven_knime.html">2.7 Praktikum Analisis Aiven &amp; KNIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.8_konsep_dasar_statistik.html">2.8 Konsep Dasar Statistik + Contoh Hitung</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 3 — DATA PREPROCESSING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.1_pembersihan_data.html">3.1 Pembersihan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.2_penanganan_outlier.html">3.2 Penanganan Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.3_imputasi_missing_value.html">3.3 Imputasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.4_validasi_data_bersih.html">3.4 Validasi Data Bersih</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 4 — FEATURE EXTRACTION</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.1_persiapan_data.html">4.1 Persiapan Data untuk Ekstraksi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.2_ekstraksi_fitur_tsfel.html">4.2 Ekstraksi Fitur Menggunakan TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.3_fitur_domain_statistical.html">4.3 Fitur Domain Statistical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.4_fitur_domain_temporal.html">4.4 Fitur Domain Temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.5_fitur_domain_spectral.html">4.5 Fitur Domain Spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.6_hasil_ekstraksi_68_fitur.html">4.6 Hasil Ekstraksi 68 Fitur</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 5 — K-MEANS CLUSTERING</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5.1 Konsep K-Means &amp; PCA (Hitung Manual)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2_reduksi_dimensi_pca.html">5.2 Reduksi Dimensi PCA (1 - 37 Komponen)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.3_penentuan_jumlah_cluster.html">5.3 Penentuan Jumlah Cluster Terbaik</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.4_komparasi_pca_vs_68fitur.html">5.4 Komparasi PCA 37 vs 68 Fitur Asli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.5_implementasi_knime_workflow.html">5.5 Implementasi KNIME Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_kmeans_clustering.html">5.6 Notebook Interaktif K-Means &amp; PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.7_clustering_satu_kelas.html">5.7 Notebook Clustering Data 1 Kelas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.8_clustering_polynomial.html">5.8 Notebook Clustering Data Polynomial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 6 — SUPERVISED LEARNING (KLASIFIKASI)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../6.1_persiapan_klasifikasi.html">6.1 Klasifikasi Jawa Timur (Sentinel-2A, 6 Kelas)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.2_training_model.html">6.2 Training &amp; Perbandingan Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.3_peta_demo.html">6.3 Peta Klasifikasi + Folium</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.4_streamlit_deploy.html">6.4 Streamlit + Deploy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.5_klasifikasi_wonoayu.html">6.5 Klasifikasi Wonoayu (Sawah vs Non-Sawah)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.6_evaluasi_poligon.html">6.6 Evaluasi per Poligon (Prediksi vs Aktual)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/safamaster223/PSD" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/safamaster223/PSD/issues/new?title=Issue%20on%20page%20%2F05_kmeans_clustering/5.1_konsep_kmeans_pca_manual.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/05_kmeans_clustering/5.1_konsep_kmeans_pca_manual.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>5.1 Konsep K-Means Clustering & PCA (Analisis Individu NO2, SO2, CO & Combined)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#karakteristik-deret-waktu-masing-masing-polutan-combined">1. Karakteristik Deret Waktu Masing-Masing Polutan &amp; Combined</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-contoh-perhitungan-manual-fitur-tsfel-khusus-spectral-domain">2. Deskripsi &amp; Contoh Perhitungan Manual Fitur TSFEL Khusus (Spectral Domain)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-konsep-matriks-204-fitur-3-polutan-times-68-fitur-tsfel">A. Konsep Matriks 204 Fitur (3 Polutan <span class="math notranslate nohighlight">\(\times\)</span> 68 Fitur TSFEL)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-perhitungan-manual-fitur-1-spectral-positive-turning">B. Perhitungan Manual Fitur 1: <code class="docutils literal notranslate"><span class="pre">spectral_positive_turning</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definisi-formulasi-matematis">1. Definisi &amp; Formulasi Matematis</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual-3-polutan-sampel-6-hari-n-6-fs-1-0-text-hz">2. Contoh Perhitungan Manual 3 Polutan (Sampel 6 Hari, <span class="math notranslate nohighlight">\(N=6, fs=1.0\text{ Hz}\)</span>)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-perhitungan-manual-fitur-2-spectral-roll-off">C. Perhitungan Manual Fitur 2: <code class="docutils literal notranslate"><span class="pre">spectral_roll_off</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. Definisi &amp; Formulasi Matematis</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. Contoh Perhitungan Manual 3 Polutan (Sampel 6 Hari, <span class="math notranslate nohighlight">\(N=6, fs=1.0\text{ Hz}\)</span>)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-k-means-clustering">3. Konsep Dasar K-Means Clustering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perumusan-matematis-k-means">Perumusan Matematis K-Means:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual-k-means-clustering">3. Contoh Perhitungan Manual K-Means Clustering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterasi-1">Iterasi 1:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-perhitungan-manual-pca">5. Konsep Dasar &amp; Perhitungan Manual PCA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-matematis-pca">Tahapan Matematis PCA:</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="konsep-k-means-clustering-pca-analisis-individu-no2-so2-co-combined">
+<h1>5.1 Konsep K-Means Clustering &amp; PCA (Analisis Individu NO2, SO2, CO &amp; Combined)<a class="headerlink" href="#konsep-k-means-clustering-pca-analisis-individu-no2-so2-co-combined" title="Permalink to this heading">#</a></h1>
+<p>Dokumen ini memuat dasar teori, perumusan matematis, <strong>contoh perhitungan manual langkah demi langkah</strong>, serta analisis <strong>Deret Waktu (Time Series)</strong> untuk masing-masing polutan (<strong><span class="math notranslate nohighlight">\(\text{NO}_2\)</span>, <span class="math notranslate nohighlight">\(\text{SO}_2\)</span>, <span class="math notranslate nohighlight">\(\text{CO}\)</span></strong>) dan gabungannya di <strong>Kecamatan Wonoayu, Kabupaten Sidoarjo</strong>.</p>
+<hr class="docutils" />
+<section id="karakteristik-deret-waktu-masing-masing-polutan-combined">
+<h2>1. Karakteristik Deret Waktu Masing-Masing Polutan &amp; Combined<a class="headerlink" href="#karakteristik-deret-waktu-masing-masing-polutan-combined" title="Permalink to this heading">#</a></h2>
+<p>Analisis clustering dilakukan pada data deret waktu harian (365 hari observasi) dari citra satelit Sentinel-5P TROPOMI:</p>
+<ol class="arabic simple">
+<li><p><strong>Nitrogen Dioksida (<span class="math notranslate nohighlight">\(\text{NO}_2\)</span>)</strong>:</p>
+<ul class="simple">
+<li><p><strong>Karakteristik</strong>: Memiliki fluktuasi harian yang tajam akibat aktivitas kendaraan bermotor, transportasi logistik, dan kawasan industri di sepanjang jalur utama Wonoayu.</p></li>
+<li><p><strong>Rentang Konsentrasi</strong>: <span class="math notranslate nohighlight">\(0.000009 \text{ s.d. } 0.000109 \text{ mol/m}^2\)</span>.</p></li>
+</ul>
+</li>
+<li><p><strong>Sulfur Dioksida (<span class="math notranslate nohighlight">\(\text{SO}_2\)</span>)</strong>:</p>
+<ul class="simple">
+<li><p><strong>Karakteristik</strong>: Menunjukkan lonjakan puncaknya (<em>spikes</em>) secara periodik, mengindikasikan emisi pembakaran bahan bakar fosil dan aktivitas kawasan pabrik.</p></li>
+<li><p><strong>Rentang Konsentrasi</strong>: <span class="math notranslate nohighlight">\(-0.001212 \text{ s.d. } 0.002249 \text{ mol/m}^2\)</span>.</p></li>
+</ul>
+</li>
+<li><p><strong>Karbon Monoksida (<span class="math notranslate nohighlight">\(\text{CO}\)</span>)</strong>:</p>
+<ul class="simple">
+<li><p><strong>Karakteristik</strong>: Menampilkan tren musiman yang sangat jelas dengan peningkatan konsentrasi pada periode musim kemarau akibat pembakaran biomassa dan suhu atmosfer tinggi.</p></li>
+<li><p><strong>Rentang Konsentrasi</strong>: <span class="math notranslate nohighlight">\(0.020870 \text{ s.d. } 0.052364 \text{ mol/m}^2\)</span>.</p></li>
+</ul>
+</li>
+<li><p><strong>Overlay Deret Waktu Ter-Standarisasi (Z-score)</strong>:</p>
+<ul class="simple">
+<li><p>Penggabungan sinyal ter-standarisasi memungkinkan deteksi episode anomali di mana ketiga polutan melonjak serentak.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="deskripsi-contoh-perhitungan-manual-fitur-tsfel-khusus-spectral-domain">
+<h2>2. Deskripsi &amp; Contoh Perhitungan Manual Fitur TSFEL Khusus (Spectral Domain)<a class="headerlink" href="#deskripsi-contoh-perhitungan-manual-fitur-tsfel-khusus-spectral-domain" title="Permalink to this heading">#</a></h2>
+<p>Sesuai pembagian tugas analisis fitur domain spektral TSFEL, bagian ini memuat deskripsi mendalam dan <strong>contoh perhitungan manual langkah demi langkah</strong> untuk 2 fitur spektral khusus pada <strong>3 polutan sekaligus (<span class="math notranslate nohighlight">\(\text{NO}_2, \text{SO}_2, \text{CO}\)</span>)</strong> sehingga menghasilkan matriks <strong>204 fitur</strong> (<span class="math notranslate nohighlight">\(68 \text{ fitur} \times 3 \text{ polutan}\)</span>):</p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_positive_turning</span></code></strong> (<em>Spectral Positive Turning Points</em>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_roll_off</span></code></strong> (<em>Spectral Roll-Off Frequency</em>)</p></li>
+</ol>
+<hr class="docutils" />
+<section id="a-konsep-matriks-204-fitur-3-polutan-times-68-fitur-tsfel">
+<h3>A. Konsep Matriks 204 Fitur (3 Polutan <span class="math notranslate nohighlight">\(\times\)</span> 68 Fitur TSFEL)<a class="headerlink" href="#a-konsep-matriks-204-fitur-3-polutan-times-68-fitur-tsfel" title="Permalink to this heading">#</a></h3>
+<p>Sebelum ekstraksi dilakukan, 3 sinyal polutan terpisah (<span class="math notranslate nohighlight">\(\text{NO}_2, \text{SO}_2, \text{CO}\)</span>) dihitung 68 fitur TSFEL-nya masing-masing pada jendela deret waktu harian:
+$<span class="math notranslate nohighlight">\(\text{Total Kolom Fitur} = 3 \text{ Polutan} \times 68 \text{ Fitur TSFEL} = 204 \text{ Kolom}\)</span>$</p>
+<ul class="simple">
+<li><p><strong>Fitur 1 – 68</strong>: Fitur TSFEL <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> (termasuk <code class="docutils literal notranslate"><span class="pre">NO2_spectral_positive_turning</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">NO2_spectral_roll_off</span></code>)</p></li>
+<li><p><strong>Fitur 69 – 136</strong>: Fitur TSFEL <span class="math notranslate nohighlight">\(\text{SO}_2\)</span> (termasuk <code class="docutils literal notranslate"><span class="pre">SO2_spectral_positive_turning</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">SO2_spectral_roll_off</span></code>)</p></li>
+<li><p><strong>Fitur 137 – 204</strong>: Fitur TSFEL <span class="math notranslate nohighlight">\(\text{CO}\)</span> (termasuk <code class="docutils literal notranslate"><span class="pre">CO_spectral_positive_turning</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">CO_spectral_roll_off</span></code>)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="b-perhitungan-manual-fitur-1-spectral-positive-turning">
+<h3>B. Perhitungan Manual Fitur 1: <code class="docutils literal notranslate"><span class="pre">spectral_positive_turning</span></code><a class="headerlink" href="#b-perhitungan-manual-fitur-1-spectral-positive-turning" title="Permalink to this heading">#</a></h3>
+<section id="definisi-formulasi-matematis">
+<h4>1. Definisi &amp; Formulasi Matematis<a class="headerlink" href="#definisi-formulasi-matematis" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">spectral_positive_turning</span></code> menghitung <strong>jumlah puncak lokal (puncak frekuensi)</strong> pada magnitudo spektrum Fast Fourier Transform (FFT) sinyal. Puncak lokal terjadi ketika kemiringan (<em>slope</em> / turunan pertama) dari magnitudo spektrum berubah dari bernilai positif ke negatif:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P(f_k) = \begin{cases} 1, &amp; \text{jika } \Delta A_{k-1} &gt; 0 \text{ dan } \Delta A_k &lt; 0 \quad (A(f_k) &gt; A(f_{k-1}) \text{ dan } A(f_k) &gt; A(f_{k+1})) \\ 0, &amp; \text{lainnya} \end{cases}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\text{Spectral Positive Turning} = \sum_{k=1}^{M-2} P(f_k)\]</div>
+<p>di mana <span class="math notranslate nohighlight">\(A(f_k) = |X(f_k)|\)</span> adalah magnitudo FFT yang dihitung dari <code class="docutils literal notranslate"><span class="pre">np.abs(np.fft.rfft(signal))</span></code>, <span class="math notranslate nohighlight">\(\Delta A_k = A(f_{k+1}) - A(f_k)\)</span> adalah array selisih magnitudo (<code class="docutils literal notranslate"><span class="pre">diff_sig</span></code>), dan <span class="math notranslate nohighlight">\(M = \lfloor N/2 \rfloor + 1\)</span> adalah jumlah komponen frekuensi riil.</p>
+</section>
+<section id="contoh-perhitungan-manual-3-polutan-sampel-6-hari-n-6-fs-1-0-text-hz">
+<h4>2. Contoh Perhitungan Manual 3 Polutan (Sampel 6 Hari, <span class="math notranslate nohighlight">\(N=6, fs=1.0\text{ Hz}\)</span>)<a class="headerlink" href="#contoh-perhitungan-manual-3-polutan-sampel-6-hari-n-6-fs-1-0-text-hz" title="Permalink to this heading">#</a></h4>
+<p>Diberikan sampel deret waktu 6 hari (<span class="math notranslate nohighlight">\(N=6\)</span>) dengan frekuensi sampling <span class="math notranslate nohighlight">\(fs = 1.0\text{ Hz}\)</span>. Komponen frekuensi hasil <code class="docutils literal notranslate"><span class="pre">rfftfreq(6,</span> <span class="pre">d=1)</span></code> adalah <span class="math notranslate nohighlight">\(M=4\)</span> komponen:
+$<span class="math notranslate nohighlight">\(f_0 = 0.0000\text{ Hz}, \quad f_1 = 0.1667\text{ Hz}, \quad f_2 = 0.3333\text{ Hz}, \quad f_3 = 0.5000\text{ Hz}\)</span>$</p>
+<p>Data konsentrasi 6 hari untuk 3 polutan:</p>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(\text{NO}_2\)</span></strong>: <span class="math notranslate nohighlight">\([40, 70, 30, 80, 20, 50] \times 10^{-6} \text{ mol/m}^2\)</span></p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\text{SO}_2\)</span></strong>: <span class="math notranslate nohighlight">\([100, 120, 250, 110, 130, 240] \times 10^{-6} \text{ mol/m}^2\)</span></p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\text{CO}\)</span></strong>: <span class="math notranslate nohighlight">\([20, 22, 25, 30, 38, 48] \times 10^{-3} \text{ mol/m}^2\)</span></p></li>
+</ul>
+<p><strong>Langkah 1: Hitung Magnitudo FFT (<span class="math notranslate nohighlight">\(A(f_k)\)</span>) &amp; Array Selisih (<span class="math notranslate nohighlight">\(\Delta A_k\)</span>)</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong><span class="math notranslate nohighlight">\(\text{NO}_2\)</span></strong>:</p>
+<ul class="simple">
+<li><p>Magnitudo <span class="math notranslate nohighlight">\(A(f_k) = [290.0000, 26.4575, 36.0555, 110.0000]\)</span></p></li>
+<li><p>Array Selisih <span class="math notranslate nohighlight">\(\Delta A_k = [-263.5425, +9.5980, +73.9445]\)</span></p></li>
+<li><p>Identifikasi Puncak: Pada <span class="math notranslate nohighlight">\(f_2=0.3333\text{ Hz}\)</span>, <span class="math notranslate nohighlight">\(\Delta A_1 = +9.5980 &gt; 0\)</span>, namun <span class="math notranslate nohighlight">\(\Delta A_2 = +73.9445 &gt; 0\)</span> (tidak terjadi penurunan ke <span class="math notranslate nohighlight">\(f_3\)</span>).</p></li>
+<li><p><strong>Hasil <code class="docutils literal notranslate"><span class="pre">NO2_spectral_positive_turning</span></code></strong> = <strong>0</strong></p></li>
+</ul>
+</li>
+<li><p><strong><span class="math notranslate nohighlight">\(\text{SO}_2\)</span></strong>:</p>
+<ul class="simple">
+<li><p>Magnitudo <span class="math notranslate nohighlight">\(A(f_k) = [950.0000, 20.0000, 262.2975, 10.0000]\)</span></p></li>
+<li><p>Array Selisih <span class="math notranslate nohighlight">\(\Delta A_k = [-930.0000, +242.2975, -252.2975]\)</span></p></li>
+<li><p>Identifikasi Puncak: Pada frekuensi <span class="math notranslate nohighlight">\(f_2=0.3333\text{ Hz}\)</span>, slope <span class="math notranslate nohighlight">\(\Delta A_1 = +242.2975 &gt; 0\)</span> (naik) dan <span class="math notranslate nohighlight">\(\Delta A_2 = -252.2975 &lt; 0\)</span> (turun). Karena <span class="math notranslate nohighlight">\(A(f_2) = 262.2975 &gt; A(f_1)=20.0\)</span> dan <span class="math notranslate nohighlight">\(A(f_2) &gt; A(f_3)=10.0\)</span>, titik ini merupakan puncak spektrak lokal <span class="math notranslate nohighlight">\(\implies \mathbf{\text{Penyumbang Puncak (1)}}\)</span>.</p></li>
+<li><p><strong>Hasil <code class="docutils literal notranslate"><span class="pre">SO2_spectral_positive_turning</span></code></strong> = <strong>1</strong></p></li>
+</ul>
+</li>
+<li><p><strong><span class="math notranslate nohighlight">\(\text{CO}\)</span></strong>:</p>
+<ul class="simple">
+<li><p>Magnitudo <span class="math notranslate nohighlight">\(A(f_k) = [183.0000, 34.3948, 19.9750, 17.0000]\)</span></p></li>
+<li><p>Array Selisih <span class="math notranslate nohighlight">\(\Delta A_k = [-148.6052, -14.4198, -2.9750]\)</span></p></li>
+<li><p>Identifikasi Puncak: Seluruh elemen <span class="math notranslate nohighlight">\(\Delta A_k &lt; 0\)</span> (penurunan monotonik dari frekuensi rendah ke tinggi). Tidak ada puncak lokal.</p></li>
+<li><p><strong>Hasil <code class="docutils literal notranslate"><span class="pre">CO_spectral_positive_turning</span></code></strong> = <strong>0</strong></p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="c-perhitungan-manual-fitur-2-spectral-roll-off">
+<h3>C. Perhitungan Manual Fitur 2: <code class="docutils literal notranslate"><span class="pre">spectral_roll_off</span></code><a class="headerlink" href="#c-perhitungan-manual-fitur-2-spectral-roll-off" title="Permalink to this heading">#</a></h3>
+<section id="id1">
+<h4>1. Definisi &amp; Formulasi Matematis<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">spectral_roll_off</span></code> menentukan <strong>frekuensi ambang batas</strong> di mana <span class="math notranslate nohighlight">\(95\%\)</span> (persentase standar TSFEL) dari total akumulasi magnitudo spektral terkonsentrasi di bawah frekuensi tersebut. Fitur ini mengukur seberapa dominan distribusi frekuensi rendah vs frekuensi tinggi pada sinyal polutan:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{k=0}^{R} A(f_k) \ge 0.95 \times \sum_{k=0}^{M-1} A(f_k)\]</div>
+<p>di mana <span class="math notranslate nohighlight">\(f_R\)</span> adalah frekuensi roll-off (dalam Hz), <span class="math notranslate nohighlight">\(A(f_k) = |X(f_k)|\)</span> adalah magnitudo spektrum FFT, dan <span class="math notranslate nohighlight">\(M = \lfloor N/2 \rfloor + 1\)</span>.</p>
+</section>
+<section id="id2">
+<h4>2. Contoh Perhitungan Manual 3 Polutan (Sampel 6 Hari, <span class="math notranslate nohighlight">\(N=6, fs=1.0\text{ Hz}\)</span>)<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
+<p>Menggunakan komponen frekuensi <span class="math notranslate nohighlight">\(f = [0.0000, 0.1667, 0.3333, 0.5000]\text{ Hz}\)</span> dan magnitudo <span class="math notranslate nohighlight">\(A(f_k)\)</span> dari sampel 6 hari sebelumnya:</p>
+<p><strong>Langkah 1: Hitung Total Magnitudo (<span class="math notranslate nohighlight">\(\sum A\)</span>) &amp; Ambang Batas 95% (<span class="math notranslate nohighlight">\(0.95 \times \sum A\)</span>)</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong><span class="math notranslate nohighlight">\(\text{NO}_2\)</span></strong>:</p>
+<ul class="simple">
+<li><p>Total Magnitudo: <span class="math notranslate nohighlight">\(\sum A = 290.0000 + 26.4575 + 36.0555 + 110.0000 = \mathbf{462.5130}\)</span></p></li>
+<li><p>Ambang 95%: <span class="math notranslate nohighlight">\(0.95 \times 462.5130 = \mathbf{439.3874}\)</span></p></li>
+<li><p>Akumulasi Energi Magnitudo:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(f_0 = 0.0000\text{ Hz}\)</span>: <span class="math notranslate nohighlight">\(290.0000\)</span> (<span class="math notranslate nohighlight">\(290.0000 &lt; 439.3874\)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_1 = 0.1667\text{ Hz}\)</span>: <span class="math notranslate nohighlight">\(290.0000 + 26.4575 = 316.4575\)</span> (<span class="math notranslate nohighlight">\(316.4575 &lt; 439.3874\)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_2 = 0.3333\text{ Hz}\)</span>: <span class="math notranslate nohighlight">\(316.4575 + 36.0555 = 352.5130\)</span> (<span class="math notranslate nohighlight">\(352.5130 &lt; 439.3874\)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_3 = 0.5000\text{ Hz}\)</span>: <span class="math notranslate nohighlight">\(352.5130 + 110.0000 = \mathbf{462.5130}\)</span> (<span class="math notranslate nohighlight">\(\mathbf{462.5130 \ge 439.3874}\)</span>) <span class="math notranslate nohighlight">\(\implies \mathbf{\text{Batas Roll-Off Tercapai!}}\)</span></p></li>
+</ul>
+</li>
+<li><p><strong>Hasil <code class="docutils literal notranslate"><span class="pre">NO2_spectral_roll_off</span></code></strong> = <strong><span class="math notranslate nohighlight">\(0.5000\text{ Hz}\)</span></strong></p></li>
+</ul>
+</li>
+<li><p><strong><span class="math notranslate nohighlight">\(\text{SO}_2\)</span></strong>:</p>
+<ul class="simple">
+<li><p>Total Magnitudo: <span class="math notranslate nohighlight">\(\sum A = 950.0000 + 20.0000 + 262.2975 + 10.0000 = \mathbf{1242.2975}\)</span></p></li>
+<li><p>Ambang 95%: <span class="math notranslate nohighlight">\(0.95 \times 1242.2975 = \mathbf{1180.1827}\)</span></p></li>
+<li><p>Akumulasi Energi Magnitudo:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(f_0 = 0.0000\text{ Hz}\)</span>: <span class="math notranslate nohighlight">\(950.0000\)</span> (<span class="math notranslate nohighlight">\(950.0000 &lt; 1180.1827\)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_1 = 0.1667\text{ Hz}\)</span>: <span class="math notranslate nohighlight">\(950.0000 + 20.0000 = 970.0000\)</span> (<span class="math notranslate nohighlight">\(970.0000 &lt; 1180.1827\)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_2 = 0.3333\text{ Hz}\)</span>: <span class="math notranslate nohighlight">\(970.0000 + 262.2975 = \mathbf{1232.2975}\)</span> (<span class="math notranslate nohighlight">\(\mathbf{1232.2975 \ge 1180.1827}\)</span>) <span class="math notranslate nohighlight">\(\implies \mathbf{\text{Batas Roll-Off Tercapai!}}\)</span></p></li>
+</ul>
+</li>
+<li><p><strong>Hasil <code class="docutils literal notranslate"><span class="pre">SO2_spectral_roll_off</span></code></strong> = <strong><span class="math notranslate nohighlight">\(0.3333\text{ Hz}\)</span></strong></p></li>
+</ul>
+</li>
+<li><p><strong><span class="math notranslate nohighlight">\(\text{CO}\)</span></strong>:</p>
+<ul class="simple">
+<li><p>Total Magnitudo: <span class="math notranslate nohighlight">\(\sum A = 183.0000 + 34.3948 + 19.9750 + 17.0000 = \mathbf{254.3698}\)</span></p></li>
+<li><p>Ambang 95%: <span class="math notranslate nohighlight">\(0.95 \times 254.3698 = \mathbf{241.6513}\)</span></p></li>
+<li><p>Akumulasi Energi Magnitudo:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(f_0 = 0.0000\text{ Hz}\)</span>: <span class="math notranslate nohighlight">\(183.0000\)</span> (<span class="math notranslate nohighlight">\(183.0000 &lt; 241.6513\)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_1 = 0.1667\text{ Hz}\)</span>: <span class="math notranslate nohighlight">\(183.0000 + 34.3948 = 217.3948\)</span> (<span class="math notranslate nohighlight">\(217.3948 &lt; 241.6513\)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_2 = 0.3333\text{ Hz}\)</span>: <span class="math notranslate nohighlight">\(217.3948 + 19.9750 = 237.3698\)</span> (<span class="math notranslate nohighlight">\(237.3698 &lt; 241.6513\)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_3 = 0.5000\text{ Hz}\)</span>: <span class="math notranslate nohighlight">\(237.3698 + 17.0000 = \mathbf{254.3698}\)</span> (<span class="math notranslate nohighlight">\(\mathbf{254.3698 \ge 241.6513}\)</span>) <span class="math notranslate nohighlight">\(\implies \mathbf{\text{Batas Roll-Off Tercapai!}}\)</span></p></li>
+</ul>
+</li>
+<li><p><strong>Hasil <code class="docutils literal notranslate"><span class="pre">CO_spectral_roll_off</span></code></strong> = <strong><span class="math notranslate nohighlight">\(0.5000\text{ Hz}\)</span></strong></p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="konsep-dasar-k-means-clustering">
+<h2>3. Konsep Dasar K-Means Clustering<a class="headerlink" href="#konsep-dasar-k-means-clustering" title="Permalink to this heading">#</a></h2>
+<p><strong>K-Means Clustering</strong> mengelompokkan data ke dalam <span class="math notranslate nohighlight">\(K\)</span> kelompok (klaster) berdasarkan kemiripan karakteristik. Tujuan utamanya adalah meminimalkan jumlah kuadrat jarak antara setiap titik data dengan pusat klasternya (<em>centroid</em>), yang dikenal sebagai <strong>Within-Cluster Sum of Squares (WCSS)</strong> atau <strong>Inertia</strong>.</p>
+<section id="perumusan-matematis-k-means">
+<h3>Perumusan Matematis K-Means:<a class="headerlink" href="#perumusan-matematis-k-means" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Jarak Euclidean (<em>Euclidean Distance</em>)</strong>:
+$<span class="math notranslate nohighlight">\(\text{Dist}(x_i, \mu_k) = \sqrt{\sum_{j=1}^{d} (x_{ij} - \mu_{kj})^2}\)</span>$</p></li>
+<li><p><strong>Pembaruan Centroid (<em>Centroid Update</em>)</strong>:
+$<span class="math notranslate nohighlight">\(\mu_k = \frac{1}{|C_k|} \sum_{x_i \in C_k} x_i\)</span>$</p></li>
+<li><p><strong>Inertia / WCSS</strong>:
+$<span class="math notranslate nohighlight">\(\text{Inertia} = \sum_{k=1}^{K} \sum_{x_i \in C_k} \|x_i - \mu_k\|^2\)</span>$</p></li>
+<li><p><strong>Metrik Evaluasi Silhouette Score</strong>:
+$<span class="math notranslate nohighlight">\(S(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))}\)</span>$</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="contoh-perhitungan-manual-k-means-clustering">
+<h2>3. Contoh Perhitungan Manual K-Means Clustering<a class="headerlink" href="#contoh-perhitungan-manual-k-means-clustering" title="Permalink to this heading">#</a></h2>
+<p>Diketahui 4 sampel data sederhana 2 dimensi (<span class="math notranslate nohighlight">\(d=2\)</span>) dan kita ingin mengelompokkannya menjadi <span class="math notranslate nohighlight">\(K=2\)</span> klaster:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P_1 = (1, 2)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P_2 = (2, 1)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P_3 = (5, 6)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P_4 = (6, 5)\)</span></p></li>
+</ul>
+<p>Inisialisasi awal centroid: <span class="math notranslate nohighlight">\(\mu_1 = (1, 2)\)</span> dan <span class="math notranslate nohighlight">\(\mu_2 = (5, 6)\)</span>.</p>
+<section id="iterasi-1">
+<h3>Iterasi 1:<a class="headerlink" href="#iterasi-1" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Hitung Jarak ke Centroid <span class="math notranslate nohighlight">\(\mu_1(1,2)\)</span> dan <span class="math notranslate nohighlight">\(\mu_2(5,6)\)</span></strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P_1(1,2)\)</span>: <span class="math notranslate nohighlight">\(d(P_1, \mu_1) = \mathbf{0.0}\)</span>, <span class="math notranslate nohighlight">\(d(P_1, \mu_2) = \mathbf{5.657} \implies \text{Klaster 1}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P_2(2,1)\)</span>: <span class="math notranslate nohighlight">\(d(P_2, \mu_1) = \mathbf{1.414}\)</span>, <span class="math notranslate nohighlight">\(d(P_2, \mu_2) = \mathbf{5.831} \implies \text{Klaster 1}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P_3(5,6)\)</span>: <span class="math notranslate nohighlight">\(d(P_3, \mu_1) = \mathbf{5.657}\)</span>, <span class="math notranslate nohighlight">\(d(P_3, \mu_2) = \mathbf{0.0} \implies \text{Klaster 2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P_4(6,5)\)</span>: <span class="math notranslate nohighlight">\(d(P_4, \mu_1) = \mathbf{5.831}\)</span>, <span class="math notranslate nohighlight">\(d(P_4, \mu_2) = \mathbf{1.414} \implies \text{Klaster 2}\)</span></p></li>
+</ul>
+</li>
+<li><p><strong>Pembaruan Centroid Barunya</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mu_1^{\text{baru}} = \left( \frac{1 + 2}{2}, \frac{2 + 1}{2} \right) = \mathbf{(1.5, 1.5)}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu_2^{\text{baru}} = \left( \frac{5 + 6}{2}, \frac{6 + 5}{2} \right) = \mathbf{(5.5, 5.5)}\)</span></p></li>
+</ul>
+</li>
+</ol>
+<p>Algoritma <strong>konvergen</strong> pada iterasi berikutnya dengan 2 klaster: <span class="math notranslate nohighlight">\(C_1 = \{P_1, P_2\}\)</span> dan <span class="math notranslate nohighlight">\(C_2 = \{P_3, P_4\}\)</span>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="konsep-dasar-perhitungan-manual-pca">
+<h2>5. Konsep Dasar &amp; Perhitungan Manual PCA<a class="headerlink" href="#konsep-dasar-perhitungan-manual-pca" title="Permalink to this heading">#</a></h2>
+<p><strong>Principal Component Analysis (PCA)</strong> mereduksi dimensi data berdimensi tinggi (<span class="math notranslate nohighlight">\(d=68\)</span>) menjadi <span class="math notranslate nohighlight">\(m\)</span> komponen utama (<span class="math notranslate nohighlight">\(m \le 37\)</span>) yang saling tegak lurus (<em>orthogonal</em>), sambil mempertahankan varians informasi secara maksimal.</p>
+<section id="tahapan-matematis-pca">
+<h3>Tahapan Matematis PCA:<a class="headerlink" href="#tahapan-matematis-pca" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Pusatkan Data (Mean Centering)</strong>: <span class="math notranslate nohighlight">\(X_{\text{centered}} = X - \bar{X}\)</span>.</p></li>
+<li><p><strong>Matriks Kovarians (<span class="math notranslate nohighlight">\(C\)</span>)</strong>: <span class="math notranslate nohighlight">\(C = \frac{1}{N-1} X_{\text{centered}}^T X_{\text{centered}}\)</span>.</p></li>
+<li><p><strong>Nilai Eigen (<span class="math notranslate nohighlight">\(\lambda\)</span>) &amp; Vektor Eigen (<span class="math notranslate nohighlight">\(v\)</span>)</strong>: <span class="math notranslate nohighlight">\(\det(C - \lambda I) = 0, \quad C v = \lambda v\)</span>.</p></li>
+<li><p><strong>Proyeksi Data</strong>: <span class="math notranslate nohighlight">\(X_{\text{PCA}} = X_{\text{centered}} \cdot V_m\)</span>.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./05_kmeans_clustering"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../04_feature_extraction/4.6_hasil_ekstraksi_68_fitur.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">4.6 Hasil Ekstraksi 68 Fitur</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="5.2_reduksi_dimensi_pca.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">5.2 Analisis Reduksi Dimensi PCA (Masing-Masing NO2, SO2, CO &amp; Combined 37 Komponen)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#karakteristik-deret-waktu-masing-masing-polutan-combined">1. Karakteristik Deret Waktu Masing-Masing Polutan &amp; Combined</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-contoh-perhitungan-manual-fitur-tsfel-khusus-spectral-domain">2. Deskripsi &amp; Contoh Perhitungan Manual Fitur TSFEL Khusus (Spectral Domain)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-konsep-matriks-204-fitur-3-polutan-times-68-fitur-tsfel">A. Konsep Matriks 204 Fitur (3 Polutan <span class="math notranslate nohighlight">\(\times\)</span> 68 Fitur TSFEL)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-perhitungan-manual-fitur-1-spectral-positive-turning">B. Perhitungan Manual Fitur 1: <code class="docutils literal notranslate"><span class="pre">spectral_positive_turning</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definisi-formulasi-matematis">1. Definisi &amp; Formulasi Matematis</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual-3-polutan-sampel-6-hari-n-6-fs-1-0-text-hz">2. Contoh Perhitungan Manual 3 Polutan (Sampel 6 Hari, <span class="math notranslate nohighlight">\(N=6, fs=1.0\text{ Hz}\)</span>)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-perhitungan-manual-fitur-2-spectral-roll-off">C. Perhitungan Manual Fitur 2: <code class="docutils literal notranslate"><span class="pre">spectral_roll_off</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. Definisi &amp; Formulasi Matematis</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. Contoh Perhitungan Manual 3 Polutan (Sampel 6 Hari, <span class="math notranslate nohighlight">\(N=6, fs=1.0\text{ Hz}\)</span>)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-k-means-clustering">3. Konsep Dasar K-Means Clustering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perumusan-matematis-k-means">Perumusan Matematis K-Means:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual-k-means-clustering">3. Contoh Perhitungan Manual K-Means Clustering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterasi-1">Iterasi 1:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-perhitungan-manual-pca">5. Konsep Dasar &amp; Perhitungan Manual PCA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-matematis-pca">Tahapan Matematis PCA:</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alghifari Amar Mukhasyafah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

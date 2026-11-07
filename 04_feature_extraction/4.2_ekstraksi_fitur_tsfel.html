@@ -1,0 +1,1375 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>4.2 Ekstraksi Fitur Menggunakan TSFEL &#8212; Analisis Polutan Atmosfer Kecamatan Wonoayu</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '04_feature_extraction/4.2_ekstraksi_fitur_tsfel';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.3 Fitur Domain Statistical" href="4.3_fitur_domain_statistical.html" />
+    <link rel="prev" title="4.1 Persiapan Data untuk Ekstraksi" href="4.1_persiapan_data.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pp.jpg" class="logo__image only-light" alt="Analisis Polutan Atmosfer Kecamatan Wonoayu - Home"/>
+    <script>document.write(`<img src="../_static/pp.jpg" class="logo__image only-dark" alt="Analisis Polutan Atmosfer Kecamatan Wonoayu - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 1 — BUSINESS UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding.html">Business Understanding</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 2 — DATA UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.1_data_collection.html">2.1 Data Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.2_deskripsi_dataset.html">2.2 Deskripsi Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.4_identifikasi_missing_value.html">2.4 Identifikasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.5_identifikasi_outlier.html">2.5 Identifikasi Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.6_kesimpulan_data_understanding.html">2.6 Kesimpulan Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.7_analisis_no2_aiven_knime.html">2.7 Praktikum Analisis Aiven &amp; KNIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.8_konsep_dasar_statistik.html">2.8 Konsep Dasar Statistik + Contoh Hitung</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 3 — DATA PREPROCESSING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.1_pembersihan_data.html">3.1 Pembersihan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.2_penanganan_outlier.html">3.2 Penanganan Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.3_imputasi_missing_value.html">3.3 Imputasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.4_validasi_data_bersih.html">3.4 Validasi Data Bersih</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 4 — FEATURE EXTRACTION</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="4.1_persiapan_data.html">4.1 Persiapan Data untuk Ekstraksi</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4.2 Ekstraksi Fitur Menggunakan TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.3_fitur_domain_statistical.html">4.3 Fitur Domain Statistical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.4_fitur_domain_temporal.html">4.4 Fitur Domain Temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.5_fitur_domain_spectral.html">4.5 Fitur Domain Spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.6_hasil_ekstraksi_68_fitur.html">4.6 Hasil Ekstraksi 68 Fitur</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 5 — K-MEANS CLUSTERING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.1_konsep_kmeans_pca_manual.html">5.1 Konsep K-Means &amp; PCA (Hitung Manual)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.2_reduksi_dimensi_pca.html">5.2 Reduksi Dimensi PCA (1 - 37 Komponen)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.3_penentuan_jumlah_cluster.html">5.3 Penentuan Jumlah Cluster Terbaik</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.4_komparasi_pca_vs_68fitur.html">5.4 Komparasi PCA 37 vs 68 Fitur Asli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.5_implementasi_knime_workflow.html">5.5 Implementasi KNIME Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/05_kmeans_clustering.html">5.6 Notebook Interaktif K-Means &amp; PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.7_clustering_satu_kelas.html">5.7 Notebook Clustering Data 1 Kelas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_kmeans_clustering/5.8_clustering_polynomial.html">5.8 Notebook Clustering Data Polynomial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 6 — SUPERVISED LEARNING (KLASIFIKASI)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../6.1_persiapan_klasifikasi.html">6.1 Klasifikasi Jawa Timur (Sentinel-2A, 6 Kelas)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.2_training_model.html">6.2 Training &amp; Perbandingan Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.3_peta_demo.html">6.3 Peta Klasifikasi + Folium</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.4_streamlit_deploy.html">6.4 Streamlit + Deploy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.5_klasifikasi_wonoayu.html">6.5 Klasifikasi Wonoayu (Sawah vs Non-Sawah)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6.6_evaluasi_poligon.html">6.6 Evaluasi per Poligon (Prediksi vs Aktual)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/safamaster223/PSD" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/safamaster223/PSD/issues/new?title=Issue%20on%20page%20%2F04_feature_extraction/4.2_ekstraksi_fitur_tsfel.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/04_feature_extraction/4.2_ekstraksi_fitur_tsfel.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>4.2 Ekstraksi Fitur Menggunakan TSFEL</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spesifikasi-teknis-ekstraksi-fitur-tugas-3">1. Spesifikasi Teknis Ekstraksi Fitur (Tugas 3)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-ekstraksi-fitur-terstandar">2. Kode Ekstraksi Fitur Terstandar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-pengelompokan-domain">3. Struktur Pengelompokan Domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-ekstraksi-68-fitur-tsfel-parameter-no2">4. Hasil Ekstraksi 68 Fitur TSFEL Parameter NO2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-data-no2-satu-kelas-komparasi-lintas-daerah">5. Ringkasan Data NO2 Satu Kelas (Komparasi Lintas Daerah)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="ekstraksi-fitur-menggunakan-tsfel">
+<h1>4.2 Ekstraksi Fitur Menggunakan TSFEL<a class="headerlink" href="#ekstraksi-fitur-menggunakan-tsfel" title="Permalink to this heading">#</a></h1>
+<p>Dokumen ini memuat arsitektur teknis dan implementasi kode Python untuk mengekstrak <strong>68 fitur deret waktu terstandar</strong> menggunakan pustaka <strong>TSFEL</strong> (<em>Time Series Feature Extraction Library</em>) khusus untuk parameter <strong><span class="math notranslate nohighlight">\(\text{NO}_2\)</span></strong> di <strong>Kecamatan Wonoayu, Kabupaten Sidoarjo</strong> sesuai ketentuan Tugas 3.</p>
+<hr class="docutils" />
+<section id="spesifikasi-teknis-ekstraksi-fitur-tugas-3">
+<h2>1. Spesifikasi Teknis Ekstraksi Fitur (Tugas 3)<a class="headerlink" href="#spesifikasi-teknis-ekstraksi-fitur-tugas-3" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Parameter Target</strong>: <strong><span class="math notranslate nohighlight">\(\text{NO}_2\)</span></strong> (Nitrogen Dioksida) — sesuai kesepakatan satu kelas.</p></li>
+<li><p><strong>Total Fitur yang Diminta</strong>: <strong>Tepat 68 Fitur Kunci</strong>.</p></li>
+<li><p><strong>Frekuensi Sampling (<span class="math notranslate nohighlight">\(fs\)</span>)</strong>: <span class="math notranslate nohighlight">\(1\text{ sampel/hari}\)</span> (<span class="math notranslate nohighlight">\(fs = 1\)</span>).</p></li>
+<li><p><strong>Output Berkas</strong>: <code class="docutils literal notranslate"><span class="pre">NO2_Wonoayu_TSFEL.csv</span></code>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="kode-ekstraksi-fitur-terstandar">
+<h2>2. Kode Ekstraksi Fitur Terstandar<a class="headerlink" href="#kode-ekstraksi-fitur-terstandar" title="Permalink to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tsfel.feature_extraction.features</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tsfel_features</span>
+
+<span class="c1"># ---------- 1. Muat dan Bersihkan Data (Kecamatan Wonoayu) ----------</span>
+<span class="n">csv_path</span> <span class="o">=</span> <span class="s1">'data/downloads/wonoayu_pollutants_data/wonoayu_NO2.csv'</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_path</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'date'</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'date'</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">target_pollutant</span> <span class="o">=</span> <span class="s1">'NO2'</span>
+
+<span class="c1"># Paksa kolom target menjadi numerik</span>
+<span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'coerce'</span><span class="p">)</span>
+<span class="n">n_missing_before</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Jumlah nilai non-numerik/kosong awal: </span><span class="si">{</span><span class="n">n_missing_before</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Deteksi dan kosongkan outlier (metode IQR)</span>
+<span class="n">Q1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">Q3</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
+<span class="n">lower_bound</span> <span class="o">=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+<span class="n">upper_bound</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">),</span> <span class="n">target_pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="c1"># Imputasi linear berbasis waktu</span>
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'date'</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">'time'</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
+
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">signal_1d</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># ---------- 2. Daftar PERSIS 68 Fitur yang Diminta ----------</span>
+<span class="n">FEATURE_LIST</span> <span class="o">=</span> <span class="s2">"""abs_energy auc autocorr average_power calc_centroid calc_max calc_mean</span>
+<span class="s2">calc_median calc_min calc_std calc_var dfa distance ecdf ecdf_percentile ecdf_percentile_count</span>
+<span class="s2">ecdf_slope entropy fundamental_frequency higuchi_fractal_dimension hist_mode human_range_energy</span>
+<span class="s2">hurst_exponent interq_range kurtosis lempel_ziv lpcc max_frequency max_power_spectrum</span>
+<span class="s2">maximum_fractal_length mean_abs_deviation mean_abs_diff mean_diff median_abs_deviation</span>
+<span class="s2">median_abs_diff median_diff median_frequency mfcc mse negative_turning neighbourhood_peaks</span>
+<span class="s2">petrosian_fractal_dimension pk_pk_distance positive_turning power_bandwidth rms skewness slope</span>
+<span class="s2">spectral_centroid spectral_decrease spectral_distance spectral_entropy spectral_kurtosis</span>
+<span class="s2">spectral_positive_turning spectral_roll_off spectral_roll_on spectral_skewness spectral_slope</span>
+<span class="s2">spectral_spread spectral_variation spectrogram_mean_coeff sum_abs_diff wavelet_abs_mean</span>
+<span class="s2">wavelet_energy wavelet_entropy wavelet_std wavelet_var zero_cross"""</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Jumlah fitur yang diminta:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">FEATURE_LIST</span><span class="p">))</span>
+
+<span class="c1"># ---------- 3. Fungsi Ekstraktor Nilai Skalar ----------</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">to_scalar</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">"values"</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">"values"</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)):</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_one</span><span class="p">(</span><span class="n">fn_name</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+    <span class="n">fn</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">tsfel_features</span><span class="p">,</span> <span class="n">fn_name</span><span class="p">)</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span>
+    <span class="k">if</span> <span class="s2">"fs"</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">to_scalar</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="c1"># ---------- 4. Eksekusi Ekstraksi Fitur ----------</span>
+<span class="n">row</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">fn_name</span> <span class="ow">in</span> <span class="n">FEATURE_LIST</span><span class="p">:</span>
+    <span class="n">row</span><span class="p">[</span><span class="n">fn_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">extract_one</span><span class="p">(</span><span class="n">fn_name</span><span class="p">,</span> <span class="n">signal_1d</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+
+<span class="n">extracted_features_final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">row</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Berhasil! Jumlah fitur yang dihasilkan untuk </span><span class="si">{</span><span class="n">target_pollutant</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">extracted_features_final</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Simpan hasil ekstraksi fitur untuk wilayah Kecamatan Wonoayu</span>
+<span class="n">output_csv</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">target_pollutant</span><span class="si">}</span><span class="s1">_Wonoayu_TSFEL.csv'</span>
+<span class="n">extracted_features_final</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">output_csv</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Hasil ekstraksi tersimpan di: </span><span class="si">{</span><span class="n">output_csv</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="struktur-pengelompokan-domain">
+<h2>3. Struktur Pengelompokan Domain<a class="headerlink" href="#struktur-pengelompokan-domain" title="Permalink to this heading">#</a></h2>
+<p>Ke-68 fitur hasil ekstraksi dikelompokkan secara terstruktur ke dalam 3 domain utama pada dokumen berikut:</p>
+<ul class="simple">
+<li><p><strong>4.3 Fitur Domain Statistical (21 Fitur)</strong>: Mengukur distribusi probabilitas, momen statistik, dan dispersi nilai.</p></li>
+<li><p><strong>4.4 Fitur Domain Temporal &amp; Fractal (21 Fitur)</strong>: Mengukur ketergantungan waktu, autokorelasi, dinamika puncak, dan kompleksitas non-linear.</p></li>
+<li><p><strong>4.5 Fitur Domain Spectral (26 Fitur)</strong>: Mengukur kandungan frekuensi, koefisien spektrogram, transformasi Fourier, dan energi wavelet.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="hasil-ekstraksi-68-fitur-tsfel-parameter-no2">
+<h2>4. Hasil Ekstraksi 68 Fitur TSFEL Parameter NO2<a class="headerlink" href="#hasil-ekstraksi-68-fitur-tsfel-parameter-no2" title="Permalink to this heading">#</a></h2>
+<p>Berikut adalah tabel nilai riil presisi tinggi dari ke-68 fitur yang berhasil diekstraksi untuk <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> Kecamatan Wonoayu:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>No</p></th>
+<th class="head text-left"><p>Nama Fitur TSFEL</p></th>
+<th class="head text-left"><p>Nilai Hasil Ekstraksi (Presisi Tinggi)</p></th>
+<th class="head text-left"><p>Domain Fitur</p></th>
+<th class="head text-left"><p>Deskripsi Singkat</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>1</p></td>
+<td class="text-left"><p>abs_energy</p></td>
+<td class="text-left"><p>5.20145555e-07</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Energi Absolut sinyal NO2</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>2</p></td>
+<td class="text-left"><p>auc</p></td>
+<td class="text-left"><p>0.01315967</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Area Under Curve (Luas Area di Bawah Kurva)</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>3</p></td>
+<td class="text-left"><p>autocorr</p></td>
+<td class="text-left"><p>2</p></td>
+<td class="text-left"><p>Domain Temporal</p></td>
+<td class="text-left"><p>Autokorelasi sinyal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>4</p></td>
+<td class="text-left"><p>average_power</p></td>
+<td class="text-left"><p>1.42505631e-09</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Daya Rata-Rata sinyal</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>5</p></td>
+<td class="text-left"><p>calc_centroid</p></td>
+<td class="text-left"><p>182.73650113</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Sentroid Sinyal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>6</p></td>
+<td class="text-left"><p>calc_max</p></td>
+<td class="text-left"><p>6.66680280e-05</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Nilai Maksimum NO2</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>7</p></td>
+<td class="text-left"><p>calc_mean</p></td>
+<td class="text-left"><p>3.60471227e-05</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Nilai Rata-Rata (Mean) NO2</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>8</p></td>
+<td class="text-left"><p>calc_median</p></td>
+<td class="text-left"><p>3.54367532e-05</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Nilai Median NO2</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>9</p></td>
+<td class="text-left"><p>calc_min</p></td>
+<td class="text-left"><p>3.41554621e-06</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Nilai Minimum NO2</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>10</p></td>
+<td class="text-left"><p>calc_std</p></td>
+<td class="text-left"><p>1.10348385e-05</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Deviasi Standar NO2</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>11</p></td>
+<td class="text-left"><p>calc_var</p></td>
+<td class="text-left"><p>1.21767661e-10</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Varians Sinyal NO2</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>12</p></td>
+<td class="text-left"><p>dfa</p></td>
+<td class="text-left"><p>1.05249369</p></td>
+<td class="text-left"><p>Domain Temporal</p></td>
+<td class="text-left"><p>Detrended Fluctuation Analysis</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>13</p></td>
+<td class="text-left"><p>distance</p></td>
+<td class="text-left"><p>365.00000002</p></td>
+<td class="text-left"><p>Domain Temporal</p></td>
+<td class="text-left"><p>Jarak Lintasan Sinyal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>14</p></td>
+<td class="text-left"><p>ecdf</p></td>
+<td class="text-left"><p>0.01502732</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Empirical CDF</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>15</p></td>
+<td class="text-left"><p>ecdf_percentile</p></td>
+<td class="text-left"><p>3.57162095e-05</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Persentil ECDF</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>16</p></td>
+<td class="text-left"><p>ecdf_percentile_count</p></td>
+<td class="text-left"><p>182.5</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Jumlah Objek Persentil ECDF</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>17</p></td>
+<td class="text-left"><p>ecdf_slope</p></td>
+<td class="text-left"><p>34617.04518647</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Kemiringan Kurva ECDF</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>18</p></td>
+<td class="text-left"><p>entropy</p></td>
+<td class="text-left"><p>0.99935831</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Entropi Informasi Shannon</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>19</p></td>
+<td class="text-left"><p>fundamental_frequency</p></td>
+<td class="text-left"><p>0.00546448</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Frekuensi Fundamental</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>20</p></td>
+<td class="text-left"><p>higuchi_fractal_dimension</p></td>
+<td class="text-left"><p>1.91739422</p></td>
+<td class="text-left"><p>Domain Temporal</p></td>
+<td class="text-left"><p>Dimensi Fraktal Higuchi</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>21</p></td>
+<td class="text-left"><p>hist_mode</p></td>
+<td class="text-left"><p>3.18791630e-05</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Modus Histogram Data</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>22</p></td>
+<td class="text-left"><p>human_range_energy</p></td>
+<td class="text-left"><p>0</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Energi Rentang Frekuensi Manusia</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>23</p></td>
+<td class="text-left"><p>hurst_exponent</p></td>
+<td class="text-left"><p>0.7444931</p></td>
+<td class="text-left"><p>Domain Temporal</p></td>
+<td class="text-left"><p>Eksponen Hurst (Long-range dependence)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>24</p></td>
+<td class="text-left"><p>interq_range</p></td>
+<td class="text-left"><p>1.42654208e-05</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Interquartile Range (IQR)</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>25</p></td>
+<td class="text-left"><p>kurtosis</p></td>
+<td class="text-left"><p>0.07674607</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Kurtosis (Keruncingan Puncak)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>26</p></td>
+<td class="text-left"><p>lempel_ziv</p></td>
+<td class="text-left"><p>0.18306011</p></td>
+<td class="text-left"><p>Domain Temporal</p></td>
+<td class="text-left"><p>Kompleksitas Lempel-Ziv</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>27</p></td>
+<td class="text-left"><p>lpcc</p></td>
+<td class="text-left"><p>0.73414267</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Linear Prediction Cepstral Coefficients</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>28</p></td>
+<td class="text-left"><p>max_frequency</p></td>
+<td class="text-left"><p>0.44262295</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Frekuensi Maksimum</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>29</p></td>
+<td class="text-left"><p>max_power_spectrum</p></td>
+<td class="text-left"><p>25.80028982</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Spektrum Daya Maksimum</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>30</p></td>
+<td class="text-left"><p>maximum_fractal_length</p></td>
+<td class="text-left"><p>-2.46645453</p></td>
+<td class="text-left"><p>Domain Temporal</p></td>
+<td class="text-left"><p>Panjang Fraktal Maksimum</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>31</p></td>
+<td class="text-left"><p>mean_abs_deviation</p></td>
+<td class="text-left"><p>8.79485991e-06</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Mean Absolute Deviation</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>32</p></td>
+<td class="text-left"><p>mean_abs_diff</p></td>
+<td class="text-left"><p>7.42108989e-06</p></td>
+<td class="text-left"><p>Domain Temporal</p></td>
+<td class="text-left"><p>Mean Absolute Difference</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>33</p></td>
+<td class="text-left"><p>mean_diff</p></td>
+<td class="text-left"><p>-3.70114362e-08</p></td>
+<td class="text-left"><p>Domain Temporal</p></td>
+<td class="text-left"><p>Mean Difference</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>34</p></td>
+<td class="text-left"><p>median_abs_deviation</p></td>
+<td class="text-left"><p>7.03606845e-06</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Median Absolute Deviation</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>35</p></td>
+<td class="text-left"><p>median_abs_diff</p></td>
+<td class="text-left"><p>4.90245094e-06</p></td>
+<td class="text-left"><p>Domain Temporal</p></td>
+<td class="text-left"><p>Median Absolute Difference</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>36</p></td>
+<td class="text-left"><p>median_diff</p></td>
+<td class="text-left"><p>2.35283392e-07</p></td>
+<td class="text-left"><p>Domain Temporal</p></td>
+<td class="text-left"><p>Median Difference</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>37</p></td>
+<td class="text-left"><p>median_frequency</p></td>
+<td class="text-left"><p>0.07923497</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Frekuensi Median</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>38</p></td>
+<td class="text-left"><p>mfcc</p></td>
+<td class="text-left"><p>25.99827637</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Mel-Frequency Cepstral Coefficients</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>39</p></td>
+<td class="text-left"><p>mse</p></td>
+<td class="text-left"><p>1.07888972</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Mean Squared Error Spectral</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>40</p></td>
+<td class="text-left"><p>negative_turning</p></td>
+<td class="text-left"><p>81</p></td>
+<td class="text-left"><p>Domain Temporal</p></td>
+<td class="text-left"><p>Jumlah Negative Turning Points</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>41</p></td>
+<td class="text-left"><p>neighbourhood_peaks</p></td>
+<td class="text-left"><p>16</p></td>
+<td class="text-left"><p>Domain Temporal</p></td>
+<td class="text-left"><p>Jumlah Puncak Sekitar (Neighbourhood Peaks)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>42</p></td>
+<td class="text-left"><p>petrosian_fractal_dimension</p></td>
+<td class="text-left"><p>1.02873346</p></td>
+<td class="text-left"><p>Domain Temporal</p></td>
+<td class="text-left"><p>Dimensi Fraktal Petrosian</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>43</p></td>
+<td class="text-left"><p>pk_pk_distance</p></td>
+<td class="text-left"><p>6.32524818e-05</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Peak to Peak Distance (Max - Min)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>44</p></td>
+<td class="text-left"><p>positive_turning</p></td>
+<td class="text-left"><p>82</p></td>
+<td class="text-left"><p>Domain Temporal</p></td>
+<td class="text-left"><p>Jumlah Positive Turning Points</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>45</p></td>
+<td class="text-left"><p>power_bandwidth</p></td>
+<td class="text-left"><p>0.42349727</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Bandwidth Daya Sinyal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>46</p></td>
+<td class="text-left"><p>rms</p></td>
+<td class="text-left"><p>3.76983119e-05</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Root Mean Square (RMS)</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>47</p></td>
+<td class="text-left"><p>skewness</p></td>
+<td class="text-left"><p>0.10957384</p></td>
+<td class="text-left"><p>Domain Statistical</p></td>
+<td class="text-left"><p>Skewness (Kemencengan)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>48</p></td>
+<td class="text-left"><p>slope</p></td>
+<td class="text-left"><p>6.18434913e-10</p></td>
+<td class="text-left"><p>Domain Temporal</p></td>
+<td class="text-left"><p>Kemiringan Tren Sinyal</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>49</p></td>
+<td class="text-left"><p>spectral_centroid</p></td>
+<td class="text-left"><p>0.13469773</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Sentroid Spektral</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>50</p></td>
+<td class="text-left"><p>spectral_decrease</p></td>
+<td class="text-left"><p>-2.42578762</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Penurunan Spektral (Spectral Decrease)</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>51</p></td>
+<td class="text-left"><p>spectral_distance</p></td>
+<td class="text-left"><p>-1.88075326</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Jarak Spektral (Spectral Distance)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>52</p></td>
+<td class="text-left"><p>spectral_entropy</p></td>
+<td class="text-left"><p>0.83888439</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Entropi Spektral</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>53</p></td>
+<td class="text-left"><p>spectral_kurtosis</p></td>
+<td class="text-left"><p>2.63217704</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Kurtosis Spektral</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>54</p></td>
+<td class="text-left"><p>spectral_positive_turning</p></td>
+<td class="text-left"><p>60</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Positive Turning Spektral</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>55</p></td>
+<td class="text-left"><p>spectral_roll_off</p></td>
+<td class="text-left"><p>0.44262295</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Spectral Roll-off</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>56</p></td>
+<td class="text-left"><p>spectral_roll_on</p></td>
+<td class="text-left"><p>0</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Spectral Roll-on</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>57</p></td>
+<td class="text-left"><p>spectral_skewness</p></td>
+<td class="text-left"><p>0.92838365</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Skewness Spektral</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>58</p></td>
+<td class="text-left"><p>spectral_slope</p></td>
+<td class="text-left"><p>-0.02975368</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Kemiringan Spektral (Spectral Slope)</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>59</p></td>
+<td class="text-left"><p>spectral_spread</p></td>
+<td class="text-left"><p>0.14880161</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Sebaran Spektral (Spectral Spread)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>60</p></td>
+<td class="text-left"><p>spectral_variation</p></td>
+<td class="text-left"><p>0.80570578</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Variasi Spektral</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>61</p></td>
+<td class="text-left"><p>spectrogram_mean_coeff</p></td>
+<td class="text-left"><p>2.16958878e-10</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Koefisien Rata-rata Spektrogram</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>62</p></td>
+<td class="text-left"><p>sum_abs_diff</p></td>
+<td class="text-left"><p>0.0027087</p></td>
+<td class="text-left"><p>Domain Temporal</p></td>
+<td class="text-left"><p>Sum of Absolute Differences</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>63</p></td>
+<td class="text-left"><p>wavelet_abs_mean</p></td>
+<td class="text-left"><p>1.87886005e-06</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Rata-rata Absolut Wavelet</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>64</p></td>
+<td class="text-left"><p>wavelet_energy</p></td>
+<td class="text-left"><p>1.58719156e-05</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Energi Wavelet</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>65</p></td>
+<td class="text-left"><p>wavelet_entropy</p></td>
+<td class="text-left"><p>2.17724884</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Entropi Wavelet</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>66</p></td>
+<td class="text-left"><p>wavelet_std</p></td>
+<td class="text-left"><p>1.57201176e-05</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Deviasi Standar Wavelet</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>67</p></td>
+<td class="text-left"><p>wavelet_var</p></td>
+<td class="text-left"><p>2.54529404e-10</p></td>
+<td class="text-left"><p>Domain Spectral</p></td>
+<td class="text-left"><p>Varians Wavelet</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>68</p></td>
+<td class="text-left"><p>zero_cross</p></td>
+<td class="text-left"><p>0</p></td>
+<td class="text-left"><p>Domain Temporal</p></td>
+<td class="text-left"><p>Zero Crossing Rate</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="ringkasan-data-no2-satu-kelas-komparasi-lintas-daerah">
+<h2>5. Ringkasan Data NO2 Satu Kelas (Komparasi Lintas Daerah)<a class="headerlink" href="#ringkasan-data-no2-satu-kelas-komparasi-lintas-daerah" title="Permalink to this heading">#</a></h2>
+<p>Tabel berikut menyajikan ringkasan komparasi fitur utama ekstraksi <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> (Abs Energy, Entropy, dan Mean) dari <strong>37 mahasiswa satu kelas</strong> untuk berbagai daerah observasi di Jawa Timur dan sekitarnya (menggunakan data Overpass Turbo / Sentinel-5P):</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>No.</p></th>
+<th class="head text-left"><p>Nama Mahasiswa</p></th>
+<th class="head text-left"><p>Daerah Observasi</p></th>
+<th class="head text-left"><p>Abs Energy</p></th>
+<th class="head text-left"><p>Entropy</p></th>
+<th class="head text-left"><p>Mean</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>1</p></td>
+<td class="text-left"><p>Okan Syailendra wahyudi</p></td>
+<td class="text-left"><p>Manyar</p></td>
+<td class="text-left"><p>1.9330404826469E-6</p></td>
+<td class="text-left"><p>0.99935624867431</p></td>
+<td class="text-left"><p>6.5860283194356E-5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>2</p></td>
+<td class="text-left"><p>Triswanti Jannatul Ma’wa</p></td>
+<td class="text-left"><p>Kedungpring Lamongan</p></td>
+<td class="text-left"><p>3.702057856559E-7</p></td>
+<td class="text-left"><p>0.9993583051331</p></td>
+<td class="text-left"><p>2.9874770846449E-5</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>3</p></td>
+<td class="text-left"><p>Laila Maghfiroh</p></td>
+<td class="text-left"><p>Kamal, Bangkalan</p></td>
+<td class="text-left"><p>7.3635893244945E-7</p></td>
+<td class="text-left"><p>0.9993583051331</p></td>
+<td class="text-left"><p>4.117464926125E-5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>4</p></td>
+<td class="text-left"><p>Dedy Nurohim</p></td>
+<td class="text-left"><p>sambeng lamongan</p></td>
+<td class="text-left"><p>3.8540202511538E-7</p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>3.0763025971642E-5</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>5</p></td>
+<td class="text-left"><p>Ahmad Syahrul Farihin</p></td>
+<td class="text-left"><p>Gresik Kota, Gresik</p></td>
+<td class="text-left"><p>1.5239802902418E-6</p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>6.1352862584262E-5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>6</p></td>
+<td class="text-left"><p>Rian Renaldy</p></td>
+<td class="text-left"><p>Waru, Pamekasan</p></td>
+<td class="text-left"><p>1.1231971709267E-7</p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>1.6135938259531E-5</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>7</p></td>
+<td class="text-left"><p>Moh Rafie Nazar J</p></td>
+<td class="text-left"><p>Bangkalan Kota,Bangkalan</p></td>
+<td class="text-left"><p>3.2036413345291E-7</p></td>
+<td class="text-left"><p>0.99935209845039</p></td>
+<td class="text-left"><p>2.8158498145523E-5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>8</p></td>
+<td class="text-left"><p>Ainur Raftuzzaki</p></td>
+<td class="text-left"><p>Nunukan</p></td>
+<td class="text-left"><p>2.3637297379473E-8</p></td>
+<td class="text-left"><p>0.99694881309716</p></td>
+<td class="text-left"><p>7.0971171173237E-6</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>9</p></td>
+<td class="text-left"><p>Muhammad Zaidan Nabil Rafi</p></td>
+<td class="text-left"><p>Kamal, Bangkalan</p></td>
+<td class="text-left"><p>1.8832424748202E-6</p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>7.1540844564661E-5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>10</p></td>
+<td class="text-left"><p>Robbaniyah Umdatun Ni’mah</p></td>
+<td class="text-left"><p>Cerme, Gresik</p></td>
+<td class="text-left"><p>7.5174478567059E-7</p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>5.2635228444099E-5</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>11</p></td>
+<td class="text-left"><p>Magdalena Jovita Hatuopar</p></td>
+<td class="text-left"><p>Pilangkenceng, Madiun</p></td>
+<td class="text-left"><p>2.5231184415663E-7</p></td>
+<td class="text-left"><p>0.99871661026619</p></td>
+<td class="text-left"><p>2.5195453791445E-5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>12</p></td>
+<td class="text-left"><p>Alifah Sayyidaturrhohma</p></td>
+<td class="text-left"><p>Kota Sumenep, Sumenep</p></td>
+<td class="text-left"><p>1.150017772732E-7</p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>1.5147457141429E-5</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>13</p></td>
+<td class="text-left"><p>Riska Nana Nuril Fadilah</p></td>
+<td class="text-left"><p>Asemrowo, Surabaya</p></td>
+<td class="text-left"><p>1.1565285919876E-6</p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>5.4020920330411E-5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>14</p></td>
+<td class="text-left"><p>M. Hendrik Purwanto</p></td>
+<td class="text-left"><p>Sreseh, Sampang</p></td>
+<td class="text-left"><p>2.4377828631409E-7</p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>2.3864726106264E-5</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>15</p></td>
+<td class="text-left"><p>Alghifari Amar Mukhasyafah</p></td>
+<td class="text-left"><p>Wonoayu</p></td>
+<td class="text-left"><p>5.2014555493029E-7</p></td>
+<td class="text-left"><p>0.9993583051331</p></td>
+<td class="text-left"><p>3.6047122729795E-5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>16</p></td>
+<td class="text-left"><p>Muhammad izzul Millah Aqil</p></td>
+<td class="text-left"><p>Wonokromo, Surabaya</p></td>
+<td class="text-left"><p>6.1646251568056E-7</p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>3.9620193219087E-5</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>17</p></td>
+<td class="text-left"><p>A.Choiril Anwar El-Asfihani Risydan</p></td>
+<td class="text-left"><p>Banyu Ajuh, Perumnas, Kamal</p></td>
+<td class="text-left"><p>8.0044838125201E-7</p></td>
+<td class="text-left"><p>0.9993583051331</p></td>
+<td class="text-left"><p>4.304078602292E-5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>18</p></td>
+<td class="text-left"><p>Verdi Setyawan Ardiansyah Putra</p></td>
+<td class="text-left"><p>Menganti Gresik</p></td>
+<td class="text-left"><p>9.0563740676079E-7</p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>4.6130442825155E-5</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>19</p></td>
+<td class="text-left"><p>Kurnia Maulinda Sari</p></td>
+<td class="text-left"><p>Labang, Bangkalan</p></td>
+<td class="text-left"><p>4.1643474895458E-7</p></td>
+<td class="text-left"><p>0.9993583051331</p></td>
+<td class="text-left"><p>3.0748115350259E-5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>20</p></td>
+<td class="text-left"><p>Marshella Aulia Putri</p></td>
+<td class="text-left"><p>Kec. Kalianget, Sumenep</p></td>
+<td class="text-left"><p>5.678565666342E-8</p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>1.573323178304E-5</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>21</p></td>
+<td class="text-left"><p>Rifqi Fairurrafi</p></td>
+<td class="text-left"><p>Kec. Bangkalan, Kab. Bangkalan</p></td>
+<td class="text-left"><p>3.1153029424347E-7</p></td>
+<td class="text-left"><p>0.99486644106477</p></td>
+<td class="text-left"><p>2.7417823733298E-5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>22</p></td>
+<td class="text-left"><p>Nurhabibatul Umah</p></td>
+<td class="text-left"><p>Kerek, Tuban</p></td>
+<td class="text-left"><p>7.6824149057079E-7</p></td>
+<td class="text-left"><p>0.9993583051331</p></td>
+<td class="text-left"><p>4.3109805569384E-5</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>23</p></td>
+<td class="text-left"><p>Mochammad Zaenal Abidin</p></td>
+<td class="text-left"><p>Widang, Tuban</p></td>
+<td class="text-left"><p>3.9893073437815E-7</p></td>
+<td class="text-left"><p>0.9993583051331</p></td>
+<td class="text-left"><p>3.1402189520642E-5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>24</p></td>
+<td class="text-left"><p>Rachelia Andini Tendean</p></td>
+<td class="text-left"><p>Tikala, Manado</p></td>
+<td class="text-left"><p>3.1006751135801E-8</p></td>
+<td class="text-left"><p>0.97011921272163</p></td>
+<td class="text-left"><p>7.8375149817844E-6</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>25</p></td>
+<td class="text-left"><p>Ahmad Dafi Zidni Alfarisi</p></td>
+<td class="text-left"><p>Paciran, Lamongan</p></td>
+<td class="text-left"><p>3.2462081439996E-7</p></td>
+<td class="text-left"><p>0.9993583051331</p></td>
+<td class="text-left"><p>2.8460907174656E-5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>26</p></td>
+<td class="text-left"><p>Deo Candra Saputra</p></td>
+<td class="text-left"><p>Widodaren, Ngawi</p></td>
+<td class="text-left"><p>2.1738526422222E-7</p></td>
+<td class="text-left"><p>0.87830740754393</p></td>
+<td class="text-left"><p>2.364631147541E-5</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>27</p></td>
+<td class="text-left"><p>Lailatul Hasanah</p></td>
+<td class="text-left"><p>Socah, Bangkalan</p></td>
+<td class="text-left"><p>3.8319713390559E-7</p></td>
+<td class="text-left"><p>0.99846459884075</p></td>
+<td class="text-left"><p>3.037902997566E-5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>28</p></td>
+<td class="text-left"><p>Mohammad Aziz Huzaini</p></td>
+<td class="text-left"><p>Tanah Merah, Bangkalan</p></td>
+<td class="text-left"><p>2.6080349372489E-7</p></td>
+<td class="text-left"><p>0.99679152566548</p></td>
+<td class="text-left"><p>2.5353223787031E-5</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>29</p></td>
+<td class="text-left"><p>Fathul Aziz Saifuddin</p></td>
+<td class="text-left"><p>Dukun, Gresik</p></td>
+<td class="text-left"><p>3.5812188977189E-7</p></td>
+<td class="text-left"><p>0.99935624867431</p></td>
+<td class="text-left"><p>2.9362968108188E-5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>30</p></td>
+<td class="text-left"><p>M. Fatihul Umam</p></td>
+<td class="text-left"><p>Kwanyar, Bangkalan</p></td>
+<td class="text-left"><p>3.5618873530841E-7</p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>2.7826569052108E-5</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>31</p></td>
+<td class="text-left"><p>Rahardian Ananta</p></td>
+<td class="text-left"><p>jabon , Sidoarjo</p></td>
+<td class="text-left"><p>4.1393185197011E-7</p></td>
+<td class="text-left"><p>0.9993583051331</p></td>
+<td class="text-left"><p>3.1919726309816E-5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>32</p></td>
+<td class="text-left"><p>Muhammad Ali Murtadho</p></td>
+<td class="text-left"><p>Baron Nganjuk</p></td>
+<td class="text-left"><p>3.32752358975E-7</p></td>
+<td class="text-left"><p>0.9278503357686</p></td>
+<td class="text-left"><p>2.8400396174863E-5</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>33</p></td>
+<td class="text-left"><p>Fahdimas akmal</p></td>
+<td class="text-left"><p>Kwanyar, Bangkalan</p></td>
+<td class="text-left"><p>2.9282631808468E-7</p></td>
+<td class="text-left"><p>0.9993583051331</p></td>
+<td class="text-left"><p>2.6166840316627E-5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>34</p></td>
+<td class="text-left"><p>AHMAD MAULANA ISHAQ</p></td>
+<td class="text-left"><p>Kertosono, Ngajuk</p></td>
+<td class="text-left"><p>3.2740798775905E-7</p></td>
+<td class="text-left"><p>0.9993583051331</p></td>
+<td class="text-left"><p>2.8500564327909E-5</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>35</p></td>
+<td class="text-left"><p>Fathan Ruhul Alam</p></td>
+<td class="text-left"><p>Warudoyong, Kota Sukabumi</p></td>
+<td class="text-left"><p>5.3297873188688E-7</p></td>
+<td class="text-left"><p>0.98135693004478</p></td>
+<td class="text-left"><p>3.4654823453988E-5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>36</p></td>
+<td class="text-left"><p>Muhammad Isa</p></td>
+<td class="text-left"><p>Bandung, Jogoroto, Jombang</p></td>
+<td class="text-left"><p>4.3137795762858E-7</p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>3.2526875771291E-5</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>37</p></td>
+<td class="text-left"><p>Dewi Geizya</p></td>
+<td class="text-left"><p>Kamal, Banyuajuh</p></td>
+<td class="text-left"><p>475912.66180625</p></td>
+<td class="text-left"><p>0.99101627186335</p></td>
+<td class="text-left"><p>33.632390710383</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./04_feature_extraction"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="4.1_persiapan_data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">4.1 Persiapan Data untuk Ekstraksi</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="4.3_fitur_domain_statistical.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">4.3 Fitur Domain Statistical</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spesifikasi-teknis-ekstraksi-fitur-tugas-3">1. Spesifikasi Teknis Ekstraksi Fitur (Tugas 3)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-ekstraksi-fitur-terstandar">2. Kode Ekstraksi Fitur Terstandar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-pengelompokan-domain">3. Struktur Pengelompokan Domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-ekstraksi-68-fitur-tsfel-parameter-no2">4. Hasil Ekstraksi 68 Fitur TSFEL Parameter NO2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-data-no2-satu-kelas-komparasi-lintas-daerah">5. Ringkasan Data NO2 Satu Kelas (Komparasi Lintas Daerah)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alghifari Amar Mukhasyafah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
