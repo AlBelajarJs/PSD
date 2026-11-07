@@ -5,6 +5,7 @@ pandas
 geopandas
 rasterio
 scikit-learn
+xgboost
 folium
 streamlit
 openeo

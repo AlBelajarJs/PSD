@@ -591,3 +591,12 @@ Jangan melakukan digitasi manual.
 Jangan menggunakan Sentinel-2 sebagai sumber label.
 Jangan membuat pseudo-ground-truth dari clustering.
 Gunakan polygon sumber geospasial yang sudah memiliki informasi penggunaan/penutupan lahan.
+
+
+las	Sumber	Link	Status
+1 Sawah	Kementan LBS 2019	https://sig02.pertanian.go.id/server/rest/services/Sawah/LBS2019/MapServer/22	✅ live, layer sawah_Jawa_Timur (kolomnya persis sama kayak di log download kita)
+2 Bangunan, 4 Lahan hijau, 6 Danau	BIG SatuPeta	https://kspservices.big.go.id/satupeta/rest/services/PUBLIK/SUMBER_DAYA_ALAM_DAN_LINGKUNGAN/MapServer — layer 5 (Penggunaan Tanah 50K), 52–55 (Danau/Situ/Embung)	✅ live
+3 Mangrove	BIG SatuPeta	.../MapServer/57 (Peta Mangrove 1:25.000)	✅ live, ada di daftar layer
+5 Laut	Natural Earth 10m	https://naciscdn.org/naturalearth/10m/physical/ne_10m_ocean.zip	dari readme (tidak saya tes download)
+Batas Jatim	GADM v4.1	https://gadm.org (level-1 IDN)	dari log
+Citra Sentinel-2A	Copernicus Data Space	https://dataspace.copernicus.eu (koleksi SENTINEL2_L2A, via openEO)	✅ dipakai script kita

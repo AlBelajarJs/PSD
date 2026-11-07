@@ -7,3 +7,15 @@ __pycache__/
 # OS / editor
 .DS_Store
 Thumbs.db
+# Log eksekusi notebook (regenerable via python run_nb.py)
+jatim/run_nb.log
+# Artefak lokal sementara (backup model lama saat re-training)
+jatim/model_backup/
+# Checkpoint parsial saat klasifikasi raster evaluasi (6 MB, sementara)
+jatim/model/eval_out.npy
+jatim/model/eval_out.tmp.npy
+# Checkpoint resume training (bersihkan otomatis oleh 6.2 setelah selesai)
+jatim/model/jatim_model_compare_part.csv
+_smoke_mask.py
+# Log uji build (sekali pakai)
+_build_test.log

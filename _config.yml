@@ -21,7 +21,7 @@ bibtex_bibfiles:
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/Alghifari-Ananta/PSD
+  url: https://github.com/safamaster223/PSD
   path_to_book: ""
   branch: main
 
